@@ -1,10 +1,11 @@
 spring:
-  config:
-    import: ${CONFIG_URL:configserver:http://localhost:8012}
+  profiles:
+    active: ${PROFILE:local}
   application:
     name: api-gateway
+  config:
+    import: ${CONFIG_URL:configserver:http://localhost:8012}
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
-  profiles:
-    active: ${PROFILE:local}
+

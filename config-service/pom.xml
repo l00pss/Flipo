@@ -37,7 +37,7 @@
                 <version>2.7.3</version>
                 <configuration>
                     <image>
-                        <name>${project.groupId}/auth.service:${project.version}</name>
+                        <name>${project.groupId}/config.service:${project.version}</name>
                     </image>
                 </configuration>
             </plugin>
