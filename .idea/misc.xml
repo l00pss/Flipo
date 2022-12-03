@@ -10,6 +10,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/config-services/pom.xml" />
+        <option value="$PROJECT_DIR$/post-service/pom.xml" />
       </set>
     </option>
   </component>

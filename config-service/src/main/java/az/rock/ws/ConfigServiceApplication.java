@@ -8,7 +8,6 @@ import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 @EnableConfigServer
-@Profile("local")
 @PropertySource("classpath:application.yml")
 public class ConfigServiceApplication {
     public static void main(String[] args) {

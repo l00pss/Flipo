@@ -10,6 +10,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>auth-service</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>auth-presentation</module>
+        <module>auth-container</module>
+        <module>auth-data-access</module>
+        <module>auth-domain</module>
+        <module>auth-messaging</module>
+    </modules>
 
     <dependencies>
         <dependency>

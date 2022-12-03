@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>post-service</artifactId>
+    <artifactId>post-command-service</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

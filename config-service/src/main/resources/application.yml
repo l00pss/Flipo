@@ -12,5 +12,13 @@ spring:
           default-label: ${GIT_BRANCH:main}
           password: ${GIT_PASS}
           username: ${GIT_NAME}
-          clone-on-start: true
+          clone-on-start: false
           uri: ${GIT_ADDRESS}
+#  main:
+#    web-application-type: servlet
+logging:
+  level:
+    web: debug
+endpoints:
+  restart:
+    enabled: true

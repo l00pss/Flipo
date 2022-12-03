@@ -13,11 +13,13 @@
         <module>library</module>
         <module>config-service</module>
         <module>discovery-service</module>
-        <module>post-service</module>
+        <module>post-command-service</module>
         <module>auth-service</module>
         <module>stream-service</module>
         <module>library/JDomain</module>
         <module>library/JUtil</module>
+        <module>post-command-service</module>
+        <module>post-query-service</module>
     </modules>
 
     <parent>

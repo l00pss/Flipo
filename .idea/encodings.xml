@@ -2,7 +2,16 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/api-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-container/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-data-access/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-domain/auth-domain-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-domain/auth-domain-presentation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-domain/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-messaging/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-presentation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/config-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/config-services/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/discovery-service/src/main/java" charset="UTF-8" />
@@ -17,6 +26,8 @@
     <file url="file://$PROJECT_DIR$/library/JValue/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/post-command-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/post-query-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/post-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
