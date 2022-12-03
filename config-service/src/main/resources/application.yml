@@ -1,6 +1,5 @@
 server:
   port: ${PORT:8012}
-
 spring:
   application:
     name: config-service
@@ -15,4 +14,3 @@ spring:
           username: ${GIT_NAME}
           clone-on-start: true
           uri: ${GIT_ADDRESS}
-

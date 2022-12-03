@@ -2,7 +2,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-!.docker-compose/env/
+!.docker-compose/**/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
@@ -38,3 +38,4 @@ build/
 ### Mac OS ###
 .DS_Store
 /.docker-compose/env/
+/.docker-compose/
