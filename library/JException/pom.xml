@@ -3,23 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>Flipo</artifactId>
+        <artifactId>library</artifactId>
         <groupId>az.rock.ws</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>library</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>JResponse</module>
-        <module>JKafka</module>
-        <module>JMessage</module>
-        <module>JValue</module>
-        <module>JSpec</module>
-        <module>JSAdapter</module>
-        <module>JException</module>
-    </modules>
+    <groupId>az.rock.lib</groupId>
+    <artifactId>JException</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
