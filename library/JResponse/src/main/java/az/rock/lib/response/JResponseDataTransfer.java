@@ -2,11 +2,9 @@ package az.rock.lib.response;
 
 import az.rock.lib.JDataTransfer;
 import az.rock.lib.JHeader;
-import az.rock.lib.response.success.JSuccessDataResponse;
 
 import javax.management.JMRuntimeException;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -42,6 +40,21 @@ public class JResponseDataTransfer<D> extends JDataTransfer<D> {
         this.message = null;
     }
 
+    @SuppressWarnings("unchecked")
+    public static <D> JResponseDataTransfer<D> ofNullable(D value) {
+        return value == null ? (JResponseDataTransfer<D>) EMPTY : new JResponseDataTransfer<>(value,Boolean.TRUE);
+    }
+
+    public static<D> JResponseDataTransfer<D> EMPTY() {
+        @SuppressWarnings("unchecked")
+        JResponseDataTransfer<D> object = (JResponseDataTransfer<D>) EMPTY;
+        return object;
+    }
+
+    public static <D> JResponseDataTransfer<D> of(D data) {
+        return new JResponseDataTransfer<>(Objects.requireNonNull(data),Boolean.TRUE);
+    }
+
     public D get() {
         if (Objects.isNull(super.getData()))
             throw new JMRuntimeException("No value present");
@@ -72,26 +85,11 @@ public class JResponseDataTransfer<D> extends JDataTransfer<D> {
         }
     }
 
-    public static<D> JResponseDataTransfer<D> EMPTY() {
-        @SuppressWarnings("unchecked")
-        JResponseDataTransfer<D> object = (JResponseDataTransfer<D>) EMPTY;
-        return object;
-    }
-
-    public static <D> JResponseDataTransfer<D> of(D data) {
-        return new JResponseDataTransfer<>(Objects.requireNonNull(data),Boolean.TRUE);
-    }
-
     public <U> JResponseDataTransfer<U> map(Function<? super D, ? extends U> mapper) {
         Objects.requireNonNull(mapper);
         if (!isPresent()) return EMPTY();
         else return JResponseDataTransfer.ofNullable(mapper.apply(super.getData()));
 
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <D> JResponseDataTransfer<D> ofNullable(D value) {
-        return value == null ? (JResponseDataTransfer<D>) EMPTY : new JResponseDataTransfer<>(value,Boolean.TRUE);
     }
 
     public JResponseDataTransfer<D> or(Supplier<? extends JResponseDataTransfer<? extends D>> supplier) {
