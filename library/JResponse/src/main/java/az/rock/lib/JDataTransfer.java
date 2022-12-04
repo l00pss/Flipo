@@ -1,8 +1,6 @@
 package az.rock.lib;
 
-import az.rock.lib.JDataTransfer;
 
-import javax.management.JMRuntimeException;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
