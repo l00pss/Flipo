@@ -1,11 +1,21 @@
+server:
+    port: ${PORT:8082}
 spring:
-  profiles:
-    active: ${PROFILE:local}
-  application:
-    name: api-gateway
-  config:
-    import: ${CONFIG_URL:configserver:http://localhost:8012}
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-
+    profiles:
+        active: ${PROFILE:local}
+    application:
+        name: api-gateway
+    config:
+        fail-fast: true
+        retry:
+            maxAttempts: 200
+            maxInterval: 10000
+        import: optional:configserver:http://localhost:8012
+    mvc:
+        pathmatch:
+            matching-strategy: ant_path_matcher
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'
