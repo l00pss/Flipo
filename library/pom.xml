@@ -19,6 +19,7 @@
         <module>JSpec</module>
         <module>JSAdapter</module>
         <module>JException</module>
+        <module>JAspect</module>
     </modules>
 
 

@@ -1,8 +1,8 @@
 package az.rock.ws.event;
 
-import az.rock.lib.JDateTime;
-import az.rock.lib.event.DomainEvent;
-import az.rock.lib.generic.JRole;
+import az.rock.lib.util.JDateTime;
+import az.rock.lib.jdomain.event.DomainEvent;
+import az.rock.lib.value.generic.JRole;
 import az.rock.ws.aggregate.UserRoot;
 
 import java.time.ZonedDateTime;

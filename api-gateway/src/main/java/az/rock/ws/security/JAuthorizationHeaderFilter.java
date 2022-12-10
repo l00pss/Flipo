@@ -1,7 +1,7 @@
 package az.rock.ws.security;
 
 import az.rock.lib.HttpConstant;
-import az.rock.lib.JAuthenticationException;
+import az.rock.lib.jexception.JAuthenticationException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;

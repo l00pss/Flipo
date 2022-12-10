@@ -1,13 +1,14 @@
 package az.rock.ws.aggregate;
 
-import az.rock.lib.aggregate.JAggregateRoot;
-import az.rock.lib.generic.JRole;
-import az.rock.lib.id.UserID;
+import az.rock.lib.jdomain.aggregate.JAggregateRoot;
+import az.rock.lib.value.generic.JRole;
+import az.rock.lib.jdomain.id.UserID;
+import lombok.AccessLevel;
 import lombok.Getter;
 
 import java.util.UUID;
 
-@Getter
+@Getter(value = AccessLevel.PUBLIC)
 public class UserRoot extends JAggregateRoot<UserID> {
     private final UUID key;
     private final String username;
@@ -26,6 +27,10 @@ public class UserRoot extends JAggregateRoot<UserID> {
         password = builder.password;
         email = builder.email;
         role = builder.role;
+    }
+
+    public UUID getIdValue() {
+        return super.getId().getValue();
     }
 
     public static final class Builder {

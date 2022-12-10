@@ -3,27 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>auth-domain</artifactId>
+        <artifactId>library</artifactId>
         <groupId>az.rock.ws</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>auth-domain-presentation</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>az.rock.lib</groupId>
-            <artifactId>JException</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>az.rock.ws</groupId>
-            <artifactId>auth-domain-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
+    <artifactId>JAspect</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

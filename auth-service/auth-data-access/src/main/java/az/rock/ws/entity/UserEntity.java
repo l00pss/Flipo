@@ -1,6 +1,6 @@
 package az.rock.ws.entity;
 
-import az.rock.lib.generic.JRole;
+import az.rock.lib.value.generic.JRole;
 import lombok.*;
 
 import javax.persistence.Column;
