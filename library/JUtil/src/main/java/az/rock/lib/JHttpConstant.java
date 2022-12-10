@@ -1,6 +1,6 @@
 package az.rock.lib;
 
-public class HttpConstant {
+public class JHttpConstant {
     public static final String ROLE = "ROLE";
     public static final String FIN = "FIN";
     public static final String UUID = "UUID";
