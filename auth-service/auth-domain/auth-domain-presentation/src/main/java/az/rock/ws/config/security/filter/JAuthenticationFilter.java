@@ -1,6 +1,7 @@
 package az.rock.ws.config.security.filter;
 
 
+import az.rock.lib.jdomain.aggregate.JRoot;
 import az.rock.lib.util.JHttpConstant;
 import az.rock.lib.value.generic.JLanguage;
 import az.rock.ws.aggregate.UserRoot;
@@ -69,8 +70,7 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
     private Map<String,Object> generateClaim(UserRoot userRoot){
         Map<String,Object> claims = new HashMap<>();
         claims.put(JHttpConstant.KEY,userRoot.getKey());
-        claims.put(JHttpConstant.UUID,userRoot);
-        claims.put(JHttpConstant.ROLE,userRoot);
+        claims.put(JHttpConstant.ROLE,userRoot.getRole());
         return claims;
     }
 

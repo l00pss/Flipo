@@ -1,4 +1,8 @@
 package az.rock.ws.port.output.repository.abstracts;
 
-public class AbstractUserRepository {
+import az.rock.ws.aggregate.UserRoot;
+
+public interface AbstractUserRepository {
+    UserRoot createUser(UserRoot userRoot);
+    UserRoot findByUsername(String userName);
 }
