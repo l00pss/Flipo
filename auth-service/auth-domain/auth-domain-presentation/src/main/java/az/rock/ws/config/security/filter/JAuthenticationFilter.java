@@ -1,12 +1,11 @@
 package az.rock.ws.config.security.filter;
 
 
-import az.rock.lib.jdomain.aggregate.JRoot;
 import az.rock.lib.util.JHttpConstant;
 import az.rock.lib.value.generic.JLanguage;
 import az.rock.ws.aggregate.UserRoot;
 import az.rock.ws.config.security.GUserDetailsService;
-import az.rock.ws.dto.AuthUserCommand;
+import az.rock.ws.dto.request.AuthUserCommand;
 import az.rock.ws.exception.UserNotFoundJException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;

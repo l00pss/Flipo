@@ -1,4 +1,4 @@
-package az.rock.ws.dto;
+package az.rock.ws.dto.request;
 
 public record AuthUserCommand(
         String username,

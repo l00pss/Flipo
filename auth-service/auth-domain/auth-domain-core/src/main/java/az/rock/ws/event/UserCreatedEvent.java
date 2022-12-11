@@ -1,13 +1,13 @@
 package az.rock.ws.event;
 
+import az.rock.lib.jdomain.event.auth.AuthDomainEvent;
 import az.rock.lib.util.JDateTime;
-import az.rock.lib.jdomain.event.DomainEvent;
 import az.rock.lib.value.generic.JRole;
 import az.rock.ws.aggregate.UserRoot;
 
 import java.time.ZonedDateTime;
 
-public class UserCreatedEvent implements DomainEvent<UserRoot> {
+public class UserCreatedEvent implements AuthDomainEvent<UserRoot> {
 
     private final ZonedDateTime createdAt;
 
