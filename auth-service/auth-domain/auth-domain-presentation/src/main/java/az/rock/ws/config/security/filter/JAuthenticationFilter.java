@@ -4,7 +4,7 @@ package az.rock.ws.config.security.filter;
 import az.rock.lib.util.JHttpConstant;
 import az.rock.lib.value.generic.JLanguage;
 import az.rock.ws.aggregate.UserRoot;
-import az.rock.ws.config.security.GUserDetailsService;
+import az.rock.ws.config.security.UserAuthDetailsService;
 import az.rock.ws.dto.request.AuthUserCommand;
 import az.rock.ws.exception.UserNotFoundJException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,11 +25,11 @@ import java.util.*;
 
 public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    private final GUserDetailsService gUserDetailsService;
+    private final UserAuthDetailsService userAuthDetailsService;
 
 
-    public JAuthenticationFilter(GUserDetailsService authService, AuthenticationManager authenticationManager) {
-        this.gUserDetailsService = authService;
+    public JAuthenticationFilter(UserAuthDetailsService authService, AuthenticationManager authenticationManager) {
+        this.userAuthDetailsService = authService;
         super.setAuthenticationManager(authenticationManager);
     }
 
@@ -51,7 +51,7 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                                             FilterChain chain, Authentication authResult) throws IOException, ServletException {
-        UserRoot userRoot = this.gUserDetailsService.matches(authResult);
+        UserRoot userRoot = this.userAuthDetailsService.matches(authResult);
         Map<String,Object> claims = this.generateClaim(userRoot);
         String token =  this.generateToken(claims);
         response.addHeader(JHttpConstant.TOKEN,token);
@@ -59,8 +59,8 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
 
     private String generateToken(Map<String,Object> claims){
         return Jwts.builder()
-                .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(this.gUserDetailsService.getTokenExpDate())))
-                .signWith(SignatureAlgorithm.HS512,this.gUserDetailsService.getSecurityKey())
+                .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(this.userAuthDetailsService.getTokenExpDate())))
+                .signWith(SignatureAlgorithm.HS512,this.userAuthDetailsService.getSecurityKey())
                 .setClaims(claims)
                 .compact();
     }

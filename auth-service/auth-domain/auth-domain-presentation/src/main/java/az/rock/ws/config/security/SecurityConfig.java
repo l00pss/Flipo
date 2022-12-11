@@ -19,7 +19,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 @DependsOn({"authenticationEntryPoint"})
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final GUserDetailsService userDetailsService;
+    private final UserAuthDetailsService userAuthDetailsService;
     private final AuthenticationEntryPoint authenticationEntryPoint;
 
     @Value(value = "${az.rock.ws.gateway.ip-address}")
@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private JAuthenticationFilter getAuthenticationFilter() throws Exception {
-        JAuthenticationFilter authenticationFilter = new JAuthenticationFilter(this.userDetailsService,authenticationManager());
+        JAuthenticationFilter authenticationFilter = new JAuthenticationFilter(this.userAuthDetailsService,authenticationManager());
         authenticationFilter.setFilterProcessesUrl("/users/auth/login");
         return authenticationFilter;
     }
