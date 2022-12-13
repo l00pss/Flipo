@@ -18,6 +18,7 @@
         <module>post-command-service</module>
         <module>post-query-service</module>
         <module>admin-service</module>
+        <module>sync-service</module>
     </modules>
 
     <parent>

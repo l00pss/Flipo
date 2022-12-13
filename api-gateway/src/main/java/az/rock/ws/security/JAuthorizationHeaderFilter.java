@@ -1,7 +1,7 @@
 package az.rock.ws.security;
 
 import az.rock.lib.HttpConstant;
-import az.rock.lib.jexception.JAuthenticationException;
+import az.rock.lib.jexception.JSecurityException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -64,7 +64,7 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
             String role = (String) claims.get(HttpConstant.ROLE);
 
         }catch (MalformedJwtException malformedJwtException){
-            throw new JAuthenticationException("Invalid Json Token");
+            throw new JSecurityException("Invalid Json Token");
         }
         return Objects.nonNull(fin);
     }
@@ -77,7 +77,7 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
                     .parseClaimsJws(token)
                     .getBody();
         }catch (Exception exception){
-            throw new JAuthenticationException("Invalid Json Token");
+            throw new JSecurityException("Invalid Json Token");
         }
     }
 }
