@@ -3,8 +3,13 @@ package az.rock.ws.auth;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
 
-@SpringBootApplication(scanBasePackageClasses = {az.rock.ws.config.security.SecurityBeanConfig.class})
+@SpringBootApplication(scanBasePackageClasses = {
+        az.rock.ws.config.security.SecurityBeanConfig.class
+        , az.rock.ws.DataAccessConfig.class
+})
 @EnableEurekaClient
 public class AuthServiceApplication {
     public static void main(String[] args) {

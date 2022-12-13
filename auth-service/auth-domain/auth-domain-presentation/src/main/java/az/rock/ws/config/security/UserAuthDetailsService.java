@@ -23,10 +23,10 @@ public class UserAuthDetailsService implements org.springframework.security.core
     private final PasswordEncoder passwordEncoder;
     private final AbstractUserRepository userRepository;
 
-    @Value(value = "${rock.security-key}")
+    @Value(value = "${az.rock.ws.security-key}")
     private String securityKey;
 
-    @Value(value = "${rock.token-exp-time}")
+    @Value(value = "${az.rock.ws.token-exp-time}")
     private String tokenExpDate;
 
     @Override

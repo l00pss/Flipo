@@ -21,6 +21,8 @@
         <module>JException</module>
         <module>JAspect</module>
         <module>jRPC</module>
+        <module>JDomain</module>
+        <module>JUtil</module>
     </modules>
 
 

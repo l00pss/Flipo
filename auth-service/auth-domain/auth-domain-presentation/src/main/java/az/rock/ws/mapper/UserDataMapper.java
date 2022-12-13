@@ -1,13 +1,14 @@
 package az.rock.ws.mapper;
 
 
+import az.rock.lib.adapter.annotation.JMapper;
 import az.rock.lib.jdomain.id.UserID;
 import az.rock.ws.aggregate.UserRoot;
 import az.rock.ws.dto.request.CreateUserCommand;
 import az.rock.ws.dto.response.CreateUserResponse;
 
 import java.util.UUID;
-
+@JMapper
 public class UserDataMapper {
     public UserRoot createUserCommandToUser(CreateUserCommand command) {
         return UserRoot.Builder

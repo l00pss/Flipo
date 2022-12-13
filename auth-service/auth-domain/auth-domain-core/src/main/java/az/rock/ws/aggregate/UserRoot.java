@@ -8,6 +8,7 @@ import lombok.*;
 import java.util.UUID;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @Getter
 public class UserRoot extends JAggregateRoot<UserID> {
