@@ -12,7 +12,7 @@ target/
 *.iws
 *.iml
 *.ipr
-
+**/logs
 ### Eclipse ###
 .apt_generated
 .classpath
@@ -39,3 +39,4 @@ build/
 .DS_Store
 /.docker-compose/env/
 /.docker-compose/
+/auth-service/

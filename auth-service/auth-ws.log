@@ -1,394 +1,84 @@
-2022-12-13 20:12:34.178  INFO 9844 --- [restartedMain] az.rock.ws.auth.AuthServiceApplication   : Starting AuthServiceApplication using Java 17.0.4.1 on DESKTOP-3A2NN91 with PID 9844 (C:\Users\User\OneDrive\Masaüstü\Projects\Flipo\auth-service\auth-container\target\classes started by User in C:\Users\User\OneDrive\Masaüstü\Projects\Flipo)
-2022-12-13 20:12:34.179  INFO 9844 --- [restartedMain] az.rock.ws.auth.AuthServiceApplication   : The following 1 profile is active: "local"
-2022-12-13 20:12:34.215  INFO 9844 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8012
-2022-12-13 20:12:34.215  INFO 9844 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=auth-service, profiles=[local], label=null, version=479a7fd59de4d69e9dda40149fd2dd08a9068852, state=null
-2022-12-13 20:12:34.218  INFO 9844 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-12-13 20:12:34.219  INFO 9844 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-12-13 20:12:34.912  INFO 9844 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-12-13 20:12:34.926  INFO 9844 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
-2022-12-13 20:12:35.138  INFO 9844 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=065af30b-a79e-3f3c-a5e3-a1a3f6272b54
-2022-12-13 20:12:35.625  INFO 9844 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2022-12-13 20:12:35.632  INFO 9844 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-12-13 20:12:35.633  INFO 9844 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-12-13 20:12:35.694  INFO 9844 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-12-13 20:12:35.694  INFO 9844 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1475 ms
-2022-12-13 20:12:35.797  INFO 9844 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-12-13 20:12:35.842  INFO 9844 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-12-13 20:12:35.986  INFO 9844 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-12-13 20:12:36.085  INFO 9844 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-12-13 20:12:36.197  INFO 9844 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-12-13 20:12:36.211  INFO 9844 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2022-12-13 20:12:36.415  INFO 9844 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-12-13 20:12:36.426  INFO 9844 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-12-13 20:12:36.450  WARN 9844 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityConfig' defined in file [C:\Users\User\OneDrive\Masaüstü\Projects\Flipo\auth-service\auth-domain\auth-domain-presentation\target\classes\az\rock\ws\config\security\SecurityConfig.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthDetailsService' defined in file [C:\Users\User\OneDrive\Masaüstü\Projects\Flipo\auth-service\auth-domain\auth-domain-presentation\target\classes\az\rock\ws\config\security\UserAuthDetailsService.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'az.rock.ws.port.output.repository.abstracts.AbstractUserRepository' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2022-12-13 20:12:36.450  INFO 9844 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-12-13 20:12:36.450  INFO 9844 --- [restartedMain] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-12-13 20:12:36.455  INFO 9844 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-12-13 20:12:36.478  INFO 9844 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-12-13 20:12:36.479  INFO 9844 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2022-12-13 20:12:36.489  INFO 9844 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2022-12-13 20:12:36.505 ERROR 9844 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 1 of constructor in az.rock.ws.config.security.UserAuthDetailsService required a bean of type 'az.rock.ws.port.output.repository.abstracts.AbstractUserRepository' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'az.rock.ws.port.output.repository.abstracts.AbstractUserRepository' in your configuration.
-
-2022-12-13 20:18:36.248  INFO 16836 --- [restartedMain] az.rock.ws.auth.AuthServiceApplication   : Starting AuthServiceApplication using Java 17.0.4.1 on DESKTOP-3A2NN91 with PID 16836 (C:\Users\User\OneDrive\Masaüstü\Projects\Flipo\auth-service\auth-container\target\classes started by User in C:\Users\User\OneDrive\Masaüstü\Projects\Flipo)
-2022-12-13 20:18:36.249  INFO 16836 --- [restartedMain] az.rock.ws.auth.AuthServiceApplication   : The following 1 profile is active: "local"
-2022-12-13 20:18:36.286  INFO 16836 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8012
-2022-12-13 20:18:36.286  INFO 16836 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=auth-service, profiles=[local], label=null, version=479a7fd59de4d69e9dda40149fd2dd08a9068852, state=null
-2022-12-13 20:18:36.287  INFO 16836 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-12-13 20:18:36.288  INFO 16836 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-12-13 20:18:37.094  INFO 16836 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-12-13 20:18:37.108  INFO 16836 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
-2022-12-13 20:18:37.327  INFO 16836 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=d047a5e9-c650-3ab2-b9c5-cb95a6eb6ead
-2022-12-13 20:18:37.801  INFO 16836 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2022-12-13 20:18:37.807  INFO 16836 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-12-13 20:18:37.808  INFO 16836 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-12-13 20:18:37.866  INFO 16836 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-12-13 20:18:37.866  INFO 16836 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1578 ms
-2022-12-13 20:18:37.971  INFO 16836 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-12-13 20:18:38.021  INFO 16836 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-12-13 20:18:38.160  INFO 16836 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-12-13 20:18:38.259  INFO 16836 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-12-13 20:18:38.369  INFO 16836 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-12-13 20:18:38.384  INFO 16836 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2022-12-13 20:18:38.582  INFO 16836 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-12-13 20:18:38.591  INFO 16836 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-12-13 20:18:38.616  WARN 16836 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityConfig' defined in file [C:\Users\User\OneDrive\Masaüstü\Projects\Flipo\auth-service\auth-domain\auth-domain-presentation\target\classes\az\rock\ws\config\security\SecurityConfig.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthDetailsService' defined in file [C:\Users\User\OneDrive\Masaüstü\Projects\Flipo\auth-service\auth-domain\auth-domain-presentation\target\classes\az\rock\ws\config\security\UserAuthDetailsService.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userRepository' defined in file [C:\Users\User\OneDrive\Masaüstü\Projects\Flipo\auth-service\auth-data-access\target\classes\az\rock\ws\repository\adapter\UserRepository.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'az.rock.ws.repository.AbstractUserJPARepository' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2022-12-13 20:18:38.616  INFO 16836 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-12-13 20:18:38.617  INFO 16836 --- [restartedMain] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-12-13 20:18:38.620  INFO 16836 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-12-13 20:18:38.628  INFO 16836 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-12-13 20:18:38.629  INFO 16836 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2022-12-13 20:18:38.638  INFO 16836 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2022-12-13 20:18:38.656 ERROR 16836 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 0 of constructor in az.rock.ws.repository.adapter.UserRepository required a bean of type 'az.rock.ws.repository.AbstractUserJPARepository' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'az.rock.ws.repository.AbstractUserJPARepository' in your configuration.
-
-2022-12-13 20:20:00.815  INFO 23848 --- [restartedMain] az.rock.ws.auth.AuthServiceApplication   : Starting AuthServiceApplication using Java 17.0.4.1 on DESKTOP-3A2NN91 with PID 23848 (C:\Users\User\OneDrive\Masaüstü\Projects\Flipo\auth-service\auth-container\target\classes started by User in C:\Users\User\OneDrive\Masaüstü\Projects\Flipo)
-2022-12-13 20:20:00.816  INFO 23848 --- [restartedMain] az.rock.ws.auth.AuthServiceApplication   : The following 1 profile is active: "local"
-2022-12-13 20:20:00.857  INFO 23848 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8012
-2022-12-13 20:20:00.857  INFO 23848 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=auth-service, profiles=[local], label=null, version=479a7fd59de4d69e9dda40149fd2dd08a9068852, state=null
-2022-12-13 20:20:00.859  INFO 23848 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-12-13 20:20:00.859  INFO 23848 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-12-13 20:20:01.616  INFO 23848 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-12-13 20:20:01.760  INFO 23848 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 134 ms. Found 1 JPA repository interfaces.
-2022-12-13 20:20:01.979  INFO 23848 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=1275beb4-7599-304e-8d24-9851b48be05b
-2022-12-13 20:20:02.397  INFO 23848 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2022-12-13 20:20:02.405  INFO 23848 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-12-13 20:20:02.405  INFO 23848 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-12-13 20:20:02.465  INFO 23848 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-12-13 20:20:02.465  INFO 23848 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1606 ms
-2022-12-13 20:20:02.567  INFO 23848 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-12-13 20:20:02.611  INFO 23848 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-12-13 20:20:02.755  INFO 23848 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-12-13 20:20:02.854  INFO 23848 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-12-13 20:20:02.966  INFO 23848 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-12-13 20:20:02.980  INFO 23848 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2022-12-13 20:20:03.536  WARN 23848 --- [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2022-12-13 20:20:03.536  WARN 23848 --- [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "users" does not exist, skipping
-2022-12-13 20:20:03.578  INFO 23848 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-12-13 20:20:03.586  INFO 23848 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-12-13 20:20:03.988  WARN 23848 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-12-13 20:20:03.995  WARN 23848 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'securityConfig': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'az.rock.ws.gateway.ip-address' in value "${az.rock.ws.gateway.ip-address}"
-2022-12-13 20:20:03.996  INFO 23848 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-12-13 20:20:03.996  INFO 23848 --- [restartedMain] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-12-13 20:20:04.008  INFO 23848 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-12-13 20:20:04.010  INFO 23848 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-12-13 20:20:04.011  INFO 23848 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2022-12-13 20:20:04.021  INFO 23848 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2022-12-13 20:20:04.040 ERROR 23848 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
-
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'securityConfig': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'az.rock.ws.gateway.ip-address' in value "${az.rock.ws.gateway.ip-address}"
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:405) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918) ~[spring-context-5.3.22.jar:5.3.22]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.22.jar:5.3.22]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147) ~[spring-boot-2.7.3.jar:2.7.3]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-2.7.3.jar:2.7.3]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408) ~[spring-boot-2.7.3.jar:2.7.3]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308) ~[spring-boot-2.7.3.jar:2.7.3]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-2.7.3.jar:2.7.3]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-2.7.3.jar:2.7.3]
-	at az.rock.ws.auth.AuthServiceApplication.main(AuthServiceApplication.java:16) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.7.3.jar:2.7.3]
-Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'az.rock.ws.gateway.ip-address' in value "${az.rock.ws.gateway.ip-address}"
-	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180) ~[spring-core-5.3.22.jar:5.3.22]
-	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126) ~[spring-core-5.3.22.jar:5.3.22]
-	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239) ~[spring-core-5.3.22.jar:5.3.22]
-	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210) ~[spring-core-5.3.22.jar:5.3.22]
-	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191) ~[spring-context-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:936) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1332) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399) ~[spring-beans-5.3.22.jar:5.3.22]
-	... 22 common frames omitted
-
-2022-12-13 20:22:14.486  INFO 20076 --- [restartedMain] az.rock.ws.auth.AuthServiceApplication   : Starting AuthServiceApplication using Java 17.0.4.1 on DESKTOP-3A2NN91 with PID 20076 (C:\Users\User\OneDrive\Masaüstü\Projects\Flipo\auth-service\auth-container\target\classes started by User in C:\Users\User\OneDrive\Masaüstü\Projects\Flipo)
-2022-12-13 20:22:14.487  INFO 20076 --- [restartedMain] az.rock.ws.auth.AuthServiceApplication   : The following 1 profile is active: "local"
-2022-12-13 20:22:14.523  INFO 20076 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8012
-2022-12-13 20:22:14.524  INFO 20076 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=auth-service, profiles=[local], label=null, version=d9b66774be2e95d20c0c526e2951b35dbe070e9f, state=null
-2022-12-13 20:22:14.526  INFO 20076 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-12-13 20:22:14.526  INFO 20076 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-12-13 20:22:15.284  INFO 20076 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-12-13 20:22:15.423  INFO 20076 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 128 ms. Found 1 JPA repository interfaces.
-2022-12-13 20:22:15.646  INFO 20076 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=1275beb4-7599-304e-8d24-9851b48be05b
-2022-12-13 20:22:16.057  INFO 20076 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2022-12-13 20:22:16.064  INFO 20076 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-12-13 20:22:16.064  INFO 20076 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-12-13 20:22:16.124  INFO 20076 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-12-13 20:22:16.124  INFO 20076 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1598 ms
-2022-12-13 20:22:16.230  INFO 20076 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-12-13 20:22:16.277  INFO 20076 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-12-13 20:22:16.417  INFO 20076 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-12-13 20:22:16.521  INFO 20076 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-12-13 20:22:16.632  INFO 20076 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-12-13 20:22:16.646  INFO 20076 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2022-12-13 20:22:17.189  WARN 20076 --- [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2022-12-13 20:22:17.189  WARN 20076 --- [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "users" does not exist, skipping
-2022-12-13 20:22:17.208  INFO 20076 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-12-13 20:22:17.216  INFO 20076 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-12-13 20:22:17.485  WARN 20076 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityConfig' defined in file [C:\Users\User\OneDrive\Masaüstü\Projects\Flipo\auth-service\auth-domain\auth-domain-presentation\target\classes\az\rock\ws\config\security\SecurityConfig.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userAuthDetailsService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'rock.security-key' in value "${rock.security-key}"
-2022-12-13 20:22:17.485  INFO 20076 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-12-13 20:22:17.485  INFO 20076 --- [restartedMain] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-12-13 20:22:17.493  INFO 20076 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-12-13 20:22:17.494  INFO 20076 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-12-13 20:22:17.495  INFO 20076 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2022-12-13 20:22:17.505  INFO 20076 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2022-12-13 20:22:17.525 ERROR 20076 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
-
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityConfig' defined in file [C:\Users\User\OneDrive\Masaüstü\Projects\Flipo\auth-service\auth-domain\auth-domain-presentation\target\classes\az\rock\ws\config\security\SecurityConfig.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userAuthDetailsService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'rock.security-key' in value "${rock.security-key}"
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918) ~[spring-context-5.3.22.jar:5.3.22]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.22.jar:5.3.22]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147) ~[spring-boot-2.7.3.jar:2.7.3]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-2.7.3.jar:2.7.3]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408) ~[spring-boot-2.7.3.jar:2.7.3]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308) ~[spring-boot-2.7.3.jar:2.7.3]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-2.7.3.jar:2.7.3]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-2.7.3.jar:2.7.3]
-	at az.rock.ws.auth.AuthServiceApplication.main(AuthServiceApplication.java:16) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.7.3.jar:2.7.3]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userAuthDetailsService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'rock.security-key' in value "${rock.security-key}"
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:405) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-5.3.22.jar:5.3.22]
-	... 24 common frames omitted
-Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'rock.security-key' in value "${rock.security-key}"
-	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180) ~[spring-core-5.3.22.jar:5.3.22]
-	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126) ~[spring-core-5.3.22.jar:5.3.22]
-	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239) ~[spring-core-5.3.22.jar:5.3.22]
-	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210) ~[spring-core-5.3.22.jar:5.3.22]
-	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191) ~[spring-context-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:936) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1332) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119) ~[spring-beans-5.3.22.jar:5.3.22]
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399) ~[spring-beans-5.3.22.jar:5.3.22]
-	... 36 common frames omitted
-
-2022-12-13 20:23:22.147  INFO 4800 --- [restartedMain] az.rock.ws.auth.AuthServiceApplication   : Starting AuthServiceApplication using Java 17.0.4.1 on DESKTOP-3A2NN91 with PID 4800 (C:\Users\User\OneDrive\Masaüstü\Projects\Flipo\auth-service\auth-container\target\classes started by User in C:\Users\User\OneDrive\Masaüstü\Projects\Flipo)
-2022-12-13 20:23:22.148  INFO 4800 --- [restartedMain] az.rock.ws.auth.AuthServiceApplication   : The following 1 profile is active: "local"
-2022-12-13 20:23:22.186  INFO 4800 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8012
-2022-12-13 20:23:22.186  INFO 4800 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=auth-service, profiles=[local], label=null, version=d9b66774be2e95d20c0c526e2951b35dbe070e9f, state=null
-2022-12-13 20:23:22.187  INFO 4800 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-12-13 20:23:22.187  INFO 4800 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-12-13 20:23:22.945  INFO 4800 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-12-13 20:23:23.072  INFO 4800 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 116 ms. Found 1 JPA repository interfaces.
-2022-12-13 20:23:23.287  INFO 4800 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=1275beb4-7599-304e-8d24-9851b48be05b
-2022-12-13 20:23:23.695  INFO 4800 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2022-12-13 20:23:23.702  INFO 4800 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-12-13 20:23:23.702  INFO 4800 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-12-13 20:23:23.761  INFO 4800 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-12-13 20:23:23.761  INFO 4800 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1574 ms
-2022-12-13 20:23:23.865  INFO 4800 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-12-13 20:23:23.912  INFO 4800 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-12-13 20:23:24.061  INFO 4800 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-12-13 20:23:24.157  INFO 4800 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-12-13 20:23:24.279  INFO 4800 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-12-13 20:23:24.294  INFO 4800 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2022-12-13 20:23:24.799  WARN 4800 --- [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2022-12-13 20:23:24.799  WARN 4800 --- [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "users" does not exist, skipping
-2022-12-13 20:23:24.816  INFO 4800 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-12-13 20:23:24.823  INFO 4800 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-12-13 20:23:25.189  WARN 4800 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-12-13 20:23:25.200  WARN 4800 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userAuthManager' defined in file [C:\Users\User\OneDrive\Masaüstü\Projects\Flipo\auth-service\auth-domain\auth-domain-presentation\target\classes\az\rock\ws\port\input\service\concretes\UserAuthManager.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'createUserCommandHandler' defined in file [C:\Users\User\OneDrive\Masaüstü\Projects\Flipo\auth-service\auth-domain\auth-domain-presentation\target\classes\az\rock\ws\port\input\service\handler\CreateUserCommandHandler.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'az.rock.ws.mapper.UserDataMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2022-12-13 20:23:25.201  INFO 4800 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-12-13 20:23:25.201  INFO 4800 --- [restartedMain] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-12-13 20:23:25.208  INFO 4800 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-12-13 20:23:25.208  INFO 4800 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-12-13 20:23:25.211  INFO 4800 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2022-12-13 20:23:25.221  INFO 4800 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2022-12-13 20:23:25.240 ERROR 4800 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 2 of constructor in az.rock.ws.port.input.service.handler.CreateUserCommandHandler required a bean of type 'az.rock.ws.mapper.UserDataMapper' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'az.rock.ws.mapper.UserDataMapper' in your configuration.
-
-2022-12-13 20:24:26.783  INFO 18112 --- [restartedMain] az.rock.ws.auth.AuthServiceApplication   : Starting AuthServiceApplication using Java 17.0.4.1 on DESKTOP-3A2NN91 with PID 18112 (C:\Users\User\OneDrive\Masaüstü\Projects\Flipo\auth-service\auth-container\target\classes started by User in C:\Users\User\OneDrive\Masaüstü\Projects\Flipo)
-2022-12-13 20:24:26.785  INFO 18112 --- [restartedMain] az.rock.ws.auth.AuthServiceApplication   : The following 1 profile is active: "local"
-2022-12-13 20:24:26.817  INFO 18112 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8012
-2022-12-13 20:24:26.817  INFO 18112 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=auth-service, profiles=[local], label=null, version=d9b66774be2e95d20c0c526e2951b35dbe070e9f, state=null
-2022-12-13 20:24:26.818  INFO 18112 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2022-12-13 20:24:26.818  INFO 18112 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2022-12-13 20:24:27.573  INFO 18112 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-12-13 20:24:27.701  INFO 18112 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 119 ms. Found 1 JPA repository interfaces.
-2022-12-13 20:24:27.922  INFO 18112 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=585ca185-4c00-33a9-a042-56c320b7f6d9
-2022-12-13 20:24:28.319  INFO 18112 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2022-12-13 20:24:28.326  INFO 18112 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-12-13 20:24:28.326  INFO 18112 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-12-13 20:24:28.390  INFO 18112 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-12-13 20:24:28.391  INFO 18112 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1573 ms
-2022-12-13 20:24:28.502  INFO 18112 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-12-13 20:24:28.549  INFO 18112 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-12-13 20:24:28.684  INFO 18112 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-12-13 20:24:28.783  INFO 18112 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-12-13 20:24:28.891  INFO 18112 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-12-13 20:24:28.905  INFO 18112 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2022-12-13 20:24:29.423  WARN 18112 --- [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2022-12-13 20:24:29.423  WARN 18112 --- [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "users" does not exist, skipping
-2022-12-13 20:24:29.440  INFO 18112 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-12-13 20:24:29.448  INFO 18112 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-12-13 20:24:29.798  WARN 18112 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-12-13 20:24:29.996  INFO 18112 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@57230dd6, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@48067143, org.springframework.security.web.context.SecurityContextPersistenceFilter@41176be4, org.springframework.security.web.header.HeaderWriterFilter@748367a8, org.springframework.security.web.authentication.logout.LogoutFilter@584b9b6a, az.rock.ws.config.security.filter.JAuthenticationFilter@d1bf2c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@43a0dafc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@28c5d586, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7b0997a1, org.springframework.security.web.session.SessionManagementFilter@575727b7, org.springframework.security.web.access.ExceptionTranslationFilter@4cbf56d7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@59e3ae7e]
-2022-12-13 20:24:30.127 DEBUG 18112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2022-12-13 20:24:30.212 DEBUG 18112 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 6 mappings in 'requestMappingHandlerMapping'
-2022-12-13 20:24:30.539 DEBUG 18112 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/**] in 'resourceHandlerMapping'
-2022-12-13 20:24:30.547 DEBUG 18112 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
-2022-12-13 20:24:30.879  INFO 18112 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2022-12-13 20:24:30.986  INFO 18112 --- [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
-2022-12-13 20:24:31.150  WARN 18112 --- [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2022-12-13 20:24:31.221  INFO 18112 --- [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
-2022-12-13 20:24:31.262  INFO 18112 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
-2022-12-13 20:24:31.266  INFO 18112 --- [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2022-12-13 20:24:31.288  INFO 18112 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
-2022-12-13 20:24:31.288  INFO 18112 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
-2022-12-13 20:24:31.288  INFO 18112 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
-2022-12-13 20:24:31.288  INFO 18112 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
-2022-12-13 20:24:31.288  INFO 18112 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
-2022-12-13 20:24:31.288  INFO 18112 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
-2022-12-13 20:24:31.288  INFO 18112 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
-2022-12-13 20:24:31.414 DEBUG 18112 --- [restartedMain] o.s.web.client.RestTemplate              : HTTP GET http://localhost:8761/eureka/apps/
-2022-12-13 20:24:31.457 DEBUG 18112 --- [restartedMain] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
-2022-12-13 20:24:31.654 DEBUG 18112 --- [restartedMain] o.s.web.client.RestTemplate              : Response 200 OK
-2022-12-13 20:24:31.654 DEBUG 18112 --- [restartedMain] o.s.web.client.RestTemplate              : Reading to [org.springframework.cloud.netflix.eureka.http.EurekaApplications]
-2022-12-13 20:24:31.658  INFO 18112 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
-2022-12-13 20:24:31.660  INFO 18112 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 10
-2022-12-13 20:24:31.663  INFO 18112 --- [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
-2022-12-13 20:24:31.667  INFO 18112 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1670948671666 with initial instances count: 0
-2022-12-13 20:24:31.668  INFO 18112 --- [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application AUTH-SERVICE with eureka with status UP
-2022-12-13 20:24:31.669  INFO 18112 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1670948671669, current=UP, previous=STARTING]
-2022-12-13 20:24:31.670  INFO 18112 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AUTH-SERVICE/auth-service:209ba8984232a3ec941c41efec843cbf: registering service...
-2022-12-13 20:24:31.677 DEBUG 18112 --- [DiscoveryClient-InstanceInfoReplicator-0] o.s.web.client.RestTemplate              : HTTP POST http://localhost:8761/eureka/apps/AUTH-SERVICE
-2022-12-13 20:24:31.679 DEBUG 18112 --- [DiscoveryClient-InstanceInfoReplicator-0] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
-2022-12-13 20:24:31.691  INFO 18112 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2022-12-13 20:24:31.692 DEBUG 18112 --- [DiscoveryClient-InstanceInfoReplicator-0] o.s.web.client.RestTemplate              : Writing [InstanceInfo [instanceId = auth-service:209ba8984232a3ec941c41efec843cbf, appName = AUTH-SERVICE, hostName = localhost, status = UP, ipAddr = 192.168.0.118, port = 8080, securePort = 443, dataCenterInfo = com.netflix.appinfo.MyDataCenterInfo@56ede0e7] as "application/json"
-2022-12-13 20:24:31.692  INFO 18112 --- [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8080
-2022-12-13 20:24:31.763  INFO 18112 --- [restartedMain] az.rock.ws.auth.AuthServiceApplication   : Started AuthServiceApplication in 6.998 seconds (JVM running for 7.419)
-2022-12-13 20:24:31.789 DEBUG 18112 --- [DiscoveryClient-InstanceInfoReplicator-0] o.s.web.client.RestTemplate              : Response 204 NO_CONTENT
-2022-12-13 20:24:31.789  INFO 18112 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AUTH-SERVICE/auth-service:209ba8984232a3ec941c41efec843cbf - registration status: 204
-2022-12-13 20:24:41.671 DEBUG 18112 --- [DiscoveryClient-HeartbeatExecutor-0] o.s.web.client.RestTemplate              : HTTP PUT http://localhost:8761/eureka/apps/AUTH-SERVICE/auth-service:209ba8984232a3ec941c41efec843cbf?status=UP&lastDirtyTimestamp=1670948671668
-2022-12-13 20:24:41.677 DEBUG 18112 --- [DiscoveryClient-HeartbeatExecutor-0] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
-2022-12-13 20:24:41.686 DEBUG 18112 --- [DiscoveryClient-HeartbeatExecutor-0] o.s.web.client.RestTemplate              : Response 200 OK
-2022-12-13 20:24:51.689 DEBUG 18112 --- [DiscoveryClient-HeartbeatExecutor-0] o.s.web.client.RestTemplate              : HTTP PUT http://localhost:8761/eureka/apps/AUTH-SERVICE/auth-service:209ba8984232a3ec941c41efec843cbf?status=UP&lastDirtyTimestamp=1670948671668
-2022-12-13 20:24:51.690 DEBUG 18112 --- [DiscoveryClient-HeartbeatExecutor-0] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
-2022-12-13 20:24:51.704 DEBUG 18112 --- [DiscoveryClient-HeartbeatExecutor-0] o.s.web.client.RestTemplate              : Response 200 OK
-2022-12-13 20:24:54.565  INFO 18112 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application AUTH-SERVICE with eureka with status DOWN
-2022-12-13 20:24:54.565  INFO 18112 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1670948694565, current=DOWN, previous=UP]
-2022-12-13 20:24:54.566  INFO 18112 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AUTH-SERVICE/auth-service:209ba8984232a3ec941c41efec843cbf: registering service...
-2022-12-13 20:24:54.566 DEBUG 18112 --- [DiscoveryClient-InstanceInfoReplicator-0] o.s.web.client.RestTemplate              : HTTP POST http://localhost:8761/eureka/apps/AUTH-SERVICE
-2022-12-13 20:24:54.566 DEBUG 18112 --- [DiscoveryClient-InstanceInfoReplicator-0] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
-2022-12-13 20:24:54.566 DEBUG 18112 --- [DiscoveryClient-InstanceInfoReplicator-0] o.s.web.client.RestTemplate              : Writing [InstanceInfo [instanceId = auth-service:209ba8984232a3ec941c41efec843cbf, appName = AUTH-SERVICE, hostName = localhost, status = DOWN, ipAddr = 192.168.0.118, port = 8080, securePort = 443, dataCenterInfo = com.netflix.appinfo.MyDataCenterInfo@56ede0e7] as "application/json"
-2022-12-13 20:24:54.573 DEBUG 18112 --- [DiscoveryClient-InstanceInfoReplicator-0] o.s.web.client.RestTemplate              : Response 204 NO_CONTENT
-2022-12-13 20:24:54.573  INFO 18112 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AUTH-SERVICE/auth-service:209ba8984232a3ec941c41efec843cbf - registration status: 204
-2022-12-13 20:24:54.581  INFO 18112 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-12-13 20:24:54.581  INFO 18112 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-12-13 20:24:54.588  INFO 18112 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-12-13 20:24:54.590  INFO 18112 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2022-12-13 20:24:54.590  INFO 18112 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
-2022-12-13 20:24:57.597  INFO 18112 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
-2022-12-13 20:24:57.601 DEBUG 18112 --- [SpringApplicationShutdownHook] o.s.web.client.RestTemplate              : HTTP DELETE http://localhost:8761/eureka/apps/AUTH-SERVICE/auth-service:209ba8984232a3ec941c41efec843cbf
-2022-12-13 20:24:57.601 DEBUG 18112 --- [SpringApplicationShutdownHook] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
-2022-12-13 20:24:57.609 DEBUG 18112 --- [SpringApplicationShutdownHook] o.s.web.client.RestTemplate              : Response 200 OK
-2022-12-13 20:24:57.610  INFO 18112 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AUTH-SERVICE/auth-service:209ba8984232a3ec941c41efec843cbf - deregister  status: 200
-2022-12-13 20:24:57.612  INFO 18112 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2022-12-13 20:47:15.772  INFO 10416 --- [restartedMain] az.rock.ws.auth.AuthServiceApplication   : Starting AuthServiceApplication using Java 17.0.4.1 on DESKTOP-3A2NN91 with PID 10416 (C:\Users\User\OneDrive\Masaüstü\Projects\Flipo\auth-service\auth-container\target\classes started by User in C:\Users\User\OneDrive\Masaüstü\Projects\Flipo)
+2022-12-13 20:47:15.773  INFO 10416 --- [restartedMain] az.rock.ws.auth.AuthServiceApplication   : The following 1 profile is active: "local"
+2022-12-13 20:47:15.812  INFO 10416 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8012
+2022-12-13 20:47:15.812  INFO 10416 --- [restartedMain] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=auth-service, profiles=[local], label=null, version=d9b66774be2e95d20c0c526e2951b35dbe070e9f, state=null
+2022-12-13 20:47:15.814  INFO 10416 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-12-13 20:47:15.814  INFO 10416 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-12-13 20:47:16.681  INFO 10416 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-13 20:47:16.825  INFO 10416 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 137 ms. Found 1 JPA repository interfaces.
+2022-12-13 20:47:17.052  INFO 10416 --- [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=585ca185-4c00-33a9-a042-56c320b7f6d9
+2022-12-13 20:47:17.480  INFO 10416 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-13 20:47:17.487  INFO 10416 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-13 20:47:17.488  INFO 10416 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-12-13 20:47:17.555  INFO 10416 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-13 20:47:17.555  INFO 10416 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1741 ms
+2022-12-13 20:47:17.652  INFO 10416 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-13 20:47:17.709  INFO 10416 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-12-13 20:47:17.863  INFO 10416 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-13 20:47:17.975  INFO 10416 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-13 20:47:18.098  INFO 10416 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-13 20:47:18.114  INFO 10416 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-12-13 20:47:18.687  WARN 10416 --- [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2022-12-13 20:47:18.687  WARN 10416 --- [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "users" does not exist, skipping
+2022-12-13 20:47:18.703  INFO 10416 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-13 20:47:18.712  INFO 10416 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-13 20:47:19.103  WARN 10416 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-13 20:47:19.277  INFO 10416 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@582932fe, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@22885bdc, org.springframework.security.web.context.SecurityContextPersistenceFilter@5c784ad6, org.springframework.security.web.header.HeaderWriterFilter@449fb09f, org.springframework.security.web.authentication.logout.LogoutFilter@21e89bbc, az.rock.ws.config.security.filter.JAuthenticationFilter@63d32784, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6da8a62, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@525cd9c3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4f5a7c5, org.springframework.security.web.session.SessionManagementFilter@3acb8c36, org.springframework.security.web.access.ExceptionTranslationFilter@6a13258e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@17d429dd]
+2022-12-13 20:47:19.393 DEBUG 10416 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2022-12-13 20:47:19.472 DEBUG 10416 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 6 mappings in 'requestMappingHandlerMapping'
+2022-12-13 20:47:19.727 DEBUG 10416 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/**] in 'resourceHandlerMapping'
+2022-12-13 20:47:19.735 DEBUG 10416 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2022-12-13 20:47:19.926  INFO 10416 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-13 20:47:20.032  INFO 10416 --- [restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2022-12-13 20:47:20.166  WARN 10416 --- [restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2022-12-13 20:47:20.247  INFO 10416 --- [restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2022-12-13 20:47:20.291  INFO 10416 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2022-12-13 20:47:20.297  INFO 10416 --- [restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2022-12-13 20:47:20.323  INFO 10416 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2022-12-13 20:47:20.323  INFO 10416 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2022-12-13 20:47:20.323  INFO 10416 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2022-12-13 20:47:20.323  INFO 10416 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2022-12-13 20:47:20.323  INFO 10416 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2022-12-13 20:47:20.323  INFO 10416 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2022-12-13 20:47:20.323  INFO 10416 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2022-12-13 20:47:20.449 DEBUG 10416 --- [restartedMain] o.s.web.client.RestTemplate              : HTTP GET http://localhost:8761/eureka/apps/
+2022-12-13 20:47:20.484 DEBUG 10416 --- [restartedMain] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2022-12-13 20:47:20.540 DEBUG 10416 --- [restartedMain] o.s.web.client.RestTemplate              : Response 200 OK
+2022-12-13 20:47:20.540 DEBUG 10416 --- [restartedMain] o.s.web.client.RestTemplate              : Reading to [org.springframework.cloud.netflix.eureka.http.EurekaApplications]
+2022-12-13 20:47:20.544  INFO 10416 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2022-12-13 20:47:20.546  INFO 10416 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 10
+2022-12-13 20:47:20.549  INFO 10416 --- [restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2022-12-13 20:47:20.553  INFO 10416 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1670950040552 with initial instances count: 0
+2022-12-13 20:47:20.554  INFO 10416 --- [restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application AUTH-SERVICE with eureka with status UP
+2022-12-13 20:47:20.555  INFO 10416 --- [restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1670950040555, current=UP, previous=STARTING]
+2022-12-13 20:47:20.557  INFO 10416 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AUTH-SERVICE/auth-service:e39bab0d629355bc384aa44773579e5b: registering service...
+2022-12-13 20:47:20.563 DEBUG 10416 --- [DiscoveryClient-InstanceInfoReplicator-0] o.s.web.client.RestTemplate              : HTTP POST http://localhost:8761/eureka/apps/AUTH-SERVICE
+2022-12-13 20:47:20.565 DEBUG 10416 --- [DiscoveryClient-InstanceInfoReplicator-0] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2022-12-13 20:47:20.575  INFO 10416 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-13 20:47:20.576  INFO 10416 --- [restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8080
+2022-12-13 20:47:20.582 DEBUG 10416 --- [DiscoveryClient-InstanceInfoReplicator-0] o.s.web.client.RestTemplate              : Writing [InstanceInfo [instanceId = auth-service:e39bab0d629355bc384aa44773579e5b, appName = AUTH-SERVICE, hostName = localhost, status = UP, ipAddr = 192.168.0.118, port = 8080, securePort = 443, dataCenterInfo = com.netflix.appinfo.MyDataCenterInfo@393a550e] as "application/json"
+2022-12-13 20:47:20.600 DEBUG 10416 --- [DiscoveryClient-InstanceInfoReplicator-0] o.s.web.client.RestTemplate              : Response 204 NO_CONTENT
+2022-12-13 20:47:20.601  INFO 10416 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AUTH-SERVICE/auth-service:e39bab0d629355bc384aa44773579e5b - registration status: 204
+2022-12-13 20:47:20.648  INFO 10416 --- [restartedMain] az.rock.ws.auth.AuthServiceApplication   : Started AuthServiceApplication in 7.329 seconds (JVM running for 12.68)
+2022-12-13 20:47:30.567 DEBUG 10416 --- [DiscoveryClient-HeartbeatExecutor-0] o.s.web.client.RestTemplate              : HTTP PUT http://localhost:8761/eureka/apps/AUTH-SERVICE/auth-service:e39bab0d629355bc384aa44773579e5b?status=UP&lastDirtyTimestamp=1670950040555
+2022-12-13 20:47:30.572 DEBUG 10416 --- [DiscoveryClient-HeartbeatExecutor-0] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2022-12-13 20:47:30.578 DEBUG 10416 --- [DiscoveryClient-HeartbeatExecutor-0] o.s.web.client.RestTemplate              : Response 200 OK
+2022-12-13 20:47:35.371  INFO 10416 --- [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application AUTH-SERVICE with eureka with status DOWN
+2022-12-13 20:47:35.371  INFO 10416 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1670950055371, current=DOWN, previous=UP]
+2022-12-13 20:47:35.371  INFO 10416 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AUTH-SERVICE/auth-service:e39bab0d629355bc384aa44773579e5b: registering service...
+2022-12-13 20:47:35.371 DEBUG 10416 --- [DiscoveryClient-InstanceInfoReplicator-0] o.s.web.client.RestTemplate              : HTTP POST http://localhost:8761/eureka/apps/AUTH-SERVICE
+2022-12-13 20:47:35.372 DEBUG 10416 --- [DiscoveryClient-InstanceInfoReplicator-0] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2022-12-13 20:47:35.372 DEBUG 10416 --- [DiscoveryClient-InstanceInfoReplicator-0] o.s.web.client.RestTemplate              : Writing [InstanceInfo [instanceId = auth-service:e39bab0d629355bc384aa44773579e5b, appName = AUTH-SERVICE, hostName = localhost, status = DOWN, ipAddr = 192.168.0.118, port = 8080, securePort = 443, dataCenterInfo = com.netflix.appinfo.MyDataCenterInfo@393a550e] as "application/json"
+2022-12-13 20:47:35.378 DEBUG 10416 --- [DiscoveryClient-InstanceInfoReplicator-0] o.s.web.client.RestTemplate              : Response 204 NO_CONTENT
+2022-12-13 20:47:35.378  INFO 10416 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AUTH-SERVICE/auth-service:e39bab0d629355bc384aa44773579e5b - registration status: 204
+2022-12-13 20:47:35.388  INFO 10416 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-13 20:47:35.388  INFO 10416 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-12-13 20:47:35.397  INFO 10416 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-12-13 20:47:35.399  INFO 10416 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-12-13 20:47:35.399  INFO 10416 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2022-12-13 20:47:38.410  INFO 10416 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2022-12-13 20:47:38.415 DEBUG 10416 --- [SpringApplicationShutdownHook] o.s.web.client.RestTemplate              : HTTP DELETE http://localhost:8761/eureka/apps/AUTH-SERVICE/auth-service:e39bab0d629355bc384aa44773579e5b
+2022-12-13 20:47:38.415 DEBUG 10416 --- [SpringApplicationShutdownHook] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2022-12-13 20:47:38.421 DEBUG 10416 --- [SpringApplicationShutdownHook] o.s.web.client.RestTemplate              : Response 200 OK
+2022-12-13 20:47:38.422  INFO 10416 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AUTH-SERVICE/auth-service:e39bab0d629355bc384aa44773579e5b - deregister  status: 200
+2022-12-13 20:47:38.428  INFO 10416 --- [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
