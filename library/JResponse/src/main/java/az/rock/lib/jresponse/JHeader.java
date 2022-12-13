@@ -1,7 +1,10 @@
 package az.rock.lib.jresponse;
 
+import az.rock.lib.util.JHttpConstant;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public final class JHeader {
     public static final JHeader EMPTY = new JHeader();
@@ -17,4 +20,7 @@ public final class JHeader {
     }
 
 
+    public String getUserUUID() {
+        return this.claims.get(JHttpConstant.UUID);
+    }
 }
