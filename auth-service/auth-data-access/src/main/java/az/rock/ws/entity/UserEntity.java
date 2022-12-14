@@ -3,10 +3,8 @@ package az.rock.ws.entity;
 import az.rock.lib.value.generic.JRole;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -14,12 +12,9 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
-@Entity
-public class UserEntity {
-    @Id
-    @Column(name = "id", nullable = false,updatable = false,unique = true)
-    private UUID uuid;
+@Table(name = "users_list",schema = "users")
+@Entity(name = "User")
+public class UserEntity extends BaseEntity{
 
     private UUID key;
 
@@ -35,4 +30,15 @@ public class UserEntity {
 
     private JRole role;
 
+    @OneToOne
+    private SettingEntity setting;
+
+    @OneToOne
+    private ProfileEntity profile;
+
+    @OneToMany
+    private List<MarkedEntity> markedList;
+
+    @OneToMany
+    private List<ActionEntity> actions;
 }

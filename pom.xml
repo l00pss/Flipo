@@ -19,6 +19,7 @@
         <module>post-query-service</module>
         <module>admin-service</module>
         <module>post-sync-service</module>
+        <module>messenger-service</module>
     </modules>
 
     <parent>
