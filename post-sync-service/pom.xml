@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>sync-service</artifactId>
+    <artifactId>post-sync-service</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
