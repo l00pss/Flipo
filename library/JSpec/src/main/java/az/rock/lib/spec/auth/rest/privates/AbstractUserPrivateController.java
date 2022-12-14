@@ -2,15 +2,21 @@ package az.rock.lib.spec.auth.rest.privates;
 
 import az.rock.lib.annotations.JApiSpec;
 import az.rock.lib.annotations.JGet;
+import az.rock.lib.annotations.JHead;
 import az.rock.lib.annotations.Permission;
 import az.rock.lib.jresponse.request.JRequest;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
+import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 @JApiSpec(url = "/1.0/private/users",permissions = Permission.USER)
 public interface AbstractUserPrivateController {
+
+    @JHead(api = "/live")
+    ResponseEntity<JSuccessResponse> live(JRequest<?> command);
+
     @JGet(api = "/get/{uuid}")
     ResponseEntity<JSuccessDataResponse<?>> get(JRequest<?> credentials);
 

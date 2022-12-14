@@ -3,6 +3,7 @@ package az.rock.ws.auth.rest.privates;
 import az.rock.lib.jresponse.request.JRequest;
 import az.rock.lib.jresponse.response.factory.AbstractJSuccessResponseFactory;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
+import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import az.rock.lib.spec.auth.rest.privates.AbstractUserSettingController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,11 @@ public class UserSettingController implements AbstractUserSettingController {
 
     public UserSettingController(AbstractJSuccessResponseFactory<?> responseFactory) {
         this.responseFactory = responseFactory;
+    }
+
+    @Override
+    public ResponseEntity<JSuccessResponse> live(JRequest<?> command) {
+        return null;
     }
 
     @Override
