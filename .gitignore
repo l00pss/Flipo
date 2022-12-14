@@ -39,4 +39,3 @@ build/
 .DS_Store
 /.docker-compose/env/
 /.docker-compose/
-/auth-service/
