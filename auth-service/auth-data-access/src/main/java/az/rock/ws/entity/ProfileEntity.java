@@ -1,10 +1,12 @@
 package az.rock.ws.entity;
 
 import javax.persistence.*;
-import java.util.UUID;
+import java.util.List;
 
 @Entity(name = "Profile")
-@Table(name = "users_profiles",schema = "users")
+@Table(name = "users_profiles", schema = "users", indexes = {
+        @Index(name = "idx_profileentity_title", columnList = "title")
+})
 public class ProfileEntity extends BaseEntity {
 
     @OneToOne
@@ -25,4 +27,7 @@ public class ProfileEntity extends BaseEntity {
     private String phoneNumber;
 
     private String publicEmail;
+
+    @OneToMany
+    private List<PostEntity> posts;
 }
