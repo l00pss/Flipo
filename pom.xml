@@ -20,6 +20,8 @@
         <module>admin-service</module>
         <module>post-sync-service</module>
         <module>messenger-service</module>
+        <module>payment-service</module>
+        <module>explore-service</module>
     </modules>
 
     <parent>
