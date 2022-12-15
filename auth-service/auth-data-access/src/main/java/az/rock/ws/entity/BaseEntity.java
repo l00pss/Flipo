@@ -1,5 +1,6 @@
 package az.rock.ws.entity;
 
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -10,11 +11,15 @@ import javax.persistence.MappedSuperclass;
 import java.util.Date;
 import java.util.UUID;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @MappedSuperclass
 public class BaseEntity {
     @Id
     @GeneratedValue
-    @Column(name = "id", nullable = false,updatable = false,unique = true)
+    @Column(name = "uuid", nullable = false,updatable = false,unique = true)
     private UUID uuid;
 
     @CreatedDate

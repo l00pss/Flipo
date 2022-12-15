@@ -40,14 +40,7 @@ public class UserEntity extends BaseEntity{
     private JRole role;
 
     @OneToOne
-    private SettingEntity setting;
-
-    @OneToOne
     private ProfileEntity profile;
 
-    @OneToMany
-    private List<MarkedEntity> markedList;
 
-    @OneToMany
-    private List<ActionEntity> actions;
 }

@@ -17,7 +17,7 @@ import java.util.UUID;
 public class MarkedEntity extends BaseEntity{
 
     @ManyToOne
-    private UserEntity owner;
+    private ProfileEntity owner;
 
     private UUID markedComponentUUID;
 }

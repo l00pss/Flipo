@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class SettingEntity extends BaseEntity{
 
     @OneToOne
-    private UserEntity owner;
+    private ProfileEntity owner;
 
     private JSwitch darkTheme;
 
