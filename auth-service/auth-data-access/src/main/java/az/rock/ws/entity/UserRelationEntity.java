@@ -12,8 +12,10 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Entity
-@Table(name = "users_relations",schema = "users")
-public class UserRelationEntity  {
+@Table(name = "users_relations", schema = "users", indexes = {
+        @Index(name = "idx_userrelationentity", columnList = "is_approved")
+})
+public class UserRelationEntity {
     @EmbeddedId
     UserRelationIDEntity id;
 
@@ -32,4 +34,5 @@ public class UserRelationEntity  {
 
     @Column(name = "is_approved",nullable = false)
     private Boolean isApproved;
+
 }

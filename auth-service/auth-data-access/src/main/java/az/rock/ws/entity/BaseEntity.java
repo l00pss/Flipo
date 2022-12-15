@@ -1,13 +1,11 @@
 package az.rock.ws.entity;
 
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
@@ -16,6 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @MappedSuperclass
+@Slf4j
 public class BaseEntity {
     @Id
     @GeneratedValue
@@ -27,4 +26,14 @@ public class BaseEntity {
 
     @LastModifiedDate
     private Date modificationDate;
+
+    @PostLoad
+    public void postLoad() {
+        log.info("Load Entity ".concat(this.getClass().getName()));
+    }
+
+    @PostUpdate
+    public void postUpdate() {
+        log.info("Update Entity ".concat(this.getClass().getName()));
+    }
 }
