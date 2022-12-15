@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity(name = "Setting")
-@Table(name = "users_settings",schema = "users")
+@Table(name = "profiles_settings",schema = "profiles")
 public class SettingEntity extends BaseEntity{
 
     @OneToOne

@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity(name = "Marked")
-@Table(name = "users_marked",schema = "users")
+@Table(name = "profiles_marked",schema = "profiles")
 public class MarkedEntity extends BaseEntity{
 
     @ManyToOne

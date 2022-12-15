@@ -15,7 +15,7 @@ import java.util.UUID;
 @Builder
 @Getter
 @Entity(name = "Post")
-@Table(name = "users_posts",schema = "users")
+@Table(name = "profiles_posts",schema = "profiles")
 public class PostEntity extends BaseEntity{
     @ManyToOne
     private ProfileEntity profile;

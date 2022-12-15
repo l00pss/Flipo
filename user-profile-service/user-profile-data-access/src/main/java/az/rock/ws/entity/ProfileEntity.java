@@ -4,19 +4,21 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
+
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity(name = "Profile")
-@Table(name = "users_profiles", schema = "users", indexes = {
+@Table(name = "profiles_list", schema = "profiles", indexes = {
         @Index(name = "idx_profileentity_title", columnList = "title")
 })
 public class ProfileEntity extends BaseEntity {
 
-    @OneToOne
-    private UserEntity owner;
+
+    private UUID userUUID;
 
     private Boolean isPrivate  = Boolean.FALSE;
 

@@ -39,8 +39,6 @@ public class UserEntity extends BaseEntity{
     @Column(name = "role",nullable = false)
     private JRole role;
 
-    @OneToOne
-    private ProfileEntity profile;
 
 
 }

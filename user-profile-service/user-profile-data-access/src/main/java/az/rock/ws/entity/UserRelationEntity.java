@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Entity
-@Table(name = "users_relations", schema = "users", indexes = {
+@Table(name = "profiles_relations", schema = "profiles", indexes = {
         @Index(name = "idx_userrelationentity", columnList = "is_approved")
 })
 public class UserRelationEntity {
@@ -22,12 +22,12 @@ public class UserRelationEntity {
     @ManyToOne
     @MapsId("request_id")
     @JoinColumn(name = "request_id",updatable = false)
-    UserEntity request_id;
+    ProfileEntity request_id;
 
     @ManyToOne
     @MapsId("approve_id")
     @JoinColumn(name = "approve_id",updatable = false)
-    UserEntity approve_id;
+    ProfileEntity approve_id;
 
     @CreatedDate
     private Date createdDate;

@@ -1,6 +1,6 @@
 package az.rock.ws.entity;
 
-import az.rock.ws.valueObject.ActionType;
+import az.rock.lib.value.generic.JActionType;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -13,13 +13,13 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity(name = "Action")
-@Table(name = "users_actions",schema = "users")
+@Table(name = "profiles_actions",schema = "profiles")
 public class ActionEntity extends BaseEntity{
 
     @ManyToOne
     private ProfileEntity owner;
 
-    private ActionType actionType;
+    private JActionType JActionType;
 
     private UUID actionTarget;
 }
