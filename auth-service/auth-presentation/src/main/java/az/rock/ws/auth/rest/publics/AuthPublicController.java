@@ -6,10 +6,8 @@ import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import az.rock.lib.spec.auth.rest.publics.AbstractAuthPublicController;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.lang.Nullable;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/1.0/public/auth")
@@ -23,7 +21,7 @@ public class AuthPublicController implements AbstractAuthPublicController {
 
     @Override
     @GetMapping("/live")
-    public ResponseEntity<JSuccessResponse> live(JRequest<?> command) {
+    public ResponseEntity<JSuccessResponse> live(@RequestBody(required = false) JRequest<?> command) {
         return ResponseEntity.ok(this.responseFactory.factoryResponse("Success"));
     }
 

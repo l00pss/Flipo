@@ -14,6 +14,6 @@ import java.io.IOException;
 public class JAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        throw new JUnknownException();
+
     }
 }
