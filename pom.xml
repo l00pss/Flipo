@@ -22,6 +22,7 @@
         <module>messenger-service</module>
         <module>payment-service</module>
         <module>explore-service</module>
+        <module>user-profile-service</module>
     </modules>
 
     <parent>
