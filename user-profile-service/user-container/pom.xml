@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>user-profile-container</artifactId>
+    <artifactId>user-container</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -67,7 +67,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <image>
-                        <name>${project.groupId}/user-profile.service:${project.version}</name>
+                        <name>${project.groupId}/auth.service:${project.version}</name>
                     </image>
                 </configuration>
                 <executions>
@@ -81,5 +81,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

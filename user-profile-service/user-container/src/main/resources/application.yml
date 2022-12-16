@@ -1,8 +1,10 @@
+server:
+  port: ${PORT:0}
 spring:
   config:
     import: ${CONFIG_URL:configserver:http://localhost:8012}
   application:
-    name: auth-service
+    name: user-profile-service
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher

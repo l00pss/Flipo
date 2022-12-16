@@ -16,7 +16,7 @@
         <module>user-profile-presentation</module>
         <module>user-profile-domain</module>
         <module>user-profile-messaging</module>
-        <module>user-profile-container</module>
+        <module>user-container</module>
     </modules>
 
 
