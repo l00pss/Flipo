@@ -12,4 +12,5 @@ public class BeanConfig {
     public AbstractJSuccessResponseFactory<?> abstractJSuccessResponseFactory(){
         return new  JSuccessResponseFactory<>();
     }
+
 }
