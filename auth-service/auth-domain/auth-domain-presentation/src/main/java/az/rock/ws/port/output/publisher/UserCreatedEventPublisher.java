@@ -17,6 +17,6 @@ public class UserCreatedEventPublisher {
     }
 
     public void publish(UserCreatedEvent userCreatedEvent){
-        this.eventPublisher.publish(userCreatedEvent);
+        //this.eventPublisher.publish(userCreatedEvent.getUser());
     }
 }

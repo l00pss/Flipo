@@ -1,6 +1,7 @@
 package az.rock.lib.spec.auth.rest.publics;
 
 import az.rock.lib.annotations.*;
+import az.rock.lib.jresponse.request.JCommand;
 import az.rock.lib.jresponse.request.JRequest;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;

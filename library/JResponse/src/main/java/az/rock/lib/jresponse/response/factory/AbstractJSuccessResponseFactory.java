@@ -9,11 +9,11 @@ public interface AbstractJSuccessResponseFactory<D> {
 
     JSuccessResponse factoryResponse(String message);
 
-    JSuccessDataResponse<D> factoryResponse(D data);
+    <D> JSuccessDataResponse<D> factoryResponse(D data);
 
-    JSuccessDataResponse<D> factoryResponse(JHeader header, D data);
+    <D> JSuccessDataResponse<D> factoryResponse(JHeader header, D data);
 
-    JSuccessDataResponse<D> factoryResponse(D data, String message);
+    <D> JSuccessDataResponse<D> factoryResponse(D data, String message);
 
-    JSuccessDataResponse<D> factoryResponse(JHeader header, D data, String message);
+    <D> JSuccessDataResponse<D> factoryResponse(JHeader header, D data, String message);
 }

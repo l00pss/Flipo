@@ -18,10 +18,9 @@ public class UserRepository implements AbstractUserRepository {
 
     @Override
     public UserRoot createUser(UserRoot userRoot) {
-        return this.userDataAccessMapper
-                .userEntityToUser(this.userJpaRepository
-                        .save(this.userDataAccessMapper
-                                .userToUserEntity(userRoot)));
+        var entity = this.userDataAccessMapper.userToUserEntity(userRoot);
+        var savedEntity = this.userJpaRepository.save(entity);
+        return this.userDataAccessMapper.userEntityToUser(savedEntity);
     }
 
     @Override

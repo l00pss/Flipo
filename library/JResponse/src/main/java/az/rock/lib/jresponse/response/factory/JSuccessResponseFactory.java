@@ -16,22 +16,22 @@ public class JSuccessResponseFactory<D> implements AbstractJSuccessResponseFacto
     }
 
     @Override
-    public JSuccessDataResponse<D> factoryResponse(D data) {
+    public <D> JSuccessDataResponse<D> factoryResponse(D data) {
         return new JSuccessDataResponse<>(data);
     }
 
     @Override
-    public JSuccessDataResponse<D> factoryResponse(JHeader header, D data) {
+    public <D> JSuccessDataResponse<D> factoryResponse(JHeader header, D data) {
         return new JSuccessDataResponse<>(header, data);
     }
 
     @Override
-    public JSuccessDataResponse<D> factoryResponse(D data, String message) {
+    public <D> JSuccessDataResponse<D> factoryResponse(D data, String message) {
         return new JSuccessDataResponse<>(data, message);
     }
 
     @Override
-    public JSuccessDataResponse<D> factoryResponse(JHeader header, D data, String message) {
+    public <D> JSuccessDataResponse<D> factoryResponse(JHeader header, D data, String message) {
         return new JSuccessDataResponse<>(header, data, message);
     }
 }

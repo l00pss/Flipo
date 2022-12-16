@@ -3,6 +3,7 @@ package az.rock.ws.mapper;
 
 import az.rock.lib.adapter.annotation.JMapper;
 import az.rock.lib.jdomain.id.UserID;
+import az.rock.lib.value.generic.JRole;
 import az.rock.ws.aggregate.UserRoot;
 import az.rock.ws.dto.request.CreateUserCommand;
 import az.rock.ws.dto.response.CreateUserResponse;
@@ -20,7 +21,7 @@ public class UserDataMapper {
                 .withEmail(command.getEmail())
                 .withUsername(command.getUsername())
                 .withPassword(command.getPassword())
-                .withRole(command.getRole())
+                .withRole(JRole.USER)
                 .build();
     }
 
