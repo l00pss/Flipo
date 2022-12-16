@@ -7,15 +7,15 @@ import az.rock.ws.event.UserCreatedEvent;
 import az.rock.ws.mapper.UserDataMapper;
 import az.rock.ws.port.input.service.abstracts.UserAuthService;
 import az.rock.ws.port.input.service.handler.CreateUserCommandHandler;
-import az.rock.ws.port.output.publisher.AuthEventPublisher;
+import az.rock.ws.port.output.publisher.UserCreatedEventPublisher;
 
 @JInputService
 public class UserAuthManager implements UserAuthService {
     private final CreateUserCommandHandler userCommandHandler;
     private final UserDataMapper userDataMapper;
-    private final AuthEventPublisher userMessagePublisher;
+    private final UserCreatedEventPublisher userMessagePublisher;
 
-    public UserAuthManager(CreateUserCommandHandler userCommandHandler, UserDataMapper userDataMapper, AuthEventPublisher userMessagePublisher) {
+    public UserAuthManager(CreateUserCommandHandler userCommandHandler, UserDataMapper userDataMapper, UserCreatedEventPublisher userMessagePublisher) {
         this.userCommandHandler = userCommandHandler;
         this.userDataMapper = userDataMapper;
         this.userMessagePublisher = userMessagePublisher;
