@@ -4,7 +4,6 @@ import az.rock.lib.value.generic.JRole;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -38,7 +37,6 @@ public class UserEntity extends BaseEntity{
 
     @Column(name = "role",nullable = false)
     private JRole role;
-
 
 
 }

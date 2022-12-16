@@ -13,12 +13,14 @@ public class UserCreatedEvent implements AuthDomainEvent<UserRoot> {
 
     private final UserRoot userRoot;
 
-    private final JRole role;
 
-    public UserCreatedEvent(UserRoot userRoot, JRole role) {
+    public UserCreatedEvent(UserRoot userRoot) {
         this.userRoot = userRoot;
         this.createdAt = JDateTime.UTC.now();
-        this.role = role;
+    }
+
+    public static UserCreatedEvent of(UserRoot root){
+        return new UserCreatedEvent(root);
     }
 
     public UserRoot getUser() {
@@ -29,7 +31,4 @@ public class UserCreatedEvent implements AuthDomainEvent<UserRoot> {
         return this.userRoot.getId().getValue().toString();
     }
 
-    public JRole getRole() {
-        return role;
-    }
 }

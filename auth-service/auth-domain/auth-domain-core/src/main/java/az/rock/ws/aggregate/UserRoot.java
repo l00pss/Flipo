@@ -4,7 +4,12 @@ import az.rock.lib.jdomain.aggregate.JAggregateRoot;
 import az.rock.lib.value.generic.JRole;
 import az.rock.lib.jdomain.id.UserID;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 @Data
@@ -12,6 +17,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 public class UserRoot extends JAggregateRoot<UserID> {
+    private LocalDateTime createdDate;
+    private LocalDateTime modificationDate;
     private final UUID key;
     private final String username;
     private final String firstName;
@@ -37,6 +44,8 @@ public class UserRoot extends JAggregateRoot<UserID> {
 
     public static final class Builder {
         private UserID userID;
+        private LocalDateTime createdDate;
+        private LocalDateTime modificationDate;
         private UUID key;
         private String username;
         private String firstName;
@@ -95,6 +104,16 @@ public class UserRoot extends JAggregateRoot<UserID> {
 
         public Builder withId(UserID userID) {
             this.userID = userID;
+            return this;
+        }
+
+        public Builder withCreatedDate(LocalDateTime createdDate) {
+            this.createdDate = createdDate;
+            return this;
+        }
+
+        public Builder withModificationDate(LocalDateTime modificationDate) {
+            this.modificationDate = modificationDate;
             return this;
         }
 

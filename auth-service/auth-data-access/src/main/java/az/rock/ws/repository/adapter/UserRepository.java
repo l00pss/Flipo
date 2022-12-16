@@ -26,7 +26,6 @@ public class UserRepository implements AbstractUserRepository {
 
     @Override
     public UserRoot findByUsername(String userName) {
-        return this.userDataAccessMapper
-                .userEntityToUser(this.userJpaRepository.findByUsername(userName));
+        return this.userDataAccessMapper.userEntityToUser(this.userJpaRepository.findByUsername(userName));
     }
 }

@@ -11,6 +11,6 @@ public class UserDomainService implements AbstractUserDomainService{
     @Override
     public UserCreatedEvent validateAndInitializeUser(UserRoot userRoot) {
         log.info("User with id: {} is initiated", userRoot.getIdValue());
-        return new UserCreatedEvent(userRoot, userRoot.getRole());
+        return UserCreatedEvent.of(userRoot);
     }
 }
