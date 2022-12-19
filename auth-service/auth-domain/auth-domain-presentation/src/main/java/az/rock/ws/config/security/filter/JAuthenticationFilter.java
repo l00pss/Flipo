@@ -25,6 +25,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
+/*
+ Header
+    LANG
+ Body
+     username
+     password
+     privateKey
+ */
 public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final UserAuthDetailsService userAuthDetailsService;
@@ -37,22 +45,23 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+        String lang = Objects.requireNonNullElse(request.getHeader(JHttpConstant.LANG),"az");
         try {
             AuthUserCommand authUserCommand = new ObjectMapper()
                     .readValue(request.getInputStream(),AuthUserCommand.class);
-            return getAuthenticationManager()
-                    .authenticate(new UsernamePasswordAuthenticationToken(
+            return getAuthenticationManager().authenticate(
+                    new UsernamePasswordAuthenticationToken(
                             authUserCommand.username(),
                             authUserCommand.password(),
                             new ArrayList<>()));
         } catch (IOException e) {
-            throw new UserNotFoundJException("");
+            throw new UserNotFoundJException(this.messageContext(lang,"F_0000000001"));
         }
     }
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
-                                            FilterChain chain, Authentication authResult) throws IOException, ServletException {
+                                            FilterChain chain, Authentication authResult) throws IOException {
         AuthUserCommand authUserCommand = new ObjectMapper().readValue(request.getInputStream(),AuthUserCommand.class);
         UserRoot userRoot = this.userAuthDetailsService.matches(authResult);
         Map<String,Object> claims = this.generateClaim(userRoot);
@@ -77,8 +86,7 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
         return claims;
     }
 
-    private String messageContext(HttpServletRequest request,String code){
-        String lang = Objects.requireNonNullElse(request.getHeader(JHttpConstant.LANG), JLanguage.AZ.name());
+    private String messageContext(String lang,String code){
         return lang.concat("-").concat(code);
     }
 }
