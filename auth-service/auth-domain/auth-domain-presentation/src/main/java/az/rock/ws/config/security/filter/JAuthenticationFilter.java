@@ -8,8 +8,10 @@ import az.rock.ws.config.security.UserAuthDetailsService;
 import az.rock.ws.dto.request.AuthUserCommand;
 import az.rock.ws.exception.UserNotFoundJException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.bouncycastle.util.encoders.Base64Encoder;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -51,8 +53,7 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                                             FilterChain chain, Authentication authResult) throws IOException, ServletException {
-        AuthUserCommand authUserCommand = new ObjectMapper()
-                .readValue(request.getInputStream(),AuthUserCommand.class);
+        AuthUserCommand authUserCommand = new ObjectMapper().readValue(request.getInputStream(),AuthUserCommand.class);
         UserRoot userRoot = this.userAuthDetailsService.matches(authResult);
         Map<String,Object> claims = this.generateClaim(userRoot);
         String token =  this.generateToken(claims,authUserCommand.privateKey());
