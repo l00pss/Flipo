@@ -1,5 +1,6 @@
 package az.rock.ws.config.security;
 
+import az.rock.lib.jexception.JSecurityException;
 import az.rock.ws.aggregate.UserRoot;
 import az.rock.ws.exception.UserNotFoundJException;
 import az.rock.ws.port.output.repository.abstracts.AbstractUserRepository;
@@ -48,6 +49,10 @@ public class UserAuthDetailsService implements org.springframework.security.core
 
     public UserRoot matches(Authentication authentication){
         String username = ((UserDetails)authentication.getPrincipal()).getUsername();
-        return this.userRepository.findByUsername(username);
+        String rawPassword = ((UserDetails)authentication.getPrincipal()).getPassword();
+        UserRoot root = this.userRepository.findByUsername(username);
+        if (!this.passwordEncoder.matches(rawPassword,root.getPassword()))
+            throw new JSecurityException("Istifadəçi adı və ya şifrə səhvdir");
+        return root;
     }
 }

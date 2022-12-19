@@ -51,16 +51,18 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                                             FilterChain chain, Authentication authResult) throws IOException, ServletException {
+        AuthUserCommand authUserCommand = new ObjectMapper()
+                .readValue(request.getInputStream(),AuthUserCommand.class);
         UserRoot userRoot = this.userAuthDetailsService.matches(authResult);
         Map<String,Object> claims = this.generateClaim(userRoot);
-        String token =  this.generateToken(claims);
+        String token =  this.generateToken(claims,authUserCommand.privateKey());
         response.addHeader(JHttpConstant.TOKEN,token);
     }
 
-    private String generateToken(Map<String,Object> claims){
+    private String generateToken(Map<String,Object> claims,String privateKey){
         return Jwts.builder()
                 .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(this.userAuthDetailsService.getTokenExpDate())))
-                .signWith(SignatureAlgorithm.HS512,this.userAuthDetailsService.getSecurityKey())
+                .signWith(SignatureAlgorithm.HS512,this.userAuthDetailsService.getSecurityKey().concat(privateKey))
                 .setClaims(claims)
                 .compact();
     }
@@ -69,6 +71,7 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
     private Map<String,Object> generateClaim(UserRoot userRoot){
         Map<String,Object> claims = new HashMap<>();
         claims.put(JHttpConstant.KEY,userRoot.getKey());
+        claims.put(JHttpConstant.UUID,userRoot.getIdValue());
         claims.put(JHttpConstant.ROLE,userRoot.getRole());
         return claims;
     }
