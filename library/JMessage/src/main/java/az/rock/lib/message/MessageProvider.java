@@ -1,26 +1,45 @@
 package az.rock.lib.message;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.File;
-import java.util.Objects;
+import java.io.IOException;
+import java.util.*;
 
 public class MessageProvider {
-    private final String serviceName;
-    private String fileName;
-    private File successFile;
-    private File failFile;
+    private final File successFile;
+    private final File failFile;
 
-    public MessageProvider(String serviceName){
-        this.serviceName = serviceName;
-        this.successFile = new File("az/rock/lib/message/success/".concat(this.serviceName).concat("-success.json"));
-        this.failFile = new File("az/rock/lib/message/fail/".concat(this.serviceName).concat("-fail.json"));
-    }
-    public String fail(JMessageObject messageObject){
+    private  ObjectMapper objectMapper;
+    private Map<String,MessageModel> successMessages = new HashMap<>();
+    private Map<String,MessageModel> failMessages = new HashMap<>();
 
-        return null;
+    public MessageProvider(File successFile,File failFile){
+        this.objectMapper = new ObjectMapper();
+        this.successFile = successFile;
+        this.failFile = failFile;
     }
 
-    public String success(JMessageObject messageObject){
+    public void init(){
+        try {
+            var failList = Arrays.asList(objectMapper.readValue(this.failFile, MessageModel[].class));
+            var successList = Arrays.asList(objectMapper.readValue(this.successFile, MessageModel[].class));
 
+            failList.forEach( model->this.failMessages.put(model.getCode(),model));
+            successList.forEach( model->this.successMessages.put(model.getCode(),model));
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String fail(String code,String lang){
+        var model = this.failMessages.get(code);
+        if (lang.equals("az")) return model.getAz();
+        else return model.getEn();
+    }
+
+    public String success(String code,String lang){
         return null;
     }
 }
