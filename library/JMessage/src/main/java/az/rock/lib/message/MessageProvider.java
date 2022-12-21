@@ -7,30 +7,19 @@ import java.io.IOException;
 import java.util.*;
 
 public class MessageProvider {
-    private final File successFile;
-    private final File failFile;
 
     private  ObjectMapper objectMapper;
     private Map<String,MessageModel> successMessages = new HashMap<>();
     private Map<String,MessageModel> failMessages = new HashMap<>();
 
-    public MessageProvider(File successFile,File failFile){
+    private MessageProvider(File successFile,File failFile){
         this.objectMapper = new ObjectMapper();
-        this.successFile = successFile;
-        this.failFile = failFile;
     }
 
-    public void init(){
-        try {
-            var failList = Arrays.asList(objectMapper.readValue(this.failFile, MessageModel[].class));
-            var successList = Arrays.asList(objectMapper.readValue(this.successFile, MessageModel[].class));
-
-            failList.forEach( model->this.failMessages.put(model.getCode(),model));
-            successList.forEach( model->this.successMessages.put(model.getCode(),model));
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    private MessageProvider(Builder builder) {
+        objectMapper = builder.objectMapper;
+        successMessages = builder.successMessages;
+        failMessages = builder.failMessages;
     }
 
     public String fail(String code,String lang){
@@ -41,5 +30,67 @@ public class MessageProvider {
 
     public String success(String code,String lang){
         return null;
+    }
+
+
+    /**
+     * {@code MessageProvider} builder static inner class.
+     */
+    public static final class Builder {
+        private File successFile;
+        private File failFile;
+        private ObjectMapper objectMapper;
+        private Map<String, MessageModel> successMessages;
+        private Map<String, MessageModel> failMessages;
+
+        private Builder() {
+        }
+
+        public static Builder builder() {
+            var builder = new Builder();
+            builder.objectMapper = new ObjectMapper();
+            return builder;
+        }
+
+        /**
+         * Sets the {@code successFile} and returns a reference to this Builder enabling method chaining.
+         *
+         * @param successFile the {@code successFile} to set
+         * @return a reference to this Builder
+         */
+        public Builder withSuccessFile(File successFile) {
+            this.successFile = successFile;
+            return this;
+        }
+
+        /**
+         * Sets the {@code failFile} and returns a reference to this Builder enabling method chaining.
+         *
+         * @param failFile the {@code failFile} to set
+         * @return a reference to this Builder
+         */
+        public Builder withFailFile(File failFile) {
+            this.failFile = failFile;
+            return this;
+        }
+
+        /**
+         * Returns a {@code MessageProvider} built from the parameters previously set.
+         *
+         * @return a {@code MessageProvider} built with parameters of this {@code MessageProvider.Builder}
+         */
+        public MessageProvider build() {
+            var object = new MessageProvider(this);
+            try {
+                var failList = Arrays.asList(objectMapper.readValue(this.failFile, MessageModel[].class));
+                var successList = Arrays.asList(objectMapper.readValue(this.successFile, MessageModel[].class));
+
+                failList.forEach( model->object.failMessages.put(model.getCode(),model));
+                successList.forEach( model->object.successMessages.put(model.getCode(),model));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return object;
+        }
     }
 }

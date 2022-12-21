@@ -24,8 +24,10 @@ public class BeanConfig {
     public MessageProvider messageProvider(){
         File failFile = new File("src/main/resources/fail/auth-service-fail.json");
         File successFile = new File("src/main/resources/success/auth-service-success.json");
-        var provider = new  MessageProvider(successFile,failFile);
-        provider.init();
-        return provider;
+        return MessageProvider.Builder
+                .builder()
+                .withFailFile(failFile)
+                .withSuccessFile(successFile)
+                .build();
     }
 }
