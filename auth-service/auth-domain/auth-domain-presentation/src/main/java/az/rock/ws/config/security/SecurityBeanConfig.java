@@ -1,5 +1,6 @@
 package az.rock.ws.config.security;
 
+import az.rock.lib.message.MessageProvider;
 import az.rock.ws.config.security.handler.JAccessDeniedHandler;
 import az.rock.ws.config.security.handler.JAuthenticationFailureHandler;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,12 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 
 @Configuration
 public class SecurityBeanConfig {
+    private final MessageProvider messageProvider;
+
+    public SecurityBeanConfig(MessageProvider messageProvider) {
+        this.messageProvider = messageProvider;
+    }
+
     @Bean
     public AuthenticationFailureHandler authenticationFailureHandler() {
         return new JAuthenticationFailureHandler();

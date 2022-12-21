@@ -1,4 +1,4 @@
-package az.rock.lib.spec.auth.rest.privates;
+package az.rock.ws.auth.spec.rest.privates;
 
 import az.rock.lib.annotations.*;
 import az.rock.lib.jresponse.request.JRequest;

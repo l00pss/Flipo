@@ -1,6 +1,7 @@
 package az.rock.ws.config.security;
 
 import az.rock.lib.jexception.JSecurityException;
+import az.rock.lib.message.MessageProvider;
 import az.rock.ws.aggregate.UserRoot;
 import az.rock.ws.exception.UserNotFoundJException;
 import az.rock.ws.port.output.repository.abstracts.AbstractUserRepository;
@@ -23,6 +24,7 @@ public class UserAuthDetailsService implements org.springframework.security.core
 
     private final PasswordEncoder passwordEncoder;
     private final AbstractUserRepository userRepository;
+    private final MessageProvider messageProvider;
 
     @Value(value = "${az.rock.ws.security-key}")
     private String securityKey;
@@ -33,17 +35,15 @@ public class UserAuthDetailsService implements org.springframework.security.core
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserRoot userRoot = this.userRepository.findByUsername(username);
-        if(Objects.isNull(userRoot)) throw new UserNotFoundJException("");
-
-        return new org.springframework.security.core.userdetails.User(
-                userRoot.getUsername(), userRoot.getPassword(),
+        if(Objects.isNull(userRoot)) throw new UserNotFoundJException(this.messageProvider.fail("F_0000000001","en"));
+        return new org.springframework.security.core.userdetails.User(userRoot.getUsername(), userRoot.getPassword(),
                 true,true,
                 true,true,new ArrayList<>());
     }
 
     public UserDetails getUserDetailsByUserName(String userName){
         UserDetails userDetails = this.loadUserByUsername(userName);
-        if(Objects.isNull(userDetails)) throw new UserNotFoundJException("");
+        if(Objects.isNull(userDetails)) throw new UserNotFoundJException(this.messageProvider.fail("F_0000000001","en"));
         return userDetails;
     }
 
@@ -52,7 +52,7 @@ public class UserAuthDetailsService implements org.springframework.security.core
         String rawPassword = ((UserDetails)authentication.getPrincipal()).getPassword();
         UserRoot root = this.userRepository.findByUsername(username);
         if (!this.passwordEncoder.matches(rawPassword,root.getPassword()))
-            throw new JSecurityException("Istifadəçi adı və ya şifrə səhvdir");
+            throw new JSecurityException(this.messageProvider.fail("F_0000000001","en"));
         return root;
     }
 }

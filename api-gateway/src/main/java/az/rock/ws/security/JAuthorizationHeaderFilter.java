@@ -1,7 +1,7 @@
 package az.rock.ws.security;
 
-import az.rock.lib.HttpConstant;
 import az.rock.lib.jexception.JSecurityException;
+import az.rock.lib.util.JHttpConstant;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -36,14 +36,14 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
             if(!serverHttpRequest.getHeaders().containsKey(HttpHeaders.AUTHORIZATION))
                 return fail(exchange,"No authorization header", HttpStatus.UNAUTHORIZED);
 
-            String token = Objects.requireNonNull(serverHttpRequest.getHeaders().get(HttpHeaders.AUTHORIZATION)).get(0).replace(HttpConstant.BEARER.concat(" "),"");
+            String token = Objects.requireNonNull(serverHttpRequest.getHeaders().get(HttpHeaders.AUTHORIZATION)).get(0).replace(JHttpConstant.BEARER.concat(" "),"");
             if (!this.isValidToken(token))
                 return fail(exchange,"Token is not Valid!", HttpStatus.UNAUTHORIZED);
             ServerHttpRequest request = exchange
                     .getRequest()
                     .mutate()
-                    .header(HttpConstant.ROLE,(String) this.getClaims(token).get(HttpConstant.ROLE))
-                    .header(HttpConstant.UUID,(String) this.getClaims(token).get(HttpConstant.UUID))
+                    .header(JHttpConstant.ROLE,(String) this.getClaims(token).get(JHttpConstant.ROLE))
+                    .header(JHttpConstant.UUID,(String) this.getClaims(token).get(JHttpConstant.UUID))
                     .build();
 
             return chain.filter(exchange.mutate().request(request).build());
@@ -60,8 +60,8 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
         String fin = null;
         try {
             Claims claims = this.getClaims(token);
-            fin = (String) claims.get(HttpConstant.FIN);
-            String role = (String) claims.get(HttpConstant.ROLE);
+            fin = (String) claims.get(JHttpConstant.UUID);
+            String role = (String) claims.get(JHttpConstant.ROLE);
 
         }catch (MalformedJwtException malformedJwtException){
             throw new JSecurityException("Invalid Json Token");

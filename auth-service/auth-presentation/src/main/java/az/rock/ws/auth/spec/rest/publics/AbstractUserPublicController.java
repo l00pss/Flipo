@@ -1,4 +1,4 @@
-package az.rock.lib.spec.auth.rest.publics;
+package az.rock.ws.auth.spec.rest.publics;
 
 import az.rock.lib.annotations.JApiSpec;
 import az.rock.lib.annotations.JGet;

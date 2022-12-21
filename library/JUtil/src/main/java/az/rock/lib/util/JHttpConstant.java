@@ -2,7 +2,7 @@ package az.rock.lib.util;
 
 public class JHttpConstant {
     public static final String ROLE = "ROLE";
-    public static final String KEY = "KEY";
+    public static final String USER_PRIVATE_KEY = "USER_PRIVATE_KEY";
     public static final String UUID = "UUID";
     public static final String TOKEN = "TOKEN";
     public static final String ENC_TOKEN = "ENC_TOKEN";

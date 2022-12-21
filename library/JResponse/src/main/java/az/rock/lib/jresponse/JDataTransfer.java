@@ -10,9 +10,13 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class JDataTransfer<D> extends JTransfer{
-    private final D data;
+    private  D data;
 
     private final static JDataTransfer<?> EMPTY = new JDataTransfer<>(null);
+
+    public JDataTransfer() {
+        super();
+    }
 
     public JDataTransfer(D data) {
         super();
@@ -92,5 +96,9 @@ public class JDataTransfer<D> extends JTransfer{
             JDataTransfer<D> r = (JDataTransfer<D>) supplier.get();
             return Objects.requireNonNull(r);
         }
+    }
+
+    public void setData(D data) {
+        this.data = data;
     }
 }

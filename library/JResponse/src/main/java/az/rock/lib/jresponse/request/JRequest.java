@@ -7,6 +7,10 @@ import az.rock.lib.jresponse.JDataTransfer;
 import az.rock.lib.jresponse.JHeader;
 
 public class JRequest<D> extends JDataTransfer<D> {
+    public JRequest() {
+        super();
+    }
+
     public JRequest(D data) {
         super(data);
     }
@@ -41,5 +45,7 @@ public class JRequest<D> extends JDataTransfer<D> {
         }
 
     }
+
+
 
 }

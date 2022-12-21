@@ -1,4 +1,4 @@
-package az.rock.ws.auth.handler;
+package az.rock.ws.auth.api.handler;
 
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

@@ -1,10 +1,13 @@
-package az.rock.ws.auth.rest.publics;
+package az.rock.ws.auth.api.rest.publics;
 
+import az.rock.lib.jexception.JRuntimeException;
 import az.rock.lib.jresponse.request.JRequest;
 import az.rock.lib.jresponse.response.factory.AbstractJSuccessResponseFactory;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
-import az.rock.lib.spec.auth.rest.publics.AbstractAuthPublicController;
+import az.rock.lib.message.MessageProvider;
+import az.rock.ws.auth.spec.rest.publics.AbstractAuthPublicController;
+import az.rock.ws.dto.request.AuthUserCommand;
 import az.rock.ws.dto.request.CreateUserCommand;
 import az.rock.ws.port.input.service.abstracts.UserAuthService;
 import org.springframework.http.HttpStatus;
@@ -17,37 +20,40 @@ public class AuthPublicController implements AbstractAuthPublicController {
 
     private final AbstractJSuccessResponseFactory<?> responseFactory;
     private final UserAuthService userAuthService;
+    private final MessageProvider messageProvider;
 
-    public AuthPublicController(AbstractJSuccessResponseFactory<?> responseFactory, UserAuthService userAuthService) {
+    public AuthPublicController(AbstractJSuccessResponseFactory<?> responseFactory, UserAuthService userAuthService, MessageProvider messageProvider) {
         this.responseFactory = responseFactory;
         this.userAuthService = userAuthService;
+        this.messageProvider = messageProvider;
     }
 
     @Override
     @GetMapping("/live")
-    public ResponseEntity<JSuccessResponse> live(@RequestBody(required = false) JRequest<?> command) {
+    public ResponseEntity<JSuccessResponse> live() {
         return ResponseEntity.ok(this.responseFactory.factoryResponse("Success"));
     }
 
 
     @Override
     @PostMapping("/registry")
-    public ResponseEntity<JSuccessDataResponse<?>> registry(JRequest<?> credentials) {
-        var createUserResponse = this.userAuthService.createUser((CreateUserCommand) credentials.get());
+    public ResponseEntity<JSuccessDataResponse<?>> registry(CreateUserCommand credentials) {
+        var jRequest = JRequest.of(credentials);
+        var createUserResponse = this.userAuthService.createUser(jRequest.getThrow(new JRuntimeException(this.messageProvider.fail("F_0000000001","az"))));
         var response = this.responseFactory.factoryResponse(createUserResponse);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @Override
     @GetMapping("/loginSocial")
-    public ResponseEntity<JSuccessDataResponse<?>> loginSocial(JRequest<?> credentials) {
+    public ResponseEntity<JSuccessDataResponse<?>> loginSocial(AuthUserCommand authUserCommand) {
         return null;
     }
 
 
     @Override
     @PostMapping("/forgotPassword")
-    public ResponseEntity<JSuccessDataResponse<?>> forgotPassword(JRequest<?> credentials) {
+    public ResponseEntity<JSuccessDataResponse<?>> forgotPassword(String email) {
         return null;
     }
 }
