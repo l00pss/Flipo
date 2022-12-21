@@ -7,13 +7,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.util.ResourceUtils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 @Configuration
 @RequiredArgsConstructor
 public class BeanConfig {
-
 
     @Bean
     public AbstractJSuccessResponseFactory<?> abstractJSuccessResponseFactory(){
@@ -22,12 +23,17 @@ public class BeanConfig {
 
     @Bean
     public MessageProvider messageProvider(){
-        File failFile = new File("src/main/resources/fail/auth-service-fail.json");
-        File successFile = new File("src/main/resources/success/auth-service-success.json");
+        File failFile;
+        File successFile;
+        try {
+            failFile = ResourceUtils.getFile("classpath:fail/auth-service-fail.json");
+            successFile = ResourceUtils.getFile("classpath:success/auth-service-success.json");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         return MessageProvider.Builder
                 .builder()
-                .withFailFile(failFile)
-                .withSuccessFile(successFile)
+                .withFiles(successFile,failFile)
                 .build();
     }
 }

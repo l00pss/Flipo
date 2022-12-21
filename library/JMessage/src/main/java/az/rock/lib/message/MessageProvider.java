@@ -40,8 +40,8 @@ public class MessageProvider {
         private File successFile;
         private File failFile;
         private ObjectMapper objectMapper;
-        private Map<String, MessageModel> successMessages;
-        private Map<String, MessageModel> failMessages;
+        private final Map<String, MessageModel> successMessages = new HashMap<>();
+        private final Map<String, MessageModel> failMessages = new HashMap<>();
 
         private Builder() {
         }
@@ -58,21 +58,12 @@ public class MessageProvider {
          * @param successFile the {@code successFile} to set
          * @return a reference to this Builder
          */
-        public Builder withSuccessFile(File successFile) {
+        public Builder withFiles(File successFile,File failFile) {
             this.successFile = successFile;
-            return this;
-        }
-
-        /**
-         * Sets the {@code failFile} and returns a reference to this Builder enabling method chaining.
-         *
-         * @param failFile the {@code failFile} to set
-         * @return a reference to this Builder
-         */
-        public Builder withFailFile(File failFile) {
             this.failFile = failFile;
             return this;
         }
+
 
         /**
          * Returns a {@code MessageProvider} built from the parameters previously set.
