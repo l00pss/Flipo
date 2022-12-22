@@ -91,6 +91,12 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
         }
     }
 
+    private void checkExpirationDate(String token){
+        var decryptedToken = Jwts.parser()
+                .setSigningKey(this.encryptKey)
+                .parse(token);
+    }
+
     private String getLang(ServerHttpRequest serverHttpRequest) {
         return Objects.requireNonNull(serverHttpRequest.getHeaders().get(JHttpConstant.LANG)).get(0);
     }

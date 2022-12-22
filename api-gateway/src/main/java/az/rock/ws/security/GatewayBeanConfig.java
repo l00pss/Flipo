@@ -13,7 +13,7 @@ public class GatewayBeanConfig {
         return routeLocatorBuilder
                 .routes()
                 .route(p -> p
-                        .path("/auth-service/users/myprofile/**")
+                        .path("/auth-service/1.0/private/auth/**")
                         .filters(f -> f.removeRequestHeader("Cookie")
                                 .rewritePath("/auth-service/(?<segment>.*)", "/$\\{segment}")
                                 .filter(authorizationHeaderFilter.apply(new JAuthorizationHeaderFilter.Config())))
