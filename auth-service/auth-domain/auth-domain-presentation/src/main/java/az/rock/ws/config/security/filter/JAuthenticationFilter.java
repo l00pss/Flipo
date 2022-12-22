@@ -1,6 +1,7 @@
 package az.rock.ws.config.security.filter;
 
 
+import az.rock.lib.jexception.JSecurityException;
 import az.rock.lib.message.MessageProvider;
 import az.rock.lib.util.JHttpConstant;
 import az.rock.lib.value.generic.JLanguage;
@@ -67,7 +68,7 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                                             FilterChain chain, Authentication authResult) throws IOException {
         AuthUserCommand authUserCommand = new ObjectMapper().readValue(request.getInputStream(), AuthUserCommand.class);
-        String privateKey = Objects.requireNonNullElse(request.getHeader(JHttpConstant.USER_PRIVATE_KEY), "en");
+        String privateKey = Objects.requireNonNull(request.getHeader(JHttpConstant.USER_PRIVATE_KEY),()->this.messageProvider.fail( "F_0000000001","en"));
         UserRoot userRoot = this.userAuthDetailsService.matches(authResult);
         Map<String, Object> claims = this.generateClaim(userRoot,privateKey);
         String token = this.generateToken(claims, authUserCommand.privateKey());
