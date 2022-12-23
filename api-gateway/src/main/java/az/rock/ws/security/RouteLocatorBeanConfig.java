@@ -1,12 +1,14 @@
 package az.rock.ws.security;
 
+import az.rock.ws.security.filter.header.JAuthorizationHeaderFilter;
+import az.rock.ws.security.filter.header.JPublicHeaderFilter;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class GatewayBeanConfig {
+public class RouteLocatorBeanConfig {
     @Bean
     public RouteLocator userPrivateLocator(RouteLocatorBuilder routeLocatorBuilder, JAuthorizationHeaderFilter
             authorizationHeaderFilter) {
@@ -24,8 +26,8 @@ public class GatewayBeanConfig {
     }
 
     @Bean
-    public RouteLocator userPublicLocator(RouteLocatorBuilder routeLocatorBuilder, JAuthorizationHeaderFilter
-            authorizationHeaderFilter) {
+    public RouteLocator userPublicLocator(RouteLocatorBuilder routeLocatorBuilder, JPublicHeaderFilter
+            publicHeaderFilter) {
         return routeLocatorBuilder
                 .routes()
                 .route(p -> p

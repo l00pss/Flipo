@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 
 @Configuration
@@ -30,12 +31,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.authorizeRequests().antMatchers("/**").hasIpAddress(this.gateway_ip)
+        http.authorizeRequests()
+                .antMatchers("/**")
+                .hasIpAddress(this.gateway_ip)
                 .and()
                 .addFilter(this.getAuthenticationFilter())
                 .exceptionHandling()
                 .authenticationEntryPoint(this.authenticationEntryPoint);
-        http.headers().frameOptions().disable();
+        http.headers()
+                .frameOptions()
+                .disable()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
     @Override
@@ -44,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private JAuthenticationFilter getAuthenticationFilter() throws Exception {
-        JAuthenticationFilter authenticationFilter = new JAuthenticationFilter(this.userAuthDetailsService,authenticationManager(),this.messageProvider);
+        JAuthenticationFilter authenticationFilter = new JAuthenticationFilter(this.userAuthDetailsService, authenticationManager(), this.messageProvider);
         authenticationFilter.setFilterProcessesUrl("/1.0/public/auth/login");
         return authenticationFilter;
     }

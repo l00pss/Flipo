@@ -1,4 +1,4 @@
-package az.rock.ws.security;
+package az.rock.ws.security.filter.header;
 
 import az.rock.lib.jexception.JRuntimeException;
 import az.rock.lib.jexception.JSecurityException;
@@ -23,12 +23,12 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Component
-public class JPublicHeaderFilter extends AbstractGatewayFilterFactory<JPublicHeaderFilter.Config> {
+public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAuthorizationHeaderFilter.Config> {
     @Value(value = "${rock.security-key}")
     private String encryptKey;
     private final MessageProvider messageProvider;
 
-    public JPublicHeaderFilter(MessageProvider messageProvider) {
+    public JAuthorizationHeaderFilter(MessageProvider messageProvider) {
         super(Config.class);
         this.messageProvider = messageProvider;
     }
@@ -47,10 +47,13 @@ public class JPublicHeaderFilter extends AbstractGatewayFilterFactory<JPublicHea
             String token = Objects.requireNonNull(serverHttpRequest.getHeaders().get(HttpHeaders.AUTHORIZATION)).get(0).replace(JHttpConstant.BEARER.concat(" "), "");
             Optional<List<String>> optionalPrivateKey = Optional.ofNullable(serverHttpRequest.getHeaders().get(HttpHeaders.AUTHORIZATION));
             String headerPrivateKey = optionalPrivateKey.orElseThrow(() -> new JRuntimeException("")).get(0);
-
+            if (!this.isValidToken(token,headerPrivateKey,unauthorizedMessage))
+                return fail(exchange);
             ServerHttpRequest request = exchange
                     .getRequest()
                     .mutate()
+                    .header(JHttpConstant.ROLE, (String) this.getClaims(token,unauthorizedMessage).get(JHttpConstant.ROLE))
+                    .header(JHttpConstant.UUID, (String) this.getClaims(token,unauthorizedMessage).get(JHttpConstant.UUID))
                     .build();
 
             return chain.filter(exchange.mutate().request(request).build());
@@ -63,10 +66,38 @@ public class JPublicHeaderFilter extends AbstractGatewayFilterFactory<JPublicHea
         return serverHttpResponse.setComplete();
     }
 
+    private boolean isValidToken(String token,String headerPrivateKey,String exceptionMessage) {
+        //It can be called to auth-service for validation
+        try {
+            Claims claims = this.getClaims(token,exceptionMessage);
+            String uuid = (String) claims.get(JHttpConstant.UUID);
+            String role = (String) claims.get(JHttpConstant.ROLE);
+            String userPrivateKey = (String) claims.get(JHttpConstant.USER_PRIVATE_KEY);
+            return uuid != null && role != null && userPrivateKey.equals(headerPrivateKey);
+        } catch (MalformedJwtException malformedJwtException) {
+            throw new JSecurityException(exceptionMessage);
+        }
+    }
 
 
+    private Claims getClaims(String token,String exceptionMessage) {
+        try {
+            return Jwts.parser()
+                    .setSigningKey(this.encryptKey)
+                    .parseClaimsJws(token)
+                    .getBody();
+        } catch (Exception exception) {
+            throw new JSecurityException(exceptionMessage);
+        }
+    }
+
+    private void checkExpirationDate(String token){
+        var decryptedToken = Jwts.parser()
+                .setSigningKey(this.encryptKey)
+                .parse(token);
+    }
 
     private String getLang(ServerHttpRequest serverHttpRequest) {
-        return Objects.requireNonNull(serverHttpRequest.getHeaders().get(JHttpConstant.LANG)).get(0);
+        return Objects.requireNonNullElse(serverHttpRequest.getHeaders().get(JHttpConstant.LANG),List.of("en")).get(0);
     }
 }
