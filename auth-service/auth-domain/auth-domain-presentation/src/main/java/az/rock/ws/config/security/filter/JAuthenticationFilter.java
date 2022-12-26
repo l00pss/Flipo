@@ -1,20 +1,15 @@
 package az.rock.ws.config.security.filter;
 
 
-import az.rock.lib.jexception.JSecurityException;
 import az.rock.lib.message.MessageProvider;
 import az.rock.lib.util.JHttpConstant;
-import az.rock.lib.value.generic.JLanguage;
 import az.rock.ws.aggregate.UserRoot;
 import az.rock.ws.config.security.UserAuthDetailsService;
 import az.rock.ws.dto.request.AuthUserCommand;
 import az.rock.ws.exception.UserNotFoundJException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.apache.http.HttpStatus;
-import org.bouncycastle.util.encoders.Base64Encoder;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,8 +17,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
