@@ -23,6 +23,7 @@
         <module>jRPC</module>
         <module>JDomain</module>
         <module>JUtil</module>
+        <module>JSecurity</module>
     </modules>
 
 
