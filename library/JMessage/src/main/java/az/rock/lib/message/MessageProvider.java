@@ -28,6 +28,10 @@ public class MessageProvider {
         else return model.getEn();
     }
 
+    public String fail(String code){
+        return this.fail(code,"az");
+    }
+
     public String success(String code,String lang){
         return null;
     }
