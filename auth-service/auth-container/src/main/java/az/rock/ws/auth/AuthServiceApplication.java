@@ -1,7 +1,6 @@
 package az.rock.ws.auth;
 
 import az.rock.ws.auth.config.BeanConfig;
-import az.rock.ws.config.security.filter.JFilterConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -9,7 +8,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication(exclude = {},
         scanBasePackageClasses = {
-                az.rock.ws.config.security.SecurityBeanConfig.class , az.rock.ws.DataAccessConfig.class, BeanConfig.class , JFilterConfiguration.class
+                az.rock.ws.config.security.SecurityBeanConfig.class , az.rock.ws.DataAccessConfig.class, BeanConfig.class
         })
 @EnableEurekaClient
 @ServletComponentScan
