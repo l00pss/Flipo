@@ -24,6 +24,7 @@
         <module>explore-service</module>
         <module>user-profile-service</module>
         <module>user-profile-service/user-container</module>
+        <module>matcher-service</module>
     </modules>
 
     <parent>
