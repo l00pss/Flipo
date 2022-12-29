@@ -11,4 +11,5 @@ public class JHttpConstant {
     public static final String ACCOUNT_KEY = "PREMIUM";
     public static final String LANG = "LANG";
     public static final String GATEWAY_KEY = "GATEWAY_KEY";
+    public static final String IP_ADDRESS = "IP_ADDRESS";
 }

@@ -5,9 +5,9 @@ import az.rock.ws.aggregate.UserRoot;
 import az.rock.ws.dto.request.CreateUserCommand;
 import az.rock.ws.event.UserCreatedEvent;
 import az.rock.ws.exception.UserDomainException;
-import az.rock.ws.mapper.UserDataMapper;
+import az.rock.ws.mapper.UserCommandDataMapper;
 import az.rock.ws.port.output.repository.abstracts.AbstractUserRepository;
-import az.rock.ws.service.UserDomainService;
+import az.rock.ws.service.concretes.UserDomainService;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,9 +19,9 @@ import java.util.Objects;
 public class CreateUserCommandHandler {
     private final UserDomainService userDomainService;
     private final AbstractUserRepository userRepository;
-    private final UserDataMapper userDataMapper;
+    private final UserCommandDataMapper userDataMapper;
 
-    public CreateUserCommandHandler(UserDomainService userDomainService, AbstractUserRepository userRepository, UserDataMapper userDataMapper) {
+    public CreateUserCommandHandler(UserDomainService userDomainService, AbstractUserRepository userRepository, UserCommandDataMapper userDataMapper) {
         this.userDomainService = userDomainService;
         this.userRepository = userRepository;
         this.userDataMapper = userDataMapper;

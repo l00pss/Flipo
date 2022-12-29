@@ -10,7 +10,7 @@ import az.rock.ws.dto.response.CreateUserResponse;
 
 import java.util.UUID;
 @JMapper
-public class UserDataMapper {
+public class UserCommandDataMapper {
     public UserRoot createUserCommandToUser(CreateUserCommand command) {
         return UserRoot.Builder
                 .builder()
