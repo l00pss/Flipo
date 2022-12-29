@@ -34,4 +34,6 @@ public class JFailResponseFactory<D> implements AbstractJFailResponseFactory<D> 
     public JFailDataResponse<D> factoryResponse(JHeader header, D data, String message) {
         return new JFailDataResponse<>(header, data, message);
     }
+
+
 }

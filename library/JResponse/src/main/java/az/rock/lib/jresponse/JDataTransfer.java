@@ -68,6 +68,7 @@ public class JDataTransfer<D> extends JTransfer{
         else emptyAction.run();
     }
 
+
     public boolean isPresent() {
         return !Objects.isNull(data);
     }
@@ -100,5 +101,9 @@ public class JDataTransfer<D> extends JTransfer{
 
     public void setData(D data) {
         this.data = data;
+    }
+
+    public D getData() {
+        return data;
     }
 }

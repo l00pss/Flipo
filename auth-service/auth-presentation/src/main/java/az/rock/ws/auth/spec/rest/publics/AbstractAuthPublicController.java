@@ -7,6 +7,7 @@ import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import az.rock.ws.dto.request.AuthUserCommand;
 import az.rock.ws.dto.request.CreateUserCommand;
+import az.rock.ws.dto.response.CreateUserResponse;
 import org.springframework.http.ResponseEntity;
 
 @JApiSpec(url = "/1.0/public/auth",permissions = Permission.PUBLIC)
@@ -19,7 +20,7 @@ public interface AbstractAuthPublicController {
     ResponseEntity<JSuccessDataResponse<?>> loginSocial(AuthUserCommand authUserCommand);
 
     @JPost(api = "/registry",hasBody = true)
-    ResponseEntity<JSuccessDataResponse<?>> registry(CreateUserCommand createUserCommand);
+    ResponseEntity<JSuccessDataResponse<CreateUserResponse>> registry(CreateUserCommand createUserCommand);
 
     @JPost(api = "/registry",hasBody = true)
     ResponseEntity<JSuccessDataResponse<?>> forgotPassword(String email);

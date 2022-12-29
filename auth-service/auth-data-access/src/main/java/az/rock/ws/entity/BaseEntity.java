@@ -22,9 +22,11 @@ public class BaseEntity {
     private UUID uuid;
 
     @CreatedDate
+    @Column(name = "created_date", nullable = false)
     private Date createdDate;
 
     @LastModifiedDate
+    @Column(name = "modification_date", nullable = false)
     private Date modificationDate;
 
     @PostLoad

@@ -9,6 +9,7 @@ import az.rock.lib.message.MessageProvider;
 import az.rock.ws.auth.spec.rest.publics.AbstractAuthPublicController;
 import az.rock.ws.dto.request.AuthUserCommand;
 import az.rock.ws.dto.request.CreateUserCommand;
+import az.rock.ws.dto.response.CreateUserResponse;
 import az.rock.ws.port.input.service.abstracts.UserAuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,9 +38,11 @@ public class AuthPublicController implements AbstractAuthPublicController {
 
     @Override
     @PostMapping("/registry")
-    public ResponseEntity<JSuccessDataResponse<?>> registry(CreateUserCommand credentials) {
-        var jRequest = JRequest.of(credentials);
-        var createUserResponse = this.userAuthService.createUser(jRequest.getThrow(new JRuntimeException(this.messageProvider.fail("F_0000000001","az"))));
+    public ResponseEntity<JSuccessDataResponse<CreateUserResponse>> registry(@RequestBody CreateUserCommand credentials) {
+        var jRequest = JRequest.of(credentials)
+                .getThrow(new JRuntimeException(this.messageProvider.fail("F_0000000001","az")));
+
+        var createUserResponse = this.userAuthService.createUser(jRequest);
         var response = this.responseFactory.factoryResponse(createUserResponse);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

@@ -7,10 +7,17 @@ import az.rock.lib.value.generic.JRole;
 import az.rock.ws.aggregate.UserRoot;
 import az.rock.ws.dto.request.CreateUserCommand;
 import az.rock.ws.dto.response.CreateUserResponse;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.UUID;
 @JMapper
 public class UserCommandDataMapper {
+    private final PasswordEncoder passwordEncoder;
+
+    public UserCommandDataMapper(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
     public UserRoot createUserCommandToUser(CreateUserCommand command) {
         return UserRoot.Builder
                 .builder()
@@ -20,7 +27,7 @@ public class UserCommandDataMapper {
                 .withLastName(command.getLastName())
                 .withEmail(command.getEmail())
                 .withUsername(command.getUsername())
-                .withPassword(command.getPassword())
+                .withPassword(passwordEncoder.encode(command.getPassword()))
                 .withRole(JRole.USER)
                 .build();
     }

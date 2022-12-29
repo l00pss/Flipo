@@ -2,6 +2,7 @@ package az.rock.ws.config.security;
 
 import az.rock.lib.message.MessageProvider;
 import az.rock.ws.config.security.filter.JAuthenticationFilter;
+import az.rock.ws.port.input.service.abstracts.AuthLogService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,6 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserAuthDetailsService userAuthDetailsService;
     private final AuthenticationEntryPoint authenticationEntryPoint;
     private final MessageProvider messageProvider;
+    private final AuthLogService authLogService;
 
     @Value(value = "${az.rock.ws.gateway.ip-address}")
     private String gateway_ip;
@@ -56,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     private JAuthenticationFilter getAuthenticationFilter() throws Exception {
-        JAuthenticationFilter authenticationFilter = new JAuthenticationFilter(this.userAuthDetailsService, authenticationManager(), this.messageProvider);
+        JAuthenticationFilter authenticationFilter = new JAuthenticationFilter(this.userAuthDetailsService, authenticationManager(), this.messageProvider,authLogService);
         authenticationFilter.setFilterProcessesUrl("/1.0/public/auth/login");
         return authenticationFilter;
     }

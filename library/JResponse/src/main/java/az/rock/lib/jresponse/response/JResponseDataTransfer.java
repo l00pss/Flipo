@@ -33,4 +33,11 @@ public class JResponseDataTransfer<D> extends JDataTransfer<D> {
         this.message = null;
     }
 
+    public Boolean getSuccess() {
+        return success;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }

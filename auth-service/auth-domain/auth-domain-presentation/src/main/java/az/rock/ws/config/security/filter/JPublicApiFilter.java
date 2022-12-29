@@ -28,7 +28,8 @@ public class JPublicApiFilter extends OncePerRequestFilter {
 
     @Value(value = "${az.rock.ws.gateway.header-key}")
     private String gatewayKey;
-    private MessageProvider messageProvider;
+
+    private final MessageProvider messageProvider;
 
     private final RequestMatcher uriMatcher = new AntPathRequestMatcher("/1.0/public/auth/**");
 
@@ -45,9 +46,9 @@ public class JPublicApiFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         log.error("Public filter  method Invoked.");
-        var exception = new JSecurityException(this.messageProvider.fail("F_0000000002"));
-        this.gatewayKeyControl.accept(request, exception);
-        this.langKeyControl.accept(request, exception);
+        //var exception = new JSecurityException(this.messageProvider.fail("F_0000000002"));
+        //this.gatewayKeyControl.accept(request, exception);
+        //this.langKeyControl.accept(request, exception);
         filterChain.doFilter(request, response);
     }
 

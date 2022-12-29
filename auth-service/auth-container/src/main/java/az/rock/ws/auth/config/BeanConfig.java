@@ -4,6 +4,7 @@ import az.rock.lib.jresponse.response.factory.AbstractJSuccessResponseFactory;
 import az.rock.lib.jresponse.response.factory.JSuccessResponseFactory;
 import az.rock.lib.message.MessageProvider;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,7 @@ import java.io.FileNotFoundException;
 
 @Configuration
 @RequiredArgsConstructor
+@Slf4j
 public class BeanConfig {
 
     @Bean
@@ -25,8 +27,9 @@ public class BeanConfig {
 
 
 
-    @Bean
+    @Bean(name = "messageProvider")
     public MessageProvider messageProvider(){
+        log.info("Message Provider bean initialized");
         File failFile;
         File successFile;
         try {

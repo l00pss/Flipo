@@ -26,15 +26,16 @@ public class UserEntity extends BaseEntity{
     @Column(name = "last_name",nullable = false)
     private String lastName;
 
-    @Column(name = "username",nullable = false)
+    @Column(name = "username",nullable = false,unique = true)
     private String username;
 
     @Column(name = "password",nullable = false)
     private String password;
 
-    @Column(name = "email",nullable = false)
+    @Column(name = "email",nullable = false,unique = true)
     private String email;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "role",nullable = false)
     private JRole role;
 

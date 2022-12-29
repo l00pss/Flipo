@@ -34,4 +34,5 @@ public class JSuccessResponseFactory<D> implements AbstractJSuccessResponseFacto
     public <D> JSuccessDataResponse<D> factoryResponse(JHeader header, D data, String message) {
         return new JSuccessDataResponse<>(header, data, message);
     }
+
 }
