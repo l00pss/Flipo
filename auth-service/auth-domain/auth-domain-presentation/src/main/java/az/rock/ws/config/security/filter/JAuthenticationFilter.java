@@ -1,12 +1,15 @@
 package az.rock.ws.config.security.filter;
 
 
+import az.rock.lib.jexception.JRuntimeException;
 import az.rock.lib.message.MessageProvider;
 import az.rock.lib.util.JHttpConstant;
 import az.rock.ws.aggregate.UserRoot;
 import az.rock.ws.config.security.UserAuthDetailsService;
+import az.rock.ws.dto.request.AuthLogCommand;
 import az.rock.ws.dto.request.AuthUserCommand;
 import az.rock.ws.exception.UserNotFoundJException;
+import az.rock.ws.port.input.service.abstracts.AuthLogService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -27,16 +30,19 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
 
     private final UserAuthDetailsService userAuthDetailsService;
     private final MessageProvider messageProvider;
+    private final AuthLogService authLogService;
 
 
-    public JAuthenticationFilter(UserAuthDetailsService authService, AuthenticationManager authenticationManager, MessageProvider messageProvider) {
+    public JAuthenticationFilter(UserAuthDetailsService authService, AuthenticationManager authenticationManager, MessageProvider messageProvider,AuthLogService authLogService) {
         super.setAuthenticationManager(authenticationManager);
         this.userAuthDetailsService = authService;
         this.messageProvider = messageProvider;
+        this.authLogService = authLogService;
     }
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
+            throws AuthenticationException {
         String lang = Objects.requireNonNullElse(request.getHeader(JHttpConstant.LANG), "en");
         try {
             AuthUserCommand authUserCommand = new ObjectMapper().readValue(request.getInputStream(), AuthUserCommand.class);
@@ -51,20 +57,38 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
     }
 
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
-                                            FilterChain chain, Authentication authResult) throws IOException {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
+                                            Authentication authResult) throws IOException {
+
         AuthUserCommand authUserCommand = new ObjectMapper().readValue(request.getInputStream(), AuthUserCommand.class);
-        String privateKey = Objects.requireNonNull(request.getHeader(JHttpConstant.USER_PRIVATE_KEY),()->this.messageProvider.fail( "F_0000000001","en"));
+        String privateKey =
+                Objects.requireNonNull(request.getHeader(JHttpConstant.USER_PRIVATE_KEY),()->this.messageProvider.fail( "F_0000000001","en"));
+
         UserRoot userRoot = this.userAuthDetailsService.matches(authResult);
+        String lang = Objects.requireNonNullElse(request.getHeader(JHttpConstant.LANG), "en");
         String ipAddress = request.getRemoteAddr();
+
         var claimObject = ClaimObject.builder(userRoot)
                 .withPrivateKey(privateKey)
                 .withIpAddress(ipAddress)
                 .build();
+
         Map<String, Object> claims = this.generateClaim(claimObject);
+
         String token = this.generateToken(claims, authUserCommand.privateKey());
+
         response.addHeader(JHttpConstant.TOKEN, token);
 
+        var command = AuthLogCommand
+                .builder()
+                .userUUID(userRoot.getIdValue())
+                .username(userRoot.getUsername())
+                .userPrivateKey(privateKey)
+                .ipAddress(ipAddress)
+                .build();
+
+        if(!this.authLogService.logAuthenticate(command))
+            throw new JRuntimeException(this.messageProvider.fail( "F_0000000003",lang));
     }
 
     private String generateToken(Map<String, Object> claims, String privateKey) {

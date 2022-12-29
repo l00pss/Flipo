@@ -13,10 +13,8 @@ public class AuthLogManager implements AuthLogService {
         this.authLogHandler = authLogHandler;
     }
 
-
     @Override
     public Boolean logAuthenticate(AuthLogCommand command) {
-
-        return true;
+        return this.authLogHandler.logAuthenticate(command);
     }
 }

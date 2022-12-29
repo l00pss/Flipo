@@ -1,6 +1,7 @@
 package az.rock.ws.port.input.service.handler;
 
 import az.rock.lib.adapter.annotation.JCommandHandler;
+import az.rock.lib.message.MessageProvider;
 import az.rock.ws.aggregate.UserRoot;
 import az.rock.ws.dto.request.CreateUserCommand;
 import az.rock.ws.event.UserCreatedEvent;
@@ -20,11 +21,13 @@ public class CreateUserCommandHandler {
     private final UserDomainService userDomainService;
     private final AbstractUserRepository userRepository;
     private final UserCommandDataMapper userDataMapper;
+    private final MessageProvider messageProvider;
 
-    public CreateUserCommandHandler(UserDomainService userDomainService, AbstractUserRepository userRepository, UserCommandDataMapper userDataMapper) {
+    public CreateUserCommandHandler(UserDomainService userDomainService, AbstractUserRepository userRepository, UserCommandDataMapper userDataMapper, MessageProvider messageProvider) {
         this.userDomainService = userDomainService;
         this.userRepository = userRepository;
         this.userDataMapper = userDataMapper;
+        this.messageProvider = messageProvider;
     }
 
     @SneakyThrows(UserDomainException.class)
@@ -35,7 +38,7 @@ public class CreateUserCommandHandler {
         UserRoot savedUserRoot = this.userRepository.createUser(userRoot);
         if (Objects.isNull(savedUserRoot)){
             log.error("Could not save user with id: {}",userRoot.getId().getValue());
-            throw new UserDomainException("Could not save user with id: {}" + userRoot.getId().getValue());
+            throw new UserDomainException(this.messageProvider.fail("F_0000000003"));
         }
         log.info("Returning CustomerCreatedEvent for customer id: {}", userRoot.getId().getValue());
         return userCreatedEvent;

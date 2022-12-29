@@ -12,5 +12,12 @@
     "en": "ENN Sessiyanız bitmişdir, zəhmət olmasa təkrar giriş edərdiniz",
     "ru": "",
     "tr": "ENN Sessiyanız bitmişdir, zəhmət olmasa təkrar giriş edərdiniz."
+  },
+  {
+    "code": "F_0000000003",
+    "az": "Bilinməyəm bir xəta oldu",
+    "en": "En Bilinməyəm bir xəta oldu",
+    "ru": "",
+    "tr": "Bir şey yolunda gitmedi. :("
   }
 ]
