@@ -32,6 +32,6 @@ public class JUsernameValidator implements ConstraintValidator<JUsernameConstrai
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         log.info("Username Validator in running");
-        return true;
+        throw new InvalidFieldFormatException("Istifadeci adi sehvdir");
     }
 }
