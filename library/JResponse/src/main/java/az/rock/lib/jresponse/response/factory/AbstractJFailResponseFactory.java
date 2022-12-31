@@ -4,6 +4,7 @@ import az.rock.lib.jresponse.JHeader;
 import az.rock.lib.jresponse.response.fail.JFailDataResponse;
 import az.rock.lib.jresponse.response.fail.JFailResponse;
 
+
 public interface AbstractJFailResponseFactory<D> {
     JFailResponse factoryResponse();
 

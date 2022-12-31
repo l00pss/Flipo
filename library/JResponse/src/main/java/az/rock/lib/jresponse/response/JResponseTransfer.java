@@ -17,4 +17,12 @@ public class JResponseTransfer extends JTransfer {
         this.success = success;
         this.message = null;
     }
+
+    public Boolean getSuccess() {
+        return success;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }

@@ -1,6 +1,8 @@
 package az.rock.ws.auth.config;
 
+import az.rock.lib.jresponse.response.factory.AbstractJFailResponseFactory;
 import az.rock.lib.jresponse.response.factory.AbstractJSuccessResponseFactory;
+import az.rock.lib.jresponse.response.factory.JFailResponseFactory;
 import az.rock.lib.jresponse.response.factory.JSuccessResponseFactory;
 import az.rock.lib.message.MessageProvider;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,10 @@ public class BeanConfig {
     }
 
 
+    @Bean
+    public AbstractJFailResponseFactory<?> abstractJFailResponseFactory(){
+        return new JFailResponseFactory<>();
+    }
 
 
 
