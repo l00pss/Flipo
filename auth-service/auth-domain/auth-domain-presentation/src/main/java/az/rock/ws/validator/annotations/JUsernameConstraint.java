@@ -14,6 +14,7 @@ public @interface JUsernameConstraint {
     String message() default "Sorry, somethings went wrong";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
+
     boolean nullable() default false;
     String name() default "İstifadəçi adı";
     boolean unique() default false;

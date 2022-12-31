@@ -8,7 +8,7 @@ public final class UserID extends RootID<UUID>{
         super(value);
     }
 
-    public static UserID generate(){
+    public static UserID of(){
         return new UserID(UUID.randomUUID());
     }
 }

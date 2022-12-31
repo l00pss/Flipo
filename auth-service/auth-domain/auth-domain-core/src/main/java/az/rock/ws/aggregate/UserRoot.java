@@ -26,6 +26,7 @@ public class UserRoot extends JAggregateRoot<UserID> {
     private final String password;
     private final String email;
     private final JRole role;
+    private final Boolean isActive;
 
     private UserRoot(Builder builder) {
         super.setId(builder.userID);
@@ -36,6 +37,7 @@ public class UserRoot extends JAggregateRoot<UserID> {
         password = builder.password;
         email = builder.email;
         role = builder.role;
+        this.isActive = builder.isActive;
     }
 
     public UUID getIdValue() {
@@ -53,6 +55,7 @@ public class UserRoot extends JAggregateRoot<UserID> {
         private String password;
         private String email;
         private JRole role;
+        private Boolean isActive;
 
         private Builder() {
         }
@@ -104,6 +107,11 @@ public class UserRoot extends JAggregateRoot<UserID> {
 
         public Builder withId(UserID userID) {
             this.userID = userID;
+            return this;
+        }
+
+        public Builder withIsActive(Boolean isActive) {
+            this.isActive = isActive;
             return this;
         }
 

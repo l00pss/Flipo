@@ -7,6 +7,7 @@ import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import az.rock.lib.message.MessageProvider;
 import az.rock.ws.auth.spec.rest.publics.AbstractAuthPublicController;
+import az.rock.ws.config.security.ContextHolderManager;
 import az.rock.ws.dto.request.AuthUserCommand;
 import az.rock.ws.dto.request.CreateUserCommand;
 import az.rock.ws.dto.response.CreateUserResponse;
@@ -43,7 +44,6 @@ public class AuthPublicController implements AbstractAuthPublicController {
     public ResponseEntity<JSuccessDataResponse<CreateUserResponse>> registry(@RequestBody @Valid CreateUserCommand credentials) {
         var jRequest = JRequest.of(credentials)
                 .getThrow(new JRuntimeException(this.messageProvider.fail("F_0000000001","az")));
-
         var createUserResponse = this.userAuthService.createUser(jRequest);
         var response = this.responseFactory.factoryResponse(createUserResponse);
         return new ResponseEntity<>(response, HttpStatus.OK);

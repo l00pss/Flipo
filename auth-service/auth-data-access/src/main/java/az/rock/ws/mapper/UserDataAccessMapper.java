@@ -20,6 +20,7 @@ public class UserDataAccessMapper {
                 .withLastName(entity.getLastName())
                 .withEmail(entity.getEmail())
                 .withPassword(entity.getPassword())
+                .withIsActive(entity.getIsActive())
                 .build();
     }
 
@@ -33,6 +34,7 @@ public class UserDataAccessMapper {
                 .username(root.getUsername())
                 .password(root.getPassword())
                 .role(root.getRole())
+                .isActive(root.getIsActive())
                 .build();
     }
 }

@@ -21,21 +21,20 @@ public class BaseEntity {
     @Column(name = "uuid", nullable = false,updatable = false,unique = true)
     private UUID uuid;
 
-    @CreatedDate
     @Column(name = "created_date", nullable = false)
-    private Date createdDate;
+    private Date createdDate ;
 
-    @LastModifiedDate
-    @Column(name = "modification_date", nullable = false)
-    private Date modificationDate;
+    @Column(name = "modification_date")
+    private Date modificationDate = new Date();
 
-    @PostLoad
-    public void postLoad() {
-        log.info("Load Entity ".concat(this.getClass().getName()));
+
+    @PrePersist
+    public void prePersist() {
+        this.createdDate = new Date();
     }
 
-    @PostUpdate
-    public void postUpdate() {
-        log.info("Update Entity ".concat(this.getClass().getName()));
+    @PreUpdate
+    public void preUpdate() {
+        this.modificationDate = new Date();
     }
 }

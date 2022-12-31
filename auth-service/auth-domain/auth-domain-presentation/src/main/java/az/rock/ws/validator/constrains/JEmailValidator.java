@@ -1,7 +1,9 @@
 package az.rock.ws.validator.constrains;
 
 import az.rock.lib.adapter.annotation.JComponent;
-import az.rock.ws.port.input.service.abstracts.UserAuthService;
+import az.rock.lib.message.MessageProvider;
+import az.rock.ws.exception.InvalidFieldFormatException;
+import az.rock.ws.port.output.repository.abstracts.AbstractUserRepository;
 import az.rock.ws.validator.annotations.JEmailConstraint;
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,11 +14,20 @@ import javax.validation.ConstraintValidatorContext;
 @Slf4j
 public class JEmailValidator implements ConstraintValidator<JEmailConstraint, String> {
 
-    private UserAuthService userAuthService;
+    private final AbstractUserRepository userRepository;
+    private final MessageProvider messageProvider;
+    private final ValidatorUtil validatorUtil;
+
     private String name;
     private boolean nullable;
     private boolean empty;
     private boolean unique;
+
+    public JEmailValidator(AbstractUserRepository userRepository, MessageProvider messageProvider, ValidatorUtil validatorUtil) {
+        this.userRepository = userRepository;
+        this.messageProvider = messageProvider;
+        this.validatorUtil = validatorUtil;
+    }
 
     @Override
     public void initialize(JEmailConstraint constraintAnnotation) {
@@ -29,7 +40,9 @@ public class JEmailValidator implements ConstraintValidator<JEmailConstraint, St
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        log.info("Email Validator in running");
+        if(!nullable) this.validatorUtil.checkEmpty.accept(value,this.messageProvider.fail("F_0000000004"));
+        if (unique && this.userRepository.findByUsername(value) != null)
+            throw new InvalidFieldFormatException(this.messageProvider.fail("F_0000000007"));
         return true;
     }
 }

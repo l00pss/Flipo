@@ -19,5 +19,54 @@
     "en": "En Bilinməyəm bir xəta oldu",
     "ru": "",
     "tr": "Bir şey yolunda gitmedi. :("
+  },
+  {
+    "code": "F_0000000004",
+    "az": "İstifadəçi adı boş ola bilməz.",
+    "en": "xx",
+    "ru": "xx",
+    "tr": "xx"
+  },
+  {
+    "code": "F_0000000004",
+    "az": "İstifadəçi adı boş ola bilməz.",
+    "en": "xx",
+    "ru": "xx",
+    "tr": "xx"
+  },
+  {
+    "code": "F_0000000005",
+    "az": "Şifrə boş ola bilməz",
+    "en": "xx",
+    "ru": "xx",
+    "tr": "xx"
+  },
+  {
+    "code": "F_0000000006",
+    "az": "Şifrə minimum 6 simvoldan ibarət olmalıdır və ən az bir rəqəm [0-9] olmalıdır",
+    "en": "xx",
+    "ru": "xx",
+    "tr": "xx"
+  },
+  {
+    "code": "F_0000000007",
+    "az": "Bu istifadəçi adı artıq başqa bir hesab üçün istifadə edilir.",
+    "en": "xx",
+    "ru": "xx",
+    "tr": "xx"
+  },
+  {
+    "code": "F_0000000008",
+    "az": "Email boş ola bilməz.",
+    "en": "xx",
+    "ru": "xx",
+    "tr": "xx"
+  },
+  {
+    "code": "F_0000000009",
+    "az": "Email düzgün qeyd edilməmişdir.",
+    "en": "xx",
+    "ru": "xx",
+    "tr": "xx"
   }
 ]

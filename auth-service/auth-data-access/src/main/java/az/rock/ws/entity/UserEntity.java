@@ -4,6 +4,7 @@ import az.rock.lib.value.generic.JRole;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.UUID;
 
 @Getter
@@ -17,7 +18,7 @@ import java.util.UUID;
 @Entity(name = "User")
 public class UserEntity extends BaseEntity{
 
-    @Column(name = "key",nullable = false)
+    @Column(name = "key",nullable = false,unique = true)
     private UUID key;
 
     @Column(name = "first_name",nullable = false)
@@ -32,12 +33,16 @@ public class UserEntity extends BaseEntity{
     @Column(name = "password",nullable = false)
     private String password;
 
+    @Email
     @Column(name = "email",nullable = false,unique = true)
     private String email;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role",nullable = false)
     private JRole role;
+
+    private Boolean isActive;
+
 
 
 }

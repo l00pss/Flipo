@@ -7,28 +7,33 @@ import az.rock.lib.value.generic.JRole;
 import az.rock.ws.aggregate.UserRoot;
 import az.rock.ws.dto.request.CreateUserCommand;
 import az.rock.ws.dto.response.CreateUserResponse;
+import az.rock.ws.validator.StringRenderer;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Locale;
 import java.util.UUID;
 @JMapper
-public class UserCommandDataMapper {
+public class UserHandlerDataMapper {
     private final PasswordEncoder passwordEncoder;
+    private final StringRenderer stringRenderer;
 
-    public UserCommandDataMapper(PasswordEncoder passwordEncoder) {
+    public UserHandlerDataMapper(PasswordEncoder passwordEncoder, StringRenderer stringRenderer) {
         this.passwordEncoder = passwordEncoder;
+        this.stringRenderer = stringRenderer;
     }
 
     public UserRoot createUserCommandToUser(CreateUserCommand command) {
         return UserRoot.Builder
                 .builder()
-                .withId(UserID.generate())
+                .withId(UserID.of())
                 .withKey(UUID.randomUUID())
-                .withFirstName(command.getFirstName())
-                .withLastName(command.getLastName())
-                .withEmail(command.getEmail())
-                .withUsername(command.getUsername())
+                .withFirstName(this.stringRenderer.capitalize(command.getFirstName().trim()))
+                .withLastName(this.stringRenderer.capitalize(command.getLastName().trim()))
+                .withEmail(command.getEmail().trim().toLowerCase(Locale.ROOT))
+                .withUsername(command.getUsername().trim().toLowerCase(Locale.ROOT))
                 .withPassword(passwordEncoder.encode(command.getPassword()))
                 .withRole(JRole.USER)
+                .withIsActive(Boolean.TRUE)
                 .build();
     }
 

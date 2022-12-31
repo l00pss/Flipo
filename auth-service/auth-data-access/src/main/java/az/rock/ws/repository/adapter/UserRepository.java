@@ -1,10 +1,13 @@
 package az.rock.ws.repository.adapter;
 
 import az.rock.ws.aggregate.UserRoot;
+import az.rock.ws.exception.UserNotFoundJException;
 import az.rock.ws.mapper.UserDataAccessMapper;
 import az.rock.ws.port.output.repository.abstracts.AbstractUserRepository;
 import az.rock.ws.repository.AbstractUserJPARepository;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
 
 @Component
 public class UserRepository implements AbstractUserRepository {
@@ -25,6 +28,14 @@ public class UserRepository implements AbstractUserRepository {
 
     @Override
     public UserRoot findByUsername(String userName) {
+        var entity = this.userJpaRepository.findByUsername(userName);
+        if (Objects.isNull(entity))
+            throw new UserNotFoundJException("İstifadəçi tapılmadı");
         return this.userDataAccessMapper.userEntityToUser(this.userJpaRepository.findByUsername(userName));
+    }
+
+    @Override
+    public UserRoot findByEmail(String userName) {
+        return this.userDataAccessMapper.userEntityToUser(this.userJpaRepository.findByEmail(userName));
     }
 }

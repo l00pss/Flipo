@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 public class CreateUserCommand extends JCommand {
 
-    @JUsernameConstraint
+    @JUsernameConstraint(unique = true)
     private final String username;
     @JTextConstraint
     private final String firstName;
