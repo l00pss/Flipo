@@ -1,15 +1,19 @@
-package az.rock.ws.annotations;
+package az.rock.ws.validator.annotations;
 
-import az.rock.ws.constrains.JTextValidator;
+import az.rock.ws.validator.constrains.JPasswordValidator;
 
 import javax.validation.Constraint;
+import javax.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = JTextValidator.class)
+@Constraint(validatedBy = JPasswordValidator.class)
 @Target( { ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface JPasswordConstraint {
+    String message() default "Sorry, somethings went wrong";
+    Class<?>[] groups() default {};
+    Class<? extends Payload>[] payload() default {};
     boolean nullable() default false;
     String name() default "Şifrə ";
     boolean unique() default false;

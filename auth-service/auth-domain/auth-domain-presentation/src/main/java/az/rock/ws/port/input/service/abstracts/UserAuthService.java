@@ -6,5 +6,5 @@ import az.rock.ws.dto.response.CreateUserResponse;
 import javax.validation.Valid;
 
 public interface UserAuthService {
-    CreateUserResponse createUser(@Valid CreateUserCommand userCommand);
+    CreateUserResponse createUser(CreateUserCommand userCommand);
 }

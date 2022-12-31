@@ -24,7 +24,6 @@
         <module>JDomain</module>
         <module>JUtil</module>
         <module>JSecurity</module>
-        <module>JValidator</module>
     </modules>
 
 

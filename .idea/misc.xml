@@ -9,6 +9,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/library/JValidator/pom.xml" />
         <option value="$PROJECT_DIR$/security-service/pom.xml" />
       </set>
     </option>

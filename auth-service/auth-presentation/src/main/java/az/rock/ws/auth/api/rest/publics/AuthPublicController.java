@@ -15,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/1.0/public/auth")
 public class AuthPublicController implements AbstractAuthPublicController {
@@ -38,7 +40,7 @@ public class AuthPublicController implements AbstractAuthPublicController {
 
     @Override
     @PostMapping("/registry")
-    public ResponseEntity<JSuccessDataResponse<CreateUserResponse>> registry(@RequestBody CreateUserCommand credentials) {
+    public ResponseEntity<JSuccessDataResponse<CreateUserResponse>> registry(@RequestBody @Valid CreateUserCommand credentials) {
         var jRequest = JRequest.of(credentials)
                 .getThrow(new JRuntimeException(this.messageProvider.fail("F_0000000001","az")));
 

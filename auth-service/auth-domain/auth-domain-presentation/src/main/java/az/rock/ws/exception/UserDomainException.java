@@ -6,4 +6,5 @@ public class UserDomainException extends JRuntimeException {
     public UserDomainException(String message) {
         super(message);
     }
+    public UserDomainException(String message, Throwable cause) {super(message, cause);}
 }
