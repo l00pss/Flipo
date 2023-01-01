@@ -1,6 +1,7 @@
 package az.rock.ws.config.security.handler;
 
 import az.rock.lib.jexception.AccessDeniedSecurityException;
+import az.rock.lib.jexception.JSecurityException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
@@ -12,6 +13,6 @@ import java.io.IOException;
 public class JAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
-        throw new AccessDeniedSecurityException();
+        throw new JSecurityException();
     }
 }

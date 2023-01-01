@@ -13,6 +13,7 @@ import az.rock.ws.port.input.service.abstracts.AuthLogService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,7 +31,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-
+@Slf4j
 public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final UserAuthDetailsService userAuthDetailsService;
@@ -45,17 +46,6 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
         this.authLogService = authLogService;
     }
 
-    @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        if(!request.getMethod().equals("POST"))
-            throw new AuthenticationServiceException("Authentication method not supported: " + request.getMethod());
-
-        var authUserCommand = this.getAuthCommand(request);
-        var usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken( authUserCommand.username(), authUserCommand.password(),new ArrayList<>());
-        //super.setDetails(request,usernamePasswordAuthenticationToken);
-        return super.getAuthenticationManager().authenticate(usernamePasswordAuthenticationToken);
-    }
-
     private AuthUserCommand getAuthCommand(HttpServletRequest request)  {
         String lang = Objects.requireNonNullElse(request.getHeader(JHttpConstant.LANG), "en");
         try(var stream = request.getInputStream()) {
@@ -64,6 +54,21 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
             throw new UserNotFoundJException(this.messageProvider.fail( "F_0000000010",lang));
         }
     }
+
+
+    @Override
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+        if(!request.getMethod().equals("POST"))
+            throw new AuthenticationServiceException("Authentication method not supported: " + request.getMethod());
+        var manager = this.getAuthenticationManager();
+        var authUserCommand = this.getAuthCommand(request);
+        var usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken( authUserCommand.username(), authUserCommand.password());
+        var authentication = manager.authenticate(usernamePasswordAuthenticationToken);
+        this.setDetails(request,usernamePasswordAuthenticationToken);
+        return authentication;
+    }
+
+
 
 
 
@@ -82,11 +87,8 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
                 .build();
 
         Map<String, Object> claims = this.generateClaim(claimObject);
-
         String token = this.generateToken(claims, privateKey);
-
         response.addHeader(JHttpConstant.TOKEN, token);
-
         var command = AuthLogCommand
                 .builder()
                 .userUUID(userRoot.getIdValue())

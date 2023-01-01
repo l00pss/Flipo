@@ -1,5 +1,6 @@
 package az.rock.ws.auth.api.handler;
 
+import az.rock.lib.jexception.JSecurityException;
 import az.rock.lib.jresponse.response.factory.AbstractJFailResponseFactory;
 import az.rock.lib.jresponse.response.fail.JFailDataResponse;
 import az.rock.lib.jresponse.response.fail.JFailResponse;
@@ -28,5 +29,12 @@ public class UserJExceptionHandler {
         log.error("Exception Handler invoked ");
         var response = this.responseFactory.factoryResponse(exception.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    @ExceptionHandler(JSecurityException.class)
+    public ResponseEntity<JFailResponse> handleContentNotAllowedException(JSecurityException exception) {
+        log.error("Exception Handler invoked ");
+        var response = this.responseFactory.factoryResponse(exception.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
     }
 }

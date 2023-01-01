@@ -1,5 +1,6 @@
 package az.rock.ws.config.security.filter;
 
+import az.rock.lib.adapter.annotation.JComponent;
 import az.rock.lib.jexception.JSecurityException;
 import az.rock.lib.message.MessageProvider;
 import az.rock.lib.util.JHttpConstant;
@@ -18,8 +19,7 @@ import java.util.Objects;
 import java.util.function.BiConsumer;
 
 @Slf4j
-
-
+@JComponent
 public class JPublicApiFilter extends OncePerRequestFilter {
 
     @Value(value = "${az.rock.ws.gateway.header-key}")

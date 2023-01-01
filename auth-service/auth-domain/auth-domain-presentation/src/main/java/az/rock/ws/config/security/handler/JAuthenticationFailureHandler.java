@@ -1,5 +1,6 @@
 package az.rock.ws.config.security.handler;
 
+import az.rock.lib.jexception.JSecurityException;
 import az.rock.lib.jexception.JUnknownException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -12,6 +13,6 @@ import java.io.IOException;
 public class JAuthenticationFailureHandler  implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-        throw new JUnknownException();
+        throw new JSecurityException();
     }
 }

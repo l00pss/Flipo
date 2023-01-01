@@ -1,5 +1,6 @@
 package az.rock.ws.config.security.filter;
 
+import az.rock.lib.adapter.annotation.JComponent;
 import az.rock.lib.util.JHttpConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -19,22 +20,22 @@ import java.util.HashMap;
 import java.util.Objects;
 
 @Slf4j
-
+@JComponent
 public class JPrivateApiFilter extends OncePerRequestFilter {
 
     private final RequestMatcher uriMatcher =  new AntPathRequestMatcher("/1.0/private/auth/**");
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-//        log.error("Private filter  method Invoked.");
-//        String userUUID = request.getHeader(JHttpConstant.UUID);
-//        String lang = Objects.requireNonNullElse(request.getHeader(JHttpConstant.LANG),"az");
-//        SecurityContext context = SecurityContextHolder.getContext();
-//        AbstractAuthenticationToken auth = (AbstractAuthenticationToken)context.getAuthentication();
-//        HashMap<String, String> map = new HashMap<>();
-//        map.put(JHttpConstant.UUID, userUUID);
-//        map.put(JHttpConstant.LANG, lang);
-//        auth.setDetails(map);
+        log.error("Private filter  method Invoked.");
+        String userUUID = request.getHeader(JHttpConstant.UUID);
+        String lang = Objects.requireNonNullElse(request.getHeader(JHttpConstant.LANG),"az");
+        SecurityContext context = SecurityContextHolder.getContext();
+        AbstractAuthenticationToken auth = (AbstractAuthenticationToken)context.getAuthentication();
+        HashMap<String, String> map = new HashMap<>();
+        map.put(JHttpConstant.UUID, userUUID);
+        map.put(JHttpConstant.LANG, lang);
+        auth.setDetails(map);
         filterChain.doFilter(request,response);
     }
 

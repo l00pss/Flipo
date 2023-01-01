@@ -15,6 +15,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 @Slf4j
 @Configuration
@@ -26,6 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserAuthDetailsService userAuthDetailsService;
     private final AuthenticationEntryPoint authenticationEntryPoint;
+    private final JAuthenticationProvider authenticationProvider;
     private final MessageProvider messageProvider;
     private final AuthLogService authLogService;
 
@@ -53,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
+        auth.authenticationProvider(this.authenticationProvider).eraseCredentials(false);
     }
 
 

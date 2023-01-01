@@ -25,6 +25,7 @@ public class UserAuthDetailsService implements org.springframework.security.core
     private final PasswordEncoder passwordEncoder;
     private final AbstractUserRepository userRepository;
     private final MessageProvider messageProvider;
+    private final ContextHolderManager contextHolderManager;
 
     @Value(value = "${az.rock.ws.security-key}")
     private String securityKey;
@@ -48,11 +49,11 @@ public class UserAuthDetailsService implements org.springframework.security.core
     }
 
     public UserRoot match(Authentication authResult){
-        var detail = ((UserDetails) authResult.getPrincipal());
-        UserRoot userRoot = this.getUserRoot(detail.getUsername());
-        UserDetails userDetails = this.loadUserByUsername(detail.getUsername());
-        if (!this.passwordEncoder.matches(detail.getPassword(),userRoot.getPassword()))
-            throw new JSecurityException(this.messageProvider.fail("F_0000000001","en"));
+        var requestUsername = ((String) authResult.getPrincipal());
+        var requestPassword = (String) authResult.getCredentials();
+        UserRoot userRoot = this.getUserRoot(requestUsername);
+        if (!this.passwordEncoder.matches(requestPassword,userRoot.getPassword()))
+            throw new JSecurityException(this.messageProvider.fail("F_0000000001","az"));
         return userRoot;
     }
 
