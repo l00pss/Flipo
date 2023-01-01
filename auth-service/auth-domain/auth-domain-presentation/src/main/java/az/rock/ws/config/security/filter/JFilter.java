@@ -17,22 +17,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
+
 @Slf4j
-@Component
+
 public class JFilter extends OncePerRequestFilter {
     private final RequestMatcher uriMatcher =  new AntPathRequestMatcher("/**");
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String lang = Objects.requireNonNullElse(request.getHeader(JHttpConstant.LANG),"az");
-        log.info("Context Lang ".concat(lang));
-        SecurityContext context = SecurityContextHolder.getContext();
-        AbstractAuthenticationToken auth = (AbstractAuthenticationToken)context.getAuthentication();
-        HashMap<String, String> map = new HashMap<>();
-        map.put(JHttpConstant.LANG, lang);
-        auth.setDetails(map);
+//        String lang = Objects.requireNonNullElse(request.getHeader(JHttpConstant.LANG),"az");
+//        log.info("Context Lang ".concat(lang));
+//        SecurityContext context = SecurityContextHolder.getContext();
+//        AbstractAuthenticationToken auth = (AbstractAuthenticationToken)context.getAuthentication();
+//        HashMap<String, String> map = new HashMap<>();
+//        map.put(JHttpConstant.LANG, lang);
+//        auth.setDetails(map);
         filterChain.doFilter(request,response);
     }
 

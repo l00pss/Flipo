@@ -1,14 +1,13 @@
 package az.rock.ws.dto.request;
 
+
 public record AuthUserCommand(
         String username,
-        String password,
-        String privateKey
+        String password
 ) {
-    public AuthUserCommand(String username,String password,String privateKey){
+    public AuthUserCommand(String username,String password){
         this.username = username;
         this.password = password;
-        this.privateKey = privateKey;
     }
 
     @Override

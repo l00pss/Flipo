@@ -17,12 +17,16 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 
@@ -41,41 +45,41 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
     }
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-            throws AuthenticationException {
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         String lang = Objects.requireNonNullElse(request.getHeader(JHttpConstant.LANG), "en");
+        String privateKey = Objects.requireNonNull(request.getHeader(JHttpConstant.USER_PRIVATE_KEY),()->this.messageProvider.fail( "F_0000000001","en"));
         try {
-            AuthUserCommand authUserCommand = new ObjectMapper().readValue(request.getInputStream(), AuthUserCommand.class);
-            return getAuthenticationManager().authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            authUserCommand.username(),
-                            authUserCommand.password(),
-                            new ArrayList<>()));
+            var stream = request.getInputStream();
+            AuthUserCommand authUserCommand = new ObjectMapper().readValue(new String(stream.readAllBytes(), StandardCharsets.UTF_8), AuthUserCommand.class);
+            UserDetails userDetails = this.userAuthDetailsService.loadUserByUsername(authUserCommand.username());
+
+            var authManager = getAuthenticationManager();
+            var usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken( authUserCommand.username(), null,userDetails.getAuthorities());
+
+            this.userAuthDetailsService.matches(userDetails,authUserCommand.password());
+            //super.setDetails(request,usernamePasswordAuthenticationToken);
+            return authManager.authenticate(usernamePasswordAuthenticationToken);
         } catch (IOException e) {
             throw new UserNotFoundJException(this.messageProvider.fail( "F_0000000001",lang));
         }
     }
 
+
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
-                                            Authentication authResult) throws IOException {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult)  {
+        String privateKey = Objects.requireNonNull(request.getHeader(JHttpConstant.USER_PRIVATE_KEY),()->this.messageProvider.fail( "F_0000000001","en"));
 
-        AuthUserCommand authUserCommand = new ObjectMapper().readValue(request.getInputStream(), AuthUserCommand.class);
-        String privateKey =
-                Objects.requireNonNull(request.getHeader(JHttpConstant.USER_PRIVATE_KEY),()->this.messageProvider.fail( "F_0000000001","en"));
-
-        UserRoot userRoot = this.userAuthDetailsService.matches(authResult);
+        UserRoot userRoot = this.userAuthDetailsService.getUserRoot(((UserDetails) authResult.getDetails()).getUsername());
         String lang = Objects.requireNonNullElse(request.getHeader(JHttpConstant.LANG), "en");
-        String ipAddress = request.getRemoteAddr();
 
         var claimObject = ClaimObject.builder(userRoot)
                 .withPrivateKey(privateKey)
-                .withIpAddress(ipAddress)
+                .withIpAddress("ipAddress")
                 .build();
 
         Map<String, Object> claims = this.generateClaim(claimObject);
 
-        String token = this.generateToken(claims, authUserCommand.privateKey());
+        String token = this.generateToken(claims, privateKey);
 
         response.addHeader(JHttpConstant.TOKEN, token);
 
@@ -84,11 +88,14 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
                 .userUUID(userRoot.getIdValue())
                 .username(userRoot.getUsername())
                 .userPrivateKey(privateKey)
-                .ipAddress(ipAddress)
+                .ipAddress("ipAddress")
                 .build();
 
         if(!this.authLogService.logAuthenticate(command))
             throw new JRuntimeException(this.messageProvider.fail( "F_0000000003",lang));
+
+        SecurityContext sc = SecurityContextHolder.getContext();
+        sc.setAuthentication(authResult);
     }
 
     private String generateToken(Map<String, Object> claims, String privateKey) {

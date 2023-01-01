@@ -1,17 +1,13 @@
 package az.rock.ws.config.security.filter;
 
-import az.rock.lib.jexception.JException;
-import az.rock.lib.jexception.JRuntimeException;
 import az.rock.lib.jexception.JSecurityException;
 import az.rock.lib.message.MessageProvider;
 import az.rock.lib.util.JHttpConstant;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.NegatedRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.*;
@@ -22,8 +18,8 @@ import java.util.Objects;
 import java.util.function.BiConsumer;
 
 @Slf4j
-@Component
-@RequiredArgsConstructor
+
+
 public class JPublicApiFilter extends OncePerRequestFilter {
 
     @Value(value = "${az.rock.ws.gateway.header-key}")
@@ -42,6 +38,10 @@ public class JPublicApiFilter extends OncePerRequestFilter {
     private final BiConsumer<HttpServletRequest, JSecurityException> langKeyControl = (HttpServletRequest request, JSecurityException exception) -> {
         if (Objects.isNull(request.getHeader(JHttpConstant.LANG))) throw exception;
     };
+
+    public JPublicApiFilter(MessageProvider messageProvider) {
+        this.messageProvider = messageProvider;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

@@ -39,9 +39,8 @@ public class GenericExceptionHandler extends DefaultErrorAttributes {
     }
 
     private HttpStatus findHttpStatus(Throwable error, MergedAnnotation<ResponseStatus> responseStatusAnnotation) {
-        if (error instanceof ResponseStatusException errorStatus) {
+        if (error instanceof ResponseStatusException errorStatus)
             return errorStatus.getStatus();
-        }
         return responseStatusAnnotation.getValue("code", HttpStatus.class).orElse(INTERNAL_SERVER_ERROR);
     }
 

@@ -37,8 +37,8 @@ public class UserAuthDetailsService implements org.springframework.security.core
         UserRoot userRoot = this.userRepository.findByUsername(username);
         if(Objects.isNull(userRoot)) throw new UserNotFoundJException(this.messageProvider.fail("F_0000000001","en"));
         return new org.springframework.security.core.userdetails.User(userRoot.getUsername(), userRoot.getPassword(),
-                true,true,
-                true,true,new ArrayList<>());
+                userRoot.getIsActive(),true,
+                true,userRoot.getIsActive(),new ArrayList<>());
     }
 
     public UserDetails getUserDetailsByUserName(String userName){
@@ -47,12 +47,12 @@ public class UserAuthDetailsService implements org.springframework.security.core
         return userDetails;
     }
 
-    public UserRoot matches(Authentication authentication){
-        String username = ((UserDetails)authentication.getPrincipal()).getUsername();
-        String rawPassword = ((UserDetails)authentication.getPrincipal()).getPassword();
-        UserRoot root = this.userRepository.findByUsername(username);
-        if (!this.passwordEncoder.matches(rawPassword,root.getPassword()))
+    public void matches(UserDetails detail,String rawPassword){
+        if (!this.passwordEncoder.matches(rawPassword,detail.getPassword()))
             throw new JSecurityException(this.messageProvider.fail("F_0000000001","en"));
-        return root;
+    }
+
+    public UserRoot getUserRoot(String userName){
+        return this.userRepository.findByUsername(userName);
     }
 }

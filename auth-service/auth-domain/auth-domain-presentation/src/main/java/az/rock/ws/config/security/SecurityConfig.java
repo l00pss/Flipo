@@ -58,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     private JAuthenticationFilter getAuthenticationFilter() throws Exception {
-        JAuthenticationFilter authenticationFilter = new JAuthenticationFilter(this.userAuthDetailsService, authenticationManager(), this.messageProvider,authLogService);
+        JAuthenticationFilter authenticationFilter = new JAuthenticationFilter(this.userAuthDetailsService, super.authenticationManager(), this.messageProvider, this.authLogService);
         authenticationFilter.setFilterProcessesUrl("/1.0/public/auth/login");
         return authenticationFilter;
     }

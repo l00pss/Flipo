@@ -29,9 +29,8 @@ public class UserRepository implements AbstractUserRepository {
     @Override
     public UserRoot findByUsername(String userName) {
         var entity = this.userJpaRepository.findByUsername(userName);
-        if (Objects.isNull(entity))
-            throw new UserNotFoundJException("İstifadəçi tapılmadı");
-        return this.userDataAccessMapper.userEntityToUser(this.userJpaRepository.findByUsername(userName));
+        if (entity.isEmpty()) throw new UserNotFoundJException("İstifadəçi tapılmadı");
+        return this.userDataAccessMapper.userEntityToUser(entity.get());
     }
 
     @Override

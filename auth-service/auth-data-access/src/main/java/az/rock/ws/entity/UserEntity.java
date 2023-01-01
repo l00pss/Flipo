@@ -15,7 +15,7 @@ import java.util.UUID;
 @Table(name = "users_list", schema = "users", indexes = {
         @Index(name = "idx_userentity_username", columnList = "username")
 })
-@Entity(name = "User")
+@Entity(name = "UserEntity")
 public class UserEntity extends BaseEntity{
 
     @Column(name = "key",nullable = false,unique = true)
