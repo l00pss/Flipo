@@ -47,10 +47,15 @@ public class UserAuthDetailsService implements org.springframework.security.core
         return userDetails;
     }
 
-    public void matches(UserDetails detail,String rawPassword){
-        if (!this.passwordEncoder.matches(rawPassword,detail.getPassword()))
+    public UserRoot match(Authentication authResult){
+        var detail = ((UserDetails) authResult.getPrincipal());
+        UserRoot userRoot = this.getUserRoot(detail.getUsername());
+        UserDetails userDetails = this.loadUserByUsername(detail.getUsername());
+        if (!this.passwordEncoder.matches(detail.getPassword(),userRoot.getPassword()))
             throw new JSecurityException(this.messageProvider.fail("F_0000000001","en"));
+        return userRoot;
     }
+
 
     public UserRoot getUserRoot(String userName){
         return this.userRepository.findByUsername(userName);
