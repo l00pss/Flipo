@@ -2,7 +2,7 @@ package az.rock.ws.security.filter.header;
 
 import az.rock.lib.jexception.JRuntimeException;
 import az.rock.lib.jexception.JSecurityException;
-import az.rock.lib.kafka.event.UserRequestEvent;
+import az.rock.ws.event.UserRequestEvent;
 import az.rock.lib.kafka.model.UserRequestModel;
 import az.rock.lib.message.MessageProvider;
 import az.rock.lib.util.JHttpConstant;

@@ -4,7 +4,7 @@ import az.rock.lib.adapter.annotation.JEventPublisher;
 import az.rock.lib.jexception.JSecurityException;
 import az.rock.lib.kafka.event.Event;
 import az.rock.lib.kafka.event.EventPublisher;
-import az.rock.lib.kafka.event.UserRequestEvent;
+import az.rock.ws.event.UserRequestEvent;
 import az.rock.lib.kafka.model.UserRequestModel;
 import az.rock.lib.kafka.topic.AuthTopic;
 import lombok.extern.slf4j.Slf4j;
