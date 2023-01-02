@@ -29,7 +29,7 @@ public class UserRepository implements AbstractUserRepository {
 
     @Override
     public UserRoot findByUsername(String userName) {
-        var entity = this.userJpaRepository.findByUsername(userName);
+        var entity = this.userJpaRepository.findByUsername(userName.toLowerCase());
         if (entity.isEmpty()) throw new UserNotFoundJException(this.messageProvider.fail("F_0000000001"));
         return this.userDataAccessMapper.userEntityToUser(entity.get());
     }
