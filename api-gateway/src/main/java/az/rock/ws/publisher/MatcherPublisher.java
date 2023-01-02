@@ -51,5 +51,15 @@ public class MatcherPublisher<T> implements EventPublisher<T> {
 
     }
 
+    @Override
+    public void onFailure(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onSuccess(Event<T> event) {
+
+    }
+
 
 }
