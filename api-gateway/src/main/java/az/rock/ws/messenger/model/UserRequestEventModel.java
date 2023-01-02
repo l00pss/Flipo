@@ -1,11 +1,13 @@
-package az.rock.lib.kafka.model;
+package az.rock.ws.messenger.model;
 
-public class UserRequestModel extends Model {
+import az.rock.lib.kafka.model.EventModel;
+
+public class UserRequestEventModel extends EventModel {
     private String userUUID;
     private String userPrivateKey;
     private String ipAddress;
 
-    private UserRequestModel(Builder builder) {
+    private UserRequestEventModel(Builder builder) {
         userUUID = builder.userUUID;
         userPrivateKey = builder.userPrivateKey;
         ipAddress = builder.ipAddress;
@@ -50,8 +52,8 @@ public class UserRequestModel extends Model {
             return this;
         }
 
-        public UserRequestModel build() {
-            return new UserRequestModel(this);
+        public UserRequestEventModel build() {
+            return new UserRequestEventModel(this);
         }
     }
 }

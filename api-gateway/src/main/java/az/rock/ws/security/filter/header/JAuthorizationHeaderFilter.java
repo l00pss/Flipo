@@ -2,11 +2,11 @@ package az.rock.ws.security.filter.header;
 
 import az.rock.lib.jexception.JRuntimeException;
 import az.rock.lib.jexception.JSecurityException;
-import az.rock.ws.event.UserRequestEvent;
-import az.rock.lib.kafka.model.UserRequestModel;
+import az.rock.ws.messenger.event.UserRequestEvent;
+import az.rock.ws.messenger.model.UserRequestEventModel;
 import az.rock.lib.message.MessageProvider;
 import az.rock.lib.util.JHttpConstant;
-import az.rock.ws.publisher.MatcherPublisher;
+import az.rock.ws.messenger.publisher.MatcherPublisher;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -29,9 +29,9 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
     @Value(value = "${rock.security-key}")
     private String encryptKey;
     private final MessageProvider messageProvider;
-    private final MatcherPublisher<UserRequestModel> matcherPublisher;
+    private final MatcherPublisher<UserRequestEventModel> matcherPublisher;
 
-    public JAuthorizationHeaderFilter(MessageProvider messageProvider, MatcherPublisher<UserRequestModel> matcherPublisher) {
+    public JAuthorizationHeaderFilter(MessageProvider messageProvider, MatcherPublisher<UserRequestEventModel> matcherPublisher) {
         super(Config.class);
         this.messageProvider = messageProvider;
         this.matcherPublisher = matcherPublisher;
@@ -57,7 +57,7 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
             var claims = this.getClaims(token,headerPrivateKey,unauthorizedMessage);
 
             //TODO
-            var model = UserRequestModel.builder()
+            var model = UserRequestEventModel.builder()
                     .withIpAddress(ipAddress)
                     .withUserPrivateKey(headerPrivateKey)
                     .withUserUUID((String) claims.get(JHttpConstant.UUID))

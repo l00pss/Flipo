@@ -1,4 +1,4 @@
-package az.rock.ws.event;
+package az.rock.ws.messenger.event;
 
 import az.rock.lib.kafka.event.Event;
 
