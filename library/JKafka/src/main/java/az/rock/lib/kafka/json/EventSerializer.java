@@ -7,7 +7,6 @@ import org.apache.kafka.common.serialization.Serializer;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.Map;
 
 public class EventSerializer implements Serializer<Event<?>> {

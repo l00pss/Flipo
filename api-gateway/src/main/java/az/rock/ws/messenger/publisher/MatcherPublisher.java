@@ -33,32 +33,34 @@ public class MatcherPublisher<T> implements EventPublisher<T> {
         Message<UserRequestEvent<UserRequestEventModel>> message = MessageBuilder
                 .withPayload((UserRequestEvent<UserRequestEventModel>) event)
                 .setHeader(KafkaHeaders.TOPIC, AuthTopic.USER_REQUEST)
+                .setHeader(KafkaHeaders.GROUP_ID,"api-gateway.per-request-1")
                 .build();
         ListenableFuture< SendResult<String,UserRequestEvent<UserRequestEventModel>>> listenable =
                 this.kafkaTemplate.send(message);
-        listenable.addCallback(new ListenableFutureCallback<SendResult<String, UserRequestEvent<UserRequestEventModel>>>() {
+        listenable.addCallback(new ListenableFutureCallback<>() {
             @Override
             public void onFailure(Throwable ex) {
-                log.debug("While kafka publishing ,result is fail");
-                throw new JSecurityException();
+                handleFailure(ex);
             }
 
             @Override
+            @SuppressWarnings("all")
             public void onSuccess(SendResult<String, UserRequestEvent<UserRequestEventModel>> result) {
-                log.debug("While kafka publishing ,result is success");
+                handleSuccess((Event<T>) result.getProducerRecord().value());
             }
         });
 
     }
 
     @Override
-    public void onFailure(Throwable throwable) {
-
+    public void handleFailure(Throwable throwable) {
+        log.info("While kafka publishing ,result is fail");
+        throw new JSecurityException();
     }
 
     @Override
-    public void onSuccess(Event<T> event) {
-
+    public void handleSuccess(Event<T> event) {
+        log.info("While kafka publishing ,result is success");
     }
 
 

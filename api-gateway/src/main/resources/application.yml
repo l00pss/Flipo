@@ -17,18 +17,4 @@ spring:
     banner:
         location: classpath:banner.txt
 
-    kafka:
-        producer:
-            bootstrap-servers: localhost:9092
-            key-serializer: org.apache.kafka.common.serialization.StringSerializer
-            value-serializer: az.rock.lib.kafka.json.EventSerializer
-        consumer:
-            auto-offset-reset: earliest
-            bootstrap-servers: localhost:9092
-            key-serializer: org.apache.kafka.common.serialization.StringDeserializer
-            value-serializer: org.springframework.kafka.support.serializer.JsonDeserializer
-            properties:
-              spring:
-                  json:
-                      trusted:
-                          packages: '*'
+
