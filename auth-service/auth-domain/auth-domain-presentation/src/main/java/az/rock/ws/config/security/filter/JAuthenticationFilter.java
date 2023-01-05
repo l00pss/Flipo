@@ -11,6 +11,7 @@ import az.rock.ws.dto.request.AuthUserCommand;
 import az.rock.ws.exception.UserNotFoundJException;
 import az.rock.ws.port.input.service.abstracts.AuthLogService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
@@ -109,10 +110,11 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
     }
 
     private String generateToken(Map<String, Object> claims, String privateKey) {
+        Claims varClaims = Jwts.claims(claims);
+        varClaims.setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(this.userAuthDetailsService.getTokenExpDate())));
         return Jwts.builder()
-                .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(this.userAuthDetailsService.getTokenExpDate())))
                 .signWith(SignatureAlgorithm.HS512, this.userAuthDetailsService.getSecurityKey().concat(privateKey))
-                .setClaims(claims)
+                .setClaims(varClaims)
                 .compact();
     }
 

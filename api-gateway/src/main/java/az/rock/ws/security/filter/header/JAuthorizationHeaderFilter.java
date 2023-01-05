@@ -43,6 +43,7 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
     @Override
     public GatewayFilter apply(Config config) {
         return ((exchange, chain) -> {
+            log.info("Authorization Filter");
             ServerHttpRequest serverHttpRequest = exchange.getRequest();
             String ipAddress = Objects.requireNonNull(serverHttpRequest.getRemoteAddress()).getAddress().getHostAddress();
             String lang = serverHttpRequest.getHeaders().get(JHttpConstant.LANG).get(0);
