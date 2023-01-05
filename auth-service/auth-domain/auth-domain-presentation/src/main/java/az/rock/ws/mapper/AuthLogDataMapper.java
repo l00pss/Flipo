@@ -9,12 +9,12 @@ public class AuthLogDataMapper {
     public AuthLogRoot createFromCommand(AuthLogCommand command){
         return AuthLogRoot
                 .builder()
-                .userUUID(command.getUserUUID())
-                .username(command.getUsername())
-                .userPrivateKey(command.getUserPrivateKey())
-                .ipAddress(command.getIpAddress())
-                .authDate(command.getAuthDate())
-                .state(command.getState())
+                .withUserUUID(command.getUserUUID())
+                .withUsername(command.getUsername())
+                .withUserPrivateKey(command.getUserPrivateKey())
+                .withIpAddress(command.getIpAddress())
+                .withAuthDate(command.getAuthDate())
+                .withState(command.getState())
                 .build();
     }
 }

@@ -26,13 +26,14 @@ public class JPreFilter implements GlobalFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         var request = exchange.getRequest();
-        if(request.getHeaders().get(JHttpConstant.LANG)==null) {
-            request.mutate()
-                    .header(JHttpConstant.GATEWAY_KEY, this.gatewayKey)
-                    .build();
-        }
+        var langResult = request.getHeaders().get(JHttpConstant.LANG)==null || request.getHeaders().get(JHttpConstant.LANG).isEmpty();
+        request.mutate()
+                .header(JHttpConstant.GATEWAY_KEY, this.gatewayKey)
+                .header(JHttpConstant.IP_ADDRESS, Objects.requireNonNullElse(Objects.requireNonNull(request.getRemoteAddress()).getHostName(),"VPN"))
+                .header(JHttpConstant.LANG,langResult ? "az" : Objects.requireNonNull(request.getHeaders().get(JHttpConstant.LANG)).get(0))
+                .build();
         String requestPath = request.getPath().toString();
         log.info("JPreFilter executed Path : {}",requestPath);
-        return chain.filter(exchange);
+        return chain.filter(exchange.mutate().request(request).build());
     }
 }

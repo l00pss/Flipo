@@ -18,7 +18,7 @@ public class JAuthenticationProvider implements AuthenticationProvider {
         log.debug("JAuthenticationProvider invoked");
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
-        return new UsernamePasswordAuthenticationToken(  name, password, new ArrayList<>());
+        return new UsernamePasswordAuthenticationToken( name, password, new ArrayList<>());
     }
 
     @Override

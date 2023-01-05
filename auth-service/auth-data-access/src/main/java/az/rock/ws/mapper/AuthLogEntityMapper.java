@@ -1,32 +1,37 @@
 package az.rock.ws.mapper;
 
 import az.rock.lib.adapter.annotation.JMapper;
+import az.rock.lib.jdomain.id.RootID;
 import az.rock.ws.aggregate.AuthLogRoot;
 import az.rock.ws.entity.AuthLogEntity;
+
+import java.util.UUID;
 
 @JMapper
 public class AuthLogEntityMapper {
     public AuthLogRoot factoryFromEntity(AuthLogEntity entity){
         return AuthLogRoot
                 .builder()
-                .userUUID(entity.getUserUUID())
-                .authDate(entity.getAuthDate())
-                .ipAddress(entity.getIpAddress())
-                .username(entity.getUsername())
-                .userPrivateKey(entity.getUserPrivateKey())
-                .state(entity.getState())
+                .withId(RootID.of())
+                .withUserUUID(entity.getUserUUID())
+                .withAuthDate(entity.getAuthDate())
+                .withIpAddress(entity.getIpAddress())
+                .withUsername(entity.getUsername())
+                .withUserPrivateKey(entity.getUserPrivateKey())
+                .withState(entity.getState())
                 .build();
     }
 
     public AuthLogEntity factoryFromRoot(AuthLogRoot root){
         return AuthLogEntity
                 .builder()
-                .userUUID(root.getUserUUID())
-                .authDate(root.getAuthDate())
-                .ipAddress(root.getIpAddress())
-                .username(root.getUsername())
-                .userPrivateKey(root.getUserPrivateKey())
-                .state(root.getState())
+                .withUuid(UUID.randomUUID())
+                .withUserUUID(root.getUserUUID())
+                .withAuthDate(root.getAuthDate())
+                .withIpAddress(root.getIpAddress())
+                .withUsername(root.getUsername())
+                .withUserPrivateKey(root.getUserPrivateKey())
+                .withState(root.getState())
                 .build();
     }
 }

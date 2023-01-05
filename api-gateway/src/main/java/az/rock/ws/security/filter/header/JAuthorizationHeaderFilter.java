@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -44,7 +45,7 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
         return ((exchange, chain) -> {
             ServerHttpRequest serverHttpRequest = exchange.getRequest();
             String ipAddress = Objects.requireNonNull(serverHttpRequest.getRemoteAddress()).getAddress().getHostAddress();
-            String lang = this.getLang(serverHttpRequest);
+            String lang = serverHttpRequest.getHeaders().get(JHttpConstant.LANG).get(0);
             String unauthorizedMessage = this.messageProvider.fail("F_0000000002", lang);
             if (!serverHttpRequest.getHeaders().containsKey(JHttpConstant.AUTHORIZATION))
                 return fail(exchange);
@@ -70,7 +71,6 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
                     .mutate()
                     .header(JHttpConstant.ROLE, (String) claims.get(JHttpConstant.ROLE))
                     .header(JHttpConstant.UUID, (String) claims.get(JHttpConstant.UUID))
-                    .header(JHttpConstant.LANG, lang)
                     .build();
 
             return chain.filter(exchange.mutate().request(request).build());
@@ -87,6 +87,7 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
 
         try {
             Claims claims = this.getClaims(token,headerPrivateKey,exceptionMessage);
+            this.checkExpirationDate(claims,exceptionMessage);
             String uuid = (String) claims.get(JHttpConstant.UUID);
             String role = (String) claims.get(JHttpConstant.ROLE);
             String userPrivateKey = (String) claims.get(JHttpConstant.USER_PRIVATE_KEY);
@@ -108,13 +109,10 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
         }
     }
 
-    private void checkExpirationDate(String token){
-        var decryptedToken = Jwts.parser()
-                .setSigningKey(this.encryptKey)
-                .parse(token);
+    private void checkExpirationDate(Claims claims,String exceptionMessage){
+        var expiredDate = claims.getExpiration();
+        var now = new Date();
+        if(now.after(expiredDate)) throw new JSecurityException(exceptionMessage);
     }
 
-    private String getLang(ServerHttpRequest serverHttpRequest) {
-        return Objects.requireNonNullElse(serverHttpRequest.getHeaders().get(JHttpConstant.LANG),List.of("en")).get(0);
-    }
 }

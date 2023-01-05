@@ -12,5 +12,12 @@
     "en": "An invalid request form was detected",
     "ru": "Обнаружена недопустимая форма запроса",
     "tr": "Geçersiz bir istek formu algılandı"
+  },
+  {
+    "code": "F_0000000003",
+    "az": "Sessiyanız bitmişdir. Zəhmət olmasa təkrar giriş edərdiniz",
+    "en": "EN",
+    "ru": "RU",
+    "tr": "TR"
   }
 ]
