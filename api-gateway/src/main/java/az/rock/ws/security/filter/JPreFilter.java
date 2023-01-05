@@ -28,7 +28,6 @@ public class JPreFilter implements GlobalFilter {
         var request = exchange.getRequest();
         if(request.getHeaders().get(JHttpConstant.LANG)==null) {
             request.mutate()
-                    .header(JHttpConstant.LANG, "en")
                     .header(JHttpConstant.GATEWAY_KEY, this.gatewayKey)
                     .build();
         }

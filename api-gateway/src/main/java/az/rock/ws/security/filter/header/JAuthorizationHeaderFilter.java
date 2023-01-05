@@ -31,12 +31,10 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
     @Value(value = "${rock.security-key}")
     private String encryptKey;
     private final MessageProvider messageProvider;
-    private final MatcherPublisher<UserRequestEventModel> matcherPublisher;
 
-    public JAuthorizationHeaderFilter(MessageProvider messageProvider, MatcherPublisher<UserRequestEventModel> matcherPublisher) {
+    public JAuthorizationHeaderFilter(MessageProvider messageProvider) {
         super(Config.class);
         this.messageProvider = messageProvider;
-        this.matcherPublisher = matcherPublisher;
     }
 
     public static class Config {}
@@ -46,14 +44,14 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
         return ((exchange, chain) -> {
             ServerHttpRequest serverHttpRequest = exchange.getRequest();
             String ipAddress = Objects.requireNonNull(serverHttpRequest.getRemoteAddress()).getAddress().getHostAddress();
-            String unauthorizedMessage = this.messageProvider.fail("F_0000000002", this.getLang(serverHttpRequest));
-
+            String lang = this.getLang(serverHttpRequest);
+            String unauthorizedMessage = this.messageProvider.fail("F_0000000002", lang);
             if (!serverHttpRequest.getHeaders().containsKey(JHttpConstant.AUTHORIZATION))
                 return fail(exchange);
 
             String token = Objects.requireNonNull(serverHttpRequest.getHeaders().get(JHttpConstant.AUTHORIZATION)).get(0).replace(JHttpConstant.BEARER.concat(" "), "");
             Optional<List<String>> optionalPrivateKey = Optional.ofNullable(serverHttpRequest.getHeaders().get(JHttpConstant.USER_PRIVATE_KEY));
-            String headerPrivateKey = optionalPrivateKey.orElseThrow(() -> new JRuntimeException("")).get(0);
+            String headerPrivateKey = optionalPrivateKey.orElseThrow(() -> new JRuntimeException(unauthorizedMessage)).get(0);
             if (!this.isValidToken(token,headerPrivateKey,unauthorizedMessage))
                 return fail(exchange);
             var claims = this.getClaims(token,headerPrivateKey,unauthorizedMessage);
@@ -65,13 +63,14 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
                     .withUserUUID((String) claims.get(JHttpConstant.UUID))
                     .build();
 
-            this.matcherPublisher.publish(UserRequestEvent.of(model));
+            //this.matcherPublisher.publish(UserRequestEvent.of(model));
 
             ServerHttpRequest request = exchange
                     .getRequest()
                     .mutate()
                     .header(JHttpConstant.ROLE, (String) claims.get(JHttpConstant.ROLE))
                     .header(JHttpConstant.UUID, (String) claims.get(JHttpConstant.UUID))
+                    .header(JHttpConstant.LANG, lang)
                     .build();
 
             return chain.filter(exchange.mutate().request(request).build());
