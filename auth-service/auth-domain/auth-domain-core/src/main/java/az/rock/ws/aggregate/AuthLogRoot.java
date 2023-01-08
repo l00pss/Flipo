@@ -2,9 +2,12 @@ package az.rock.ws.aggregate;
 
 import az.rock.lib.jdomain.aggregate.JAggregateRoot;
 import az.rock.lib.jdomain.id.RootID;
-import az.rock.lib.jdomain.id.UserID;
+import az.rock.lib.util.JDateTime;
 import lombok.*;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -13,6 +16,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 public class AuthLogRoot extends JAggregateRoot<RootID<UUID>> {
+    private final ZonedDateTime createdDate;
+    private final ZonedDateTime modificationDate;
     private final UUID userUUID;
     private final String username;
     private final String userPrivateKey;
@@ -22,6 +27,8 @@ public class AuthLogRoot extends JAggregateRoot<RootID<UUID>> {
 
     private AuthLogRoot(Builder builder) {
         super(builder.id);
+        this.createdDate = builder.createdDate;
+        this.modificationDate = builder.modificationDate;
         userUUID = builder.userUUID;
         username = builder.username;
         userPrivateKey = builder.userPrivateKey;
@@ -36,6 +43,8 @@ public class AuthLogRoot extends JAggregateRoot<RootID<UUID>> {
 
 
     public static final class Builder {
+        private ZonedDateTime createdDate;
+        private ZonedDateTime modificationDate;
         private UUID userUUID;
         private String username;
         private String userPrivateKey;
@@ -45,6 +54,26 @@ public class AuthLogRoot extends JAggregateRoot<RootID<UUID>> {
         private RootID<UUID> id;
 
         private Builder() {
+        }
+
+        public Builder withCreatedDate(ZonedDateTime date) {
+            this.createdDate = date;
+            return this;
+        }
+
+        public Builder withModificationDate(ZonedDateTime date) {
+            this.modificationDate = date;
+            return this;
+        }
+
+        public Builder withCreatedDate(Date date) {
+            this.createdDate = JDateTime.of(date);
+            return this;
+        }
+
+        public Builder withModificationDate(Date date) {
+            this.modificationDate = JDateTime.of(date);
+            return this;
         }
 
         public Builder withUserUUID(UUID userUUID) {

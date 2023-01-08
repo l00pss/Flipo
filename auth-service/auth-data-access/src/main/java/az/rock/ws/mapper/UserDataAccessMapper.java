@@ -13,14 +13,12 @@ public class UserDataAccessMapper {
         return UserRoot.Builder
                 .builder()
                 .withId(new UserID(entity.getUuid()))
-                .withRole(entity.getRole())
                 .withKey(entity.getKey())
                 .withUsername(entity.getUsername())
                 .withFirstName(entity.getFirstName())
                 .withLastName(entity.getLastName())
                 .withEmail(entity.getEmail())
                 .withPassword(entity.getPassword())
-                .withIsActive(entity.getIsActive())
                 .build();
     }
 
@@ -33,8 +31,6 @@ public class UserDataAccessMapper {
                 .lastName(root.getLastName())
                 .username(root.getUsername())
                 .password(root.getPassword())
-                .role(root.getRole())
-                .isActive(root.getIsActive())
                 .build();
     }
 }

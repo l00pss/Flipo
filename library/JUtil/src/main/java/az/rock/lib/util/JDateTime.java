@@ -11,6 +11,10 @@ public enum JDateTime {
         }
     };
 
+    public static ZonedDateTime of(Date date) {
+        return ZonedDateTime.ofInstant(date.toInstant(), ZoneId.of("UTC"));
+    }
+
     public abstract ZonedDateTime now();
 
     public static LocalDate convertToLocalDate(Date dateToConvert) {

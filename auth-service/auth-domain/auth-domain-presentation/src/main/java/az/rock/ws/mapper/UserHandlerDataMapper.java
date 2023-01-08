@@ -32,7 +32,7 @@ public class UserHandlerDataMapper {
                 .withEmail(command.getEmail().trim().toLowerCase(Locale.ROOT))
                 .withUsername(command.getUsername().trim().toLowerCase(Locale.ROOT))
                 .withPassword(passwordEncoder.encode(command.getPassword()))
-                .withRole(JRole.USER)
+                .withRole(JRole.ROLE_USER)
                 .withIsActive(Boolean.TRUE)
                 .build();
     }

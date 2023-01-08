@@ -1,6 +1,7 @@
 package az.rock.ws.aggregate;
 
 import az.rock.lib.jdomain.aggregate.JAggregateRoot;
+import az.rock.lib.util.JDateTime;
 import az.rock.lib.value.generic.JRole;
 import az.rock.lib.jdomain.id.UserID;
 import lombok.*;
@@ -9,6 +10,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -17,27 +19,25 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 public class UserRoot extends JAggregateRoot<UserID> {
-    private LocalDateTime createdDate;
-    private LocalDateTime modificationDate;
+    private final ZonedDateTime createdDate;
+    private final ZonedDateTime modificationDate;
     private final UUID key;
     private final String username;
     private final String firstName;
     private final String lastName;
     private final String password;
     private final String email;
-    private final JRole role;
-    private final Boolean isActive;
 
     private UserRoot(Builder builder) {
         super.setId(builder.userID);
+        this.createdDate = builder.createdDate;
+        this.modificationDate = builder.modificationDate;
         key = builder.key;
         username = builder.username;
         firstName = builder.firstName;
         lastName = builder.lastName;
         password = builder.password;
         email = builder.email;
-        role = builder.role;
-        this.isActive = builder.isActive;
     }
 
     public UUID getIdValue() {
@@ -46,16 +46,14 @@ public class UserRoot extends JAggregateRoot<UserID> {
 
     public static final class Builder {
         private UserID userID;
-        private LocalDateTime createdDate;
-        private LocalDateTime modificationDate;
+        private ZonedDateTime createdDate;
+        private ZonedDateTime modificationDate;
         private UUID key;
         private String username;
         private String firstName;
         private String lastName;
         private String password;
         private String email;
-        private JRole role;
-        private Boolean isActive;
 
         private Builder() {
         }
@@ -64,6 +62,26 @@ public class UserRoot extends JAggregateRoot<UserID> {
             return new Builder();
         }
 
+
+        public UserRoot.Builder withCreatedDate(ZonedDateTime date) {
+            this.createdDate = date;
+            return this;
+        }
+
+        public UserRoot.Builder withModificationDate(ZonedDateTime date) {
+            this.modificationDate = date;
+            return this;
+        }
+
+        public UserRoot.Builder withCreatedDate(Date date) {
+            this.createdDate = JDateTime.of(date);
+            return this;
+        }
+
+        public UserRoot.Builder withModificationDate(Date date) {
+            this.modificationDate = JDateTime.of(date);
+            return this;
+        }
 
         public Builder withKey(UUID key) {
             this.key = key;
@@ -99,31 +117,13 @@ public class UserRoot extends JAggregateRoot<UserID> {
             return this;
         }
 
-        public Builder withRole(JRole role) {
-            this.role = role;
-            return this;
-        }
-
 
         public Builder withId(UserID userID) {
             this.userID = userID;
             return this;
         }
 
-        public Builder withIsActive(Boolean isActive) {
-            this.isActive = isActive;
-            return this;
-        }
 
-        public Builder withCreatedDate(LocalDateTime createdDate) {
-            this.createdDate = createdDate;
-            return this;
-        }
-
-        public Builder withModificationDate(LocalDateTime modificationDate) {
-            this.modificationDate = modificationDate;
-            return this;
-        }
 
         public UserRoot build() {
             return new UserRoot(this);

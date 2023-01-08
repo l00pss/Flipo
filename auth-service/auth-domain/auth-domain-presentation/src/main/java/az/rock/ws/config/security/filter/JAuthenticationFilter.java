@@ -123,7 +123,7 @@ public class JAuthenticationFilter extends UsernamePasswordAuthenticationFilter 
         Map<String, Object> claims = new HashMap<>();
         claims.put(JHttpConstant.USER_PRIVATE_KEY, claimObject.getPrivateKey());
         claims.put(JHttpConstant.UUID, claimObject.getRoot().getIdValue());
-        claims.put(JHttpConstant.ROLE, claimObject.getRoot().getRole());
+        //claims.put(JHttpConstant.ROLE, claimObject.getRoot().getRole());
         claims.put(JHttpConstant.IP_ADDRESS, claimObject.getIpAddress());
         return claims;
     }

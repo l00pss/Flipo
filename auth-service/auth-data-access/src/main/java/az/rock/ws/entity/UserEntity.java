@@ -37,12 +37,8 @@ public class UserEntity extends BaseEntity{
     @Column(name = "email",nullable = false,unique = true)
     private String email;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role",nullable = false)
-    private JRole role;
-
-    private Boolean isActive;
-
+    @OneToOne
+    private AccountEntity account;
 
 
 }

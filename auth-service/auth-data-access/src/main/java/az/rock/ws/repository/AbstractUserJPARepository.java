@@ -16,4 +16,5 @@ public interface AbstractUserJPARepository extends JpaRepository<UserEntity, UUI
     Optional<UserEntity> findByUsername(String userName);
 
     UserEntity findByEmail(String email);
+
 }

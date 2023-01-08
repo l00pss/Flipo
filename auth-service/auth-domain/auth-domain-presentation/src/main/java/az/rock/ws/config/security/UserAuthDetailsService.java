@@ -38,8 +38,8 @@ public class UserAuthDetailsService implements org.springframework.security.core
         UserRoot userRoot = this.userRepository.findByUsername(username);
         if(Objects.isNull(userRoot)) throw new UserNotFoundJException(this.messageProvider.fail("F_0000000001","en"));
         return new org.springframework.security.core.userdetails.User(userRoot.getUsername(), userRoot.getPassword(),
-                userRoot.getIsActive(),true,
-                true,userRoot.getIsActive(),new ArrayList<>());
+                true,true,
+                true,true,new ArrayList<>());
     }
 
     public UserDetails getUserDetailsByUserName(String userName){
