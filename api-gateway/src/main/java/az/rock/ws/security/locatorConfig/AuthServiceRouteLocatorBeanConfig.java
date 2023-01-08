@@ -21,6 +21,8 @@ public class AuthServiceRouteLocatorBeanConfig {
     @Value(value = "${az.rock.ws.values.api.auth.public}")
     private  String publicApi;
 
+
+
     @Bean
     public RouteLocator authPrivateLocator(RouteLocatorBuilder routeLocatorBuilder, JAuthorizationHeaderFilter
             authorizationHeaderFilter) {

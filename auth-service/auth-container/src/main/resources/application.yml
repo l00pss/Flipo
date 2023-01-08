@@ -1,29 +1,18 @@
 server:
-    port: ${PORT:8082}
+    port: ${PORT:0}
 spring:
-    profiles:
-        active: ${PROFILE:local}
     application:
-        name: api-gateway
+        name: auth-service
+    banner:
+        location: classpath:banner.txt
     config:
-        fail-fast: true
-        retry:
-            maxAttempts: 200
-            maxInterval: 10000
-        import: ${CONFIG_URL:optional:configserver:http://localhost:8012}
+        import: ${CONFIG_URL:configserver:http://localhost:8012}
     mvc:
         pathmatch:
             matching-strategy: ant_path_matcher
-    banner:
-        location: classpath:banner.txt
-    main:
-        allow-circular-references: true
-feign:
-    client:
-        config:
-            default:
-                connect-timeout: 5000
-                read-timeout: 5000
+    profiles:
+        active: ${PROFILE:local}
+
 kafka-config:
     bootstrap-servers: localhost:19092, localhost:29092, localhost:39092
     schema-registry-url-key: schema.registry.url

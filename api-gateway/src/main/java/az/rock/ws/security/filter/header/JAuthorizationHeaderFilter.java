@@ -1,11 +1,9 @@
 package az.rock.ws.security.filter.header;
 
-import az.rock.lib.jexception.JRuntimeException;
 import az.rock.lib.jexception.JSecurityException;
-import az.rock.lib.util.HeaderModel;
-import az.rock.ws.messenger.event.UserRequestEvent;
-import az.rock.ws.messenger.model.UserRequestEventModel;
+import az.rock.lib.kafka.model.ConsumerGatewayRequest;
 import az.rock.lib.message.MessageProvider;
+import az.rock.lib.util.HeaderModel;
 import az.rock.lib.util.JHttpConstant;
 import az.rock.ws.messenger.publisher.MatcherPublisher;
 import io.jsonwebtoken.Claims;
@@ -25,7 +23,6 @@ import reactor.core.publisher.Mono;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Component
 @Slf4j
@@ -33,10 +30,13 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
     @Value(value = "${rock.security-key}")
     private String encryptKey;
     private final MessageProvider messageProvider;
+    private final MatcherPublisher matcherPublisher;
 
-    public JAuthorizationHeaderFilter(MessageProvider messageProvider) {
+
+    public JAuthorizationHeaderFilter(MessageProvider messageProvider, MatcherPublisher matcherPublisher) {
         super(Config.class);
         this.messageProvider = messageProvider;
+        this.matcherPublisher = matcherPublisher;
     }
 
     public static class Config {}
@@ -54,14 +54,13 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
                 return fail(exchange);
 
             var claims = this.getClaims(headerModel.getToken(),headerModel.getUserRequestPrivateKey(),unauthorizedMessage);
-            //TODO
-            var model = UserRequestEventModel.builder()
-                    .withIpAddress(headerModel.getIpAddress())
-                    .withUserPrivateKey(headerModel.getUserRequestPrivateKey())
-                    .withUserUUID((String) claims.get(JHttpConstant.UUID))
-                    .build();
 
-            //this.matcherPublisher.publish(UserRequestEvent.of(model));
+            var model = ConsumerGatewayRequest.newBuilder()
+                    .setIpAddress(headerModel.getIpAddress())
+                    .setUserUUID((String) claims.get(JHttpConstant.UUID))
+                    .setUserPrivateKey(headerModel.getUserRequestPrivateKey())
+                    .build();
+            this.matcherPublisher.publish(model);
 
             ServerHttpRequest request = exchange
                     .getRequest()
@@ -69,6 +68,7 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
                     .header(JHttpConstant.ROLE, (String) claims.get(JHttpConstant.ROLE))
                     .header(JHttpConstant.UUID, (String) claims.get(JHttpConstant.UUID))
                     .build();
+
             return chain.filter(exchange.mutate().request(request).build());
         });
     }
@@ -88,6 +88,7 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
                 .builder()
                 .withLang(lang)
                 .withIpAddress(ipAddress)
+                .withUserRequestPrivateKey(optionalPrivateKey.get(0))
                 .withToken(token)
                 .build();
     }

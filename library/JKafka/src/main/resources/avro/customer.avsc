@@ -1,0 +1,33 @@
+{
+  "namespace": "az.rock.lib.kafka.model",
+  "type": "record",
+  "name": "ConsumerGatewayRequest",
+  "fields": [
+    {
+      "name": "uuid",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "name": "ipAddress",
+      "type": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "userPrivateKey",
+      "type": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "userUUID",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    }
+  ]
+}

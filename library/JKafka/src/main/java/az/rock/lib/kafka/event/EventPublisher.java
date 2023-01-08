@@ -1,7 +1,7 @@
 package az.rock.lib.kafka.event;
 
-public interface EventPublisher<D> {
-    void publish(Event<D> event);
+public interface EventPublisher {
+    void publish(org.apache.avro.specific.SpecificRecord model);
     void handleFailure(Throwable throwable);
-    void handleSuccess(Event<D> event);
+    void handleSuccess(org.apache.avro.specific.SpecificRecord model);
 }
