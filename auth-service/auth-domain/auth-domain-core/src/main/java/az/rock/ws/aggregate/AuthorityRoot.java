@@ -42,8 +42,8 @@ public class AuthorityRoot extends JAggregateRoot<RootID<UUID>> {
 
     public static final class Builder {
         private RootID<UUID> id;
-        private ZonedDateTime createdDate;
-        private ZonedDateTime modificationDate;
+        private ZonedDateTime createdDate = JDateTime.UTC.now();
+        private ZonedDateTime modificationDate = JDateTime.UTC.now();
         private UUID userUUID;
         private JRole role;
 

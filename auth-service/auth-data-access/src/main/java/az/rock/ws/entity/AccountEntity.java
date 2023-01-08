@@ -34,6 +34,9 @@ public class AccountEntity extends BaseEntity {
     private Boolean credentialsNonExpired = Boolean.TRUE;
 
     @Builder.Default
+    private Boolean isApproved = Boolean.TRUE;
+
+    @Builder.Default
     private Boolean enabled = Boolean.TRUE;
 
 

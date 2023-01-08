@@ -4,7 +4,6 @@ import az.rock.lib.jdomain.aggregate.JAggregateRoot;
 import az.rock.lib.jdomain.id.RootID;
 import az.rock.lib.util.JDateTime;
 import az.rock.lib.value.generic.JRole;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -17,15 +16,15 @@ import java.util.UUID;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@AllArgsConstructor
 @Getter
 public class AccountRoot extends JAggregateRoot<RootID<UUID>> {
     private final ZonedDateTime createdDate;
     private final ZonedDateTime modificationDate;
-    private Boolean accountNonExpired = Boolean.TRUE;
-    private Boolean accountNonLocked = Boolean.TRUE;
-    private Boolean credentialsNonExpired = Boolean.TRUE;
-    private Boolean enabled = Boolean.TRUE;
+    private Boolean accountNonExpired;
+    private Boolean accountNonLocked;
+    private Boolean credentialsNonExpired;
+    private Boolean enabled;
+    private Boolean isApproved;
     private Set<AuthorityRoot> authorities = new HashSet<>();
 
     private AccountRoot(Builder builder) {
@@ -45,12 +44,13 @@ public class AccountRoot extends JAggregateRoot<RootID<UUID>> {
 
     public static final class Builder {
         private RootID<UUID> uuidRootID;
-        private ZonedDateTime createdDate;
-        private ZonedDateTime modificationDate;
-        private Boolean accountNonExpired;
-        private Boolean accountNonLocked;
-        private Boolean credentialsNonExpired;
-        private Boolean enabled;
+        private ZonedDateTime createdDate  = JDateTime.UTC.now();
+        private ZonedDateTime modificationDate = JDateTime.UTC.now();
+        private Boolean accountNonExpired = Boolean.TRUE;
+        private Boolean accountNonLocked = Boolean.TRUE;
+        private Boolean credentialsNonExpired = Boolean.TRUE;
+        private Boolean enabled = Boolean.TRUE;
+        private Boolean isApproved = Boolean.FALSE;
         private Set<AuthorityRoot> authorities = new HashSet<>();
 
         private Builder() {}
@@ -59,8 +59,6 @@ public class AccountRoot extends JAggregateRoot<RootID<UUID>> {
             this.uuidRootID = rootID;
             return this;
         }
-
-
 
         public Builder withCreatedDate(ZonedDateTime date) {
             this.createdDate = date;
@@ -102,6 +100,11 @@ public class AccountRoot extends JAggregateRoot<RootID<UUID>> {
             return this;
         }
 
+        public Builder withApproved(Boolean isApproved) {
+            this.isApproved = isApproved;
+            return this;
+        }
+
         public Builder withAuthorities(Set<AuthorityRoot> authorities) {
             this.authorities = authorities;
             return this;
@@ -138,5 +141,9 @@ public class AccountRoot extends JAggregateRoot<RootID<UUID>> {
     public Boolean isCompany(){
         var authority = this.authorities.stream().findFirst();
         return authority.isPresent() && authority.get().getRole().equals(JRole.ROLE_COMPANY);
+    }
+
+    public Boolean isActive(){
+        return this.enabled && this.accountNonLocked && this.accountNonExpired && this.credentialsNonExpired && this.isApproved;
     }
 }

@@ -46,8 +46,8 @@ public class UserRoot extends JAggregateRoot<UserID> {
 
     public static final class Builder {
         private UserID userID;
-        private ZonedDateTime createdDate;
-        private ZonedDateTime modificationDate;
+        private ZonedDateTime createdDate = JDateTime.UTC.now();
+        private ZonedDateTime modificationDate = JDateTime.UTC.now();
         private UUID key;
         private String username;
         private String firstName;
