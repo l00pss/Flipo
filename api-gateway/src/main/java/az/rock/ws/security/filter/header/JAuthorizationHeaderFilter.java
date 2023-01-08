@@ -20,9 +20,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Component
 @Slf4j
@@ -56,6 +59,8 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
             var claims = this.getClaims(headerModel.getToken(),headerModel.getUserRequestPrivateKey(),unauthorizedMessage);
 
             var model = ConsumerGatewayRequest.newBuilder()
+                    .setUuid(UUID.randomUUID().toString())
+                    .setTime(ZonedDateTime.now(ZoneId.of("UTC")).toString())
                     .setIpAddress(headerModel.getIpAddress())
                     .setUserUUID((String) claims.get(JHttpConstant.UUID))
                     .setUserPrivateKey(headerModel.getUserRequestPrivateKey())
@@ -121,7 +126,7 @@ public class JAuthorizationHeaderFilter extends AbstractGatewayFilterFactory<JAu
                     .parseClaimsJws(token)
                     .getBody();
         } catch (Exception exception) {
-            throw new JSecurityException(exceptionMessage);
+            throw new JSecurityException("Invalid Token");
         }
     }
 

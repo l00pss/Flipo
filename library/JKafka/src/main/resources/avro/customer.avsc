@@ -11,6 +11,12 @@
       }
     },
     {
+      "name": "time",
+      "type": {
+        "type": "string"
+      }
+    },
+    {
       "name": "ipAddress",
       "type": {
         "type": "string"

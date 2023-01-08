@@ -5,18 +5,19 @@
  */
 package az.rock.lib.kafka.model;
 
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.SchemaStore;
+import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
+import org.apache.avro.util.Utf8;
+import org.apache.avro.message.BinaryMessageEncoder;
+import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.SchemaStore;
 
-@SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -4702163400161628290L;
+  private static final long serialVersionUID = -4052147208030485426L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ConsumerGatewayRequest\",\"namespace\":\"az.rock.lib.kafka.model\",\"fields\":[{\"name\":\"uuid\",\"type\":{\"type\":\"string\",\"logicalType\":\"uuid\"}},{\"name\":\"ipAddress\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"userPrivateKey\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"userUUID\",\"type\":{\"type\":\"string\",\"logicalType\":\"uuid\"}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ConsumerGatewayRequest\",\"namespace\":\"az.rock.lib.kafka.model\",\"fields\":[{\"name\":\"uuid\",\"type\":{\"type\":\"string\",\"logicalType\":\"uuid\"}},{\"name\":\"time\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"ipAddress\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"userPrivateKey\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"userUUID\",\"type\":{\"type\":\"string\",\"logicalType\":\"uuid\"}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -73,6 +74,7 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
   }
 
   private java.lang.String uuid;
+  private java.lang.String time;
   private java.lang.String ipAddress;
   private java.lang.String userPrivateKey;
   private java.lang.String userUUID;
@@ -87,12 +89,14 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
   /**
    * All-args constructor.
    * @param uuid The new value for uuid
+   * @param time The new value for time
    * @param ipAddress The new value for ipAddress
    * @param userPrivateKey The new value for userPrivateKey
    * @param userUUID The new value for userUUID
    */
-  public ConsumerGatewayRequest(java.lang.String uuid, java.lang.String ipAddress, java.lang.String userPrivateKey, java.lang.String userUUID) {
+  public ConsumerGatewayRequest(java.lang.String uuid, java.lang.String time, java.lang.String ipAddress, java.lang.String userPrivateKey, java.lang.String userUUID) {
     this.uuid = uuid;
+    this.time = time;
     this.ipAddress = ipAddress;
     this.userPrivateKey = userPrivateKey;
     this.userUUID = userUUID;
@@ -104,15 +108,17 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
   public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return uuid;
-    case 1: return ipAddress;
-    case 2: return userPrivateKey;
-    case 3: return userUUID;
+    case 1: return time;
+    case 2: return ipAddress;
+    case 3: return userPrivateKey;
+    case 4: return userUUID;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
 
   private static final org.apache.avro.Conversion<?>[] conversions =
       new org.apache.avro.Conversion<?>[] {
+      null,
       null,
       null,
       null,
@@ -130,9 +136,10 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: uuid = value$ != null ? value$.toString() : null; break;
-    case 1: ipAddress = value$ != null ? value$.toString() : null; break;
-    case 2: userPrivateKey = value$ != null ? value$.toString() : null; break;
-    case 3: userUUID = value$ != null ? value$.toString() : null; break;
+    case 1: time = value$ != null ? value$.toString() : null; break;
+    case 2: ipAddress = value$ != null ? value$.toString() : null; break;
+    case 3: userPrivateKey = value$ != null ? value$.toString() : null; break;
+    case 4: userUUID = value$ != null ? value$.toString() : null; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -152,6 +159,23 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
    */
   public void setUuid(java.lang.String value) {
     this.uuid = value;
+  }
+
+  /**
+   * Gets the value of the 'time' field.
+   * @return The value of the 'time' field.
+   */
+  public java.lang.String getTime() {
+    return time;
+  }
+
+
+  /**
+   * Sets the value of the 'time' field.
+   * @param value the value to set.
+   */
+  public void setTime(java.lang.String value) {
+    this.time = value;
   }
 
   /**
@@ -247,6 +271,7 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
     implements org.apache.avro.data.RecordBuilder<ConsumerGatewayRequest> {
 
     private java.lang.String uuid;
+    private java.lang.String time;
     private java.lang.String ipAddress;
     private java.lang.String userPrivateKey;
     private java.lang.String userUUID;
@@ -266,17 +291,21 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
         this.uuid = data().deepCopy(fields()[0].schema(), other.uuid);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
-      if (isValidValue(fields()[1], other.ipAddress)) {
-        this.ipAddress = data().deepCopy(fields()[1].schema(), other.ipAddress);
+      if (isValidValue(fields()[1], other.time)) {
+        this.time = data().deepCopy(fields()[1].schema(), other.time);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
-      if (isValidValue(fields()[2], other.userPrivateKey)) {
-        this.userPrivateKey = data().deepCopy(fields()[2].schema(), other.userPrivateKey);
+      if (isValidValue(fields()[2], other.ipAddress)) {
+        this.ipAddress = data().deepCopy(fields()[2].schema(), other.ipAddress);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
-      if (isValidValue(fields()[3], other.userUUID)) {
-        this.userUUID = data().deepCopy(fields()[3].schema(), other.userUUID);
+      if (isValidValue(fields()[3], other.userPrivateKey)) {
+        this.userPrivateKey = data().deepCopy(fields()[3].schema(), other.userPrivateKey);
         fieldSetFlags()[3] = other.fieldSetFlags()[3];
+      }
+      if (isValidValue(fields()[4], other.userUUID)) {
+        this.userUUID = data().deepCopy(fields()[4].schema(), other.userUUID);
+        fieldSetFlags()[4] = other.fieldSetFlags()[4];
       }
     }
 
@@ -290,17 +319,21 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
         this.uuid = data().deepCopy(fields()[0].schema(), other.uuid);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.ipAddress)) {
-        this.ipAddress = data().deepCopy(fields()[1].schema(), other.ipAddress);
+      if (isValidValue(fields()[1], other.time)) {
+        this.time = data().deepCopy(fields()[1].schema(), other.time);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.userPrivateKey)) {
-        this.userPrivateKey = data().deepCopy(fields()[2].schema(), other.userPrivateKey);
+      if (isValidValue(fields()[2], other.ipAddress)) {
+        this.ipAddress = data().deepCopy(fields()[2].schema(), other.ipAddress);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.userUUID)) {
-        this.userUUID = data().deepCopy(fields()[3].schema(), other.userUUID);
+      if (isValidValue(fields()[3], other.userPrivateKey)) {
+        this.userPrivateKey = data().deepCopy(fields()[3].schema(), other.userPrivateKey);
         fieldSetFlags()[3] = true;
+      }
+      if (isValidValue(fields()[4], other.userUUID)) {
+        this.userUUID = data().deepCopy(fields()[4].schema(), other.userUUID);
+        fieldSetFlags()[4] = true;
       }
     }
 
@@ -345,6 +378,46 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
     }
 
     /**
+      * Gets the value of the 'time' field.
+      * @return The value.
+      */
+    public java.lang.String getTime() {
+      return time;
+    }
+
+
+    /**
+      * Sets the value of the 'time' field.
+      * @param value The value of 'time'.
+      * @return This builder.
+      */
+    public az.rock.lib.kafka.model.ConsumerGatewayRequest.Builder setTime(java.lang.String value) {
+      validate(fields()[1], value);
+      this.time = value;
+      fieldSetFlags()[1] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'time' field has been set.
+      * @return True if the 'time' field has been set, false otherwise.
+      */
+    public boolean hasTime() {
+      return fieldSetFlags()[1];
+    }
+
+
+    /**
+      * Clears the value of the 'time' field.
+      * @return This builder.
+      */
+    public az.rock.lib.kafka.model.ConsumerGatewayRequest.Builder clearTime() {
+      time = null;
+      fieldSetFlags()[1] = false;
+      return this;
+    }
+
+    /**
       * Gets the value of the 'ipAddress' field.
       * @return The value.
       */
@@ -359,9 +432,9 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
       * @return This builder.
       */
     public az.rock.lib.kafka.model.ConsumerGatewayRequest.Builder setIpAddress(java.lang.String value) {
-      validate(fields()[1], value);
+      validate(fields()[2], value);
       this.ipAddress = value;
-      fieldSetFlags()[1] = true;
+      fieldSetFlags()[2] = true;
       return this;
     }
 
@@ -370,7 +443,7 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
       * @return True if the 'ipAddress' field has been set, false otherwise.
       */
     public boolean hasIpAddress() {
-      return fieldSetFlags()[1];
+      return fieldSetFlags()[2];
     }
 
 
@@ -380,7 +453,7 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
       */
     public az.rock.lib.kafka.model.ConsumerGatewayRequest.Builder clearIpAddress() {
       ipAddress = null;
-      fieldSetFlags()[1] = false;
+      fieldSetFlags()[2] = false;
       return this;
     }
 
@@ -399,9 +472,9 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
       * @return This builder.
       */
     public az.rock.lib.kafka.model.ConsumerGatewayRequest.Builder setUserPrivateKey(java.lang.String value) {
-      validate(fields()[2], value);
+      validate(fields()[3], value);
       this.userPrivateKey = value;
-      fieldSetFlags()[2] = true;
+      fieldSetFlags()[3] = true;
       return this;
     }
 
@@ -410,7 +483,7 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
       * @return True if the 'userPrivateKey' field has been set, false otherwise.
       */
     public boolean hasUserPrivateKey() {
-      return fieldSetFlags()[2];
+      return fieldSetFlags()[3];
     }
 
 
@@ -420,7 +493,7 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
       */
     public az.rock.lib.kafka.model.ConsumerGatewayRequest.Builder clearUserPrivateKey() {
       userPrivateKey = null;
-      fieldSetFlags()[2] = false;
+      fieldSetFlags()[3] = false;
       return this;
     }
 
@@ -439,9 +512,9 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
       * @return This builder.
       */
     public az.rock.lib.kafka.model.ConsumerGatewayRequest.Builder setUserUUID(java.lang.String value) {
-      validate(fields()[3], value);
+      validate(fields()[4], value);
       this.userUUID = value;
-      fieldSetFlags()[3] = true;
+      fieldSetFlags()[4] = true;
       return this;
     }
 
@@ -450,7 +523,7 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
       * @return True if the 'userUUID' field has been set, false otherwise.
       */
     public boolean hasUserUUID() {
-      return fieldSetFlags()[3];
+      return fieldSetFlags()[4];
     }
 
 
@@ -460,7 +533,7 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
       */
     public az.rock.lib.kafka.model.ConsumerGatewayRequest.Builder clearUserUUID() {
       userUUID = null;
-      fieldSetFlags()[3] = false;
+      fieldSetFlags()[4] = false;
       return this;
     }
 
@@ -470,9 +543,10 @@ public class ConsumerGatewayRequest extends org.apache.avro.specific.SpecificRec
       try {
         ConsumerGatewayRequest record = new ConsumerGatewayRequest();
         record.uuid = fieldSetFlags()[0] ? this.uuid : (java.lang.String) defaultValue(fields()[0]);
-        record.ipAddress = fieldSetFlags()[1] ? this.ipAddress : (java.lang.String) defaultValue(fields()[1]);
-        record.userPrivateKey = fieldSetFlags()[2] ? this.userPrivateKey : (java.lang.String) defaultValue(fields()[2]);
-        record.userUUID = fieldSetFlags()[3] ? this.userUUID : (java.lang.String) defaultValue(fields()[3]);
+        record.time = fieldSetFlags()[1] ? this.time : (java.lang.String) defaultValue(fields()[1]);
+        record.ipAddress = fieldSetFlags()[2] ? this.ipAddress : (java.lang.String) defaultValue(fields()[2]);
+        record.userPrivateKey = fieldSetFlags()[3] ? this.userPrivateKey : (java.lang.String) defaultValue(fields()[3]);
+        record.userUUID = fieldSetFlags()[4] ? this.userUUID : (java.lang.String) defaultValue(fields()[4]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
